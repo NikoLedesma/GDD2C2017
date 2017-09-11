@@ -5,7 +5,7 @@ Contiene el Schema.
 
 ### project
 Contiente el proyecto c# dividido por:
-  - Buiness
+  - Business
   - DAO
   - DTO
   - Entities

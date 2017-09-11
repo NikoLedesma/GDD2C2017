@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagoAgilFrba", "PagoAgilFrba.csproj", "{AC76EDC4-20B6-4599-B13A-E03CD10702A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{31922321-9247-4362-B6F7-A5AB338AA422} = {31922321-9247-4362-B6F7-A5AB338AA422}
+		{368239E6-3C40-44F1-B904-5B200CF1133B} = {368239E6-3C40-44F1-B904-5B200CF1133B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO", "..\DAO\DAO.csproj", "{E8CF7D50-597D-48BC-A467-6FE658A13DDA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23} = {28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "..\Entities\Entities.csproj", "{28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "..\Business\Business.csproj", "{368239E6-3C40-44F1-B904-5B200CF1133B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{31922321-9247-4362-B6F7-A5AB338AA422} = {31922321-9247-4362-B6F7-A5AB338AA422}
+		{E8CF7D50-597D-48BC-A467-6FE658A13DDA} = {E8CF7D50-597D-48BC-A467-6FE658A13DDA}
+		{28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23} = {28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "..\DTO\DTO.csproj", "{31922321-9247-4362-B6F7-A5AB338AA422}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC76EDC4-20B6-4599-B13A-E03CD10702A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC76EDC4-20B6-4599-B13A-E03CD10702A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC76EDC4-20B6-4599-B13A-E03CD10702A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC76EDC4-20B6-4599-B13A-E03CD10702A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8CF7D50-597D-48BC-A467-6FE658A13DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8CF7D50-597D-48BC-A467-6FE658A13DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8CF7D50-597D-48BC-A467-6FE658A13DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8CF7D50-597D-48BC-A467-6FE658A13DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BB3C98-1F95-42AF-9FEF-2BEB57EA8F23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{368239E6-3C40-44F1-B904-5B200CF1133B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368239E6-3C40-44F1-B904-5B200CF1133B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368239E6-3C40-44F1-B904-5B200CF1133B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368239E6-3C40-44F1-B904-5B200CF1133B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31922321-9247-4362-B6F7-A5AB338AA422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31922321-9247-4362-B6F7-A5AB338AA422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31922321-9247-4362-B6F7-A5AB338AA422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31922321-9247-4362-B6F7-A5AB338AA422}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
