@@ -13,7 +13,7 @@ namespace DAO.GenericDAO
     {
         private static SqlConnection _connection;
 
-        public GenericDAO( )
+        public GenericDAO()
         {
             _connection = new SqlConnection(Properties.Settings.Default.str_connection);
         }
@@ -29,6 +29,34 @@ namespace DAO.GenericDAO
         {
             return null;
         }
+
+
+
+
+        public void save(SqlCommand command)
+        {
+
+            using (SqlConnection connection1 = new SqlConnection(Properties.Settings.Default.str_connection))
+            {
+                var list = new List<T>();
+                command.Connection = connection1;
+                connection1.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException sql)
+                {
+                    System.Diagnostics.Debug.Write(sql.Message);
+                }
+
+                finally
+                {
+                    _connection.Close();
+                }
+            }
+        }
+
 
         public IEnumerable<T> GetRecords(SqlCommand command)
         {
@@ -59,12 +87,12 @@ namespace DAO.GenericDAO
             var reader = command.ExecuteReader();
             try
             {
-                while (reader.Read())
-                {
-                    record = PopulateRecord(reader);
-                    break;
-                }
-                reader.Close();
+            while (reader.Read())
+            {
+                record = PopulateRecord(reader);
+                break;
+            }
+            reader.Close();
             }
             finally
             {
@@ -90,11 +118,40 @@ namespace DAO.GenericDAO
                 reader.Close();
             }
             finally
-            {   
+            {
                 _connection.Close();
             }
             return list;
         }
+
+
+        public int ExecuteSP(SqlCommand command)
+        {
+            var response = 0;
+            command.Connection = _connection;
+            command.CommandType = CommandType.StoredProcedure;
+            _connection.Open();
+            try
+            {
+                command.ExecuteScalar();
+
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return response;
+        }
+
+
+
+
+
+
+
+
+
+
     }
 
 }

@@ -10,7 +10,6 @@ namespace DTO
     {
         public String Username { get; set; }
         public String Password { get; set; }
-
         public UsuarioDTO() { }
 
         public UsuarioDTO(String username , String password) {
