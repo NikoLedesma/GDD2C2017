@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessRolImpl.cs" />
-    <Compile Include="BusinessUsuarioImpl.cs" />
+    <Compile Include="BusinessLoginImpl.cs" />
+    <Compile Include="MenuPrincipalBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

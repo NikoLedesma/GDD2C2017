@@ -22,5 +22,34 @@ namespace DTO
             this.resultCheckLogin = resultCheckLogin;
         }
 
+        public Boolean isLoginSuccessful()
+        {
+            return resultCheckLogin == ResultCheckLogin.LOGIN_SUCCESSFUL;
+        }
+
+        public Boolean isIncorrectPassword()
+        {
+            return resultCheckLogin == ResultCheckLogin.INCORRECT_PASSWORD;
+        }
+
+        public Boolean isExcededAttempsLimit()
+        {
+            return resultCheckLogin == ResultCheckLogin.ATTEMPS_EXCEDED;
+        }
+
+        public Boolean notExistUsuario()
+        {
+            return resultCheckLogin == ResultCheckLogin.NOT_EXIST_USUARIO;
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }

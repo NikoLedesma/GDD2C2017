@@ -2,6 +2,11 @@ USE GD2C2017;
 GO
 IF EXISTS (SELECT name FROM sys.schemas WHERE name = 'NO_TENGO_IDEA')
 BEGIN
+	IF OBJECT_ID('NO_TENGO_IDEA.ROLXFUNCIONALIDAD','U') IS NOT NULL
+	DROP TABLE NO_TENGO_IDEA.ROLXFUNCIONALIDAD;
+
+	IF OBJECT_ID('NO_TENGO_IDEA.FUNCIONALIDAD','U') IS NOT NULL
+	DROP TABLE NO_TENGO_IDEA.FUNCIONALIDAD;
 
 	IF OBJECT_ID('NO_TENGO_IDEA.USUARIOXROL','U') IS NOT NULL
 	DROP TABLE NO_TENGO_IDEA.USUARIOXROL;
@@ -45,14 +50,25 @@ END
 		CONSTRAINT FK_ROL_USUARIO FOREIGN KEY (ROL_ID) REFERENCES NO_TENGO_IDEA.ROL (ID)
 		)
 	GO
-	
-	
-	
+	CREATE TABLE NO_TENGO_IDEA.FUNCIONALIDAD
+		(
+		ID INTEGER PRIMARY KEY ,
+		NOMBRE   VARCHAR(255),
+		)
+	GO
+	CREATE TABLE NO_TENGO_IDEA.ROLXFUNCIONALIDAD 
+		(
+		ROL_ID INTEGER ,
+		FUNCIONALIDAD_ID INTEGER ,
+		CONSTRAINT ROL_FUNCIONALIDAD_PK PRIMARY KEY(ROL_ID,FUNCIONALIDAD_ID),
+		CONSTRAINT FK_ROL_FUNCIONALIDAD FOREIGN KEY (ROL_ID) REFERENCES NO_TENGO_IDEA.ROL (ID),
+		CONSTRAINT FK_FUNCIONALIDAD_ROL FOREIGN KEY (FUNCIONALIDAD_ID) REFERENCES NO_TENGO_IDEA.FUNCIONALIDAD (ID)
+		)
+	GO
 	INSERT INTO  NO_TENGO_IDEA.ROL (ID,NOMBRE,HABILITADO)
-	VALUES	(1,'ROL1',1), 
-			(2,'ROL2',1) ,
-			(3,'ROL3',1)
-GO
+	VALUES	(1,'Administrador',1), 
+			(2,'Cobrador',1) 
+   GO
 	INSERT INTO  NO_TENGO_IDEA.USUARIO(ID,USERNAME,PASS,HABILITADO,CANT_INTENTOS_FALLIDOS)
 	VALUES	(1,'USER1','USER1',1,0), 
 			(2,'USER2','USER2',1,0)
@@ -62,6 +78,24 @@ GO
 	VALUES	(1,1),
 			(1,2),
 			(2,2)
+GO
+	INSERT INTO NO_TENGO_IDEA.FUNCIONALIDAD(ID,NOMBRE)
+	VALUES	(1,'ABM de Rol'),
+			(2,'Login y Seguridad'),
+			(3,'Registro de Usuario'),
+			(4,'ABM de Cliente'),
+			(5,'ABM de Empresa'),
+			(6,'ABM de Sucursal'),
+			(7,'ABM Facturas'),
+			(8,'Registro de Pago de Facturas'),
+			(9,'Rendicion de Facturas cobradas'),
+			(10,'Listado Estadistico')
+
+GO
+	INSERT INTO NO_TENGO_IDEA.ROLXFUNCIONALIDAD(ROL_ID,FUNCIONALIDAD_ID)
+	VALUES	(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),
+		(2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7)
+
 GO
 
 	/*devuelve el resultado de inicio de session.
@@ -103,9 +137,41 @@ GO
 	END
 	
 	
+	/**************************************/
+	DELETE FROM NO_TENGO_IDEA.ROLXFUNCIONALIDAD WHERE 
+	ROL_ID IN (SELECT R.ID FROM NO_TENGO_IDEA.ROL R WHERE R.NOMBRE='')      
+	AND FUNCIONALIDAD_ID IN (SELECT F.ID FROM NO_TENGO_IDEA.FUNCIONALIDAD F WHERE F.NOMBRE = '');
 	
+	GO
+	INSERT INTO NO_TENGO_IDEA.ROLXFUNCIONALIDAD (ROL_ID,FUNCIONALIDAD_ID) SELECT 
+	(SELECT R.ID FROM NO_TENGO_IDEA.ROL R WHERE R.NOMBRE = 'rolx'), 
+	(SELECT F.ID FROM NO_TENGO_IDEA.FUNCIONALIDAD F WHERE F.NOMBRE = 'funx')
 	
+	/******************************************/
+
+	SELECT * FROM NO_TENGO_IDEA.ROL 
 	
+	UPDATE NO_TENGO_IDEA.ROL SET HABILITADO = 0 WHERE NOMBRE = ''  
+
+
+
+	/*
+//parent.ForeColor = Color.Gray; PARA poder agregar
+*/
+	        /*
+ * para poder eliminar
+ private void treeView1_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+{
+if (Color.Gray == e.Node.ForeColor)
+e.Cancel = true;
+}
 	
-	
-	
+private void Form1_Load(object sender, EventArgs e)
+{
+foreach (TreeNode node in treeView1.Nodes)
+if (node.Text == "sample")
+node.ForeColor = Color.Gray;
+}
+         
+         
+ */

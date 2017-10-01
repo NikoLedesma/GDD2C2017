@@ -33,17 +33,54 @@ namespace DAO.GenericDAO
 
 
 
-        public void save(SqlCommand command)
+
+
+
+        public int remove(SqlCommand command)
+        {
+
+            using (SqlConnection connection1 = new SqlConnection(Properties.Settings.Default.str_connection))
+            {
+                command.Connection = connection1;
+                connection1.Open();
+                var i=-1;
+                try
+                {
+                  i = command.ExecuteNonQuery();
+                }
+                catch (SqlException sql)
+                {
+                    System.Diagnostics.Debug.Write(sql.Message);
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+                return i; 
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        public int save(SqlCommand command)
         {
 
             using (SqlConnection connection1 = new SqlConnection(Properties.Settings.Default.str_connection))
             {
                 var list = new List<T>();
+                int i=-1;
                 command.Connection = connection1;
                 connection1.Open();
                 try
                 {
-                    command.ExecuteNonQuery();
+                 i = command.ExecuteNonQuery();
                 }
                 catch (SqlException sql)
                 {
@@ -54,6 +91,7 @@ namespace DAO.GenericDAO
                 {
                     _connection.Close();
                 }
+                return i;
             }
         }
 

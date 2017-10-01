@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Rol
+
+    public class Funcionalidad
     {
+        public int id { get; set; }
         public String Nombre { get; set; }
-        public Boolean Habilitado { get; set; }
     }
+
 }

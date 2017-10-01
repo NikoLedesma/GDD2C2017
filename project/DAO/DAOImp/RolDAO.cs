@@ -35,6 +35,16 @@ namespace DAO.DAOImp
             }
         }
 
+
+        public IEnumerable<Rol> getAll( )
+        {
+            using (var command = new SqlCommand("SELECT R.ID,R.NOMBRE,R.HABILITADO FROM NO_TENGO_IDEA.ROL R"))
+            {
+                return GetRecords(command);
+            }
+        }
+
+
         public override Rol PopulateRecord(SqlDataReader reader)
         {
             Rol rol = new Rol();
@@ -43,6 +53,54 @@ namespace DAO.DAOImp
             return rol;
         }
 
+
+
+
+
+        public int removeFuncionalidadByRolName(string rolName, string funcionalidadName)
+        {
+
+            using (var command = new SqlCommand("DELETE FROM NO_TENGO_IDEA.ROLXFUNCIONALIDAD WHERE "+
+                                "ROL_ID IN (SELECT R.ID FROM NO_TENGO_IDEA.ROL R WHERE R.NOMBRE=@ROLNAME) AND "+
+                                "FUNCIONALIDAD_ID IN (SELECT F.ID FROM NO_TENGO_IDEA.FUNCIONALIDAD F WHERE F.NOMBRE = @FUNCIONALIDADNAME)" ))
+            {
+                command.Parameters.AddWithValue("@ROLNAME", rolName);
+                command.Parameters.AddWithValue("@FUNCIONALIDADNAME", funcionalidadName);
+                return remove(command);
+            }
+
+        }
+
+        public int addFuncionalidadToRol(string rolName, string funcionalidadName)
+        {
+            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.ROLXFUNCIONALIDAD (ROL_ID,FUNCIONALIDAD_ID) SELECT " +
+                    "(SELECT R.ID FROM NO_TENGO_IDEA.ROL R WHERE R.NOMBRE = @ROLNAME), " +
+                    "(SELECT F.ID FROM NO_TENGO_IDEA.FUNCIONALIDAD F WHERE F.NOMBRE = @FUNCIONALIDADNAME ) "))
+            {
+                command.Parameters.AddWithValue("@ROLNAME", rolName);
+                command.Parameters.AddWithValue("@FUNCIONALIDADNAME", funcionalidadName);
+                return save(command);
+            }
+        }
+
+        public int deleteLogicalByName(string rolName)
+        {
+            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.ROL SET HABILITADO = 0 WHERE NOMBRE = @ROLNAME ") )
+            {
+                command.Parameters.AddWithValue("@ROLNAME", rolName);
+                return save(command);
+            }    
+        }
+
+
+        public int addLogicalByName(string rolName)
+        {
+            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.ROL SET HABILITADO = 1 WHERE NOMBRE = @ROLNAME "))
+            {
+                command.Parameters.AddWithValue("@ROLNAME", rolName);
+                return save(command);
+            }
+        }
 
 
 
