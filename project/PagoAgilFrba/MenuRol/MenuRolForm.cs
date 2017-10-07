@@ -51,7 +51,7 @@ namespace PagoAgilFrba.MenuRol
 
         void showMenuPrincipalForm()
         {
-            menuPrincipalForm = new MenuPrincipalForm(this);
+            menuPrincipalForm = new MenuPrincipalForm(this,this.getSelectedRolDTO());
             menuPrincipalForm.Show();
         }
 

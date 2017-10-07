@@ -23,16 +23,16 @@ namespace PagoAgilFrba.MenuPrincipal
         private FactoryFormMenu factoryFormMenu;
         private Form selectedFormOption;
         static private String labelException = "Problema con el funcionamiento de la opcion seleccionada:" ;
-        private MenuRolForm menuRolForm;
+        private Form prevForm;
         int top = 50;
 
-        public MenuPrincipalForm(MenuRolForm menuRolForm)
+        public MenuPrincipalForm(Form menuRolForm,RolDTO rolDTO)
         {
             InitializeComponent();
             factoryFormMenu = new FactoryFormMenu();
-            this.menuRolForm = menuRolForm;
+            this.prevForm = menuRolForm;
             menuRolForm.Hide();
-            InitializeButtons(menuRolForm.getSelectedRolDTO());
+            InitializeButtons(rolDTO);
 
         }
 
@@ -72,7 +72,7 @@ namespace PagoAgilFrba.MenuPrincipal
 
         private void MenuPrincipalForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
-            menuRolForm.Show();
+            prevForm.Show();
         }
 
     }

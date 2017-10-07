@@ -30,5 +30,19 @@ namespace Business
            return loginFormDTO;
         }
 
+
+       public Boolean userHaveOnlyOneRol(UsuarioDTO usuarioDTO) {
+           //TODO : CLEAR
+           /*RolDAO rolDAO= new RolDAO() ;
+           List<Rol> listRol =rolDAO.getAllByUsername(usuarioDTO.Username).ToList();
+           List<RolDTO> listRolDTO = new List<RolDTO>();
+           listRol.ForEach(x => {if(x.Habilitado){listRolDTO.Add(new RolDTO(x.Nombre,x.Habilitado ));}});
+           */
+           BusinessRolImpl bussinesRolImpl = new BusinessRolImpl();
+           List<RolDTO> listRolDTO = bussinesRolImpl.getEnabledRolesByUsuario(usuarioDTO);
+           return listRolDTO.Count == 1;
+       }
+
+
     }
 }
