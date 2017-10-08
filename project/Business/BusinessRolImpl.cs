@@ -84,7 +84,7 @@ namespace Business
         }
 
 
-        public List<RolDTO> addRol(RolDTO rolDTO)
+        public List<RolDTO> enableRol(RolDTO rolDTO)
         {
             RolDAO rolDAO = new RolDAO();
             int res = rolDAO.addLogicalByName(rolDTO.Nombre);
@@ -93,6 +93,23 @@ namespace Business
         }
 
 
+        public int addRol(RolDTO rolDTO)
+        {
+            RolDAO rolDAO = new RolDAO();
+            int res = rolDAO.addRol(rolDTO.Nombre);
+            List<FuncionalidadDTO> listFuncionalidadDTO = rolDTO.listFuncionalidadDTO;
+            listFuncionalidadDTO.ForEach(x => { rolDAO.addFuncionalidadToRol(rolDTO.Nombre, x.Nombre); });
+            if (res == -1) { throw new Exception("NO MODIFICADO"); }
+            return res;
+        }
+
+        public List <FuncionalidadDTO> getAllFunctionalidades(){
+            FuncionalidadDAO funcionalidadDAO = new FuncionalidadDAO();
+            List<Funcionalidad> listFuncionalidad = funcionalidadDAO.getAllFuncionalidades().ToList();
+            List<FuncionalidadDTO> listFuncionalidadDTO = new List<FuncionalidadDTO>();
+            listFuncionalidad.ForEach(x => { listFuncionalidadDTO.Add(new FuncionalidadDTO(x.Nombre)); });
+            return listFuncionalidadDTO;
+        }
 
     }
 }

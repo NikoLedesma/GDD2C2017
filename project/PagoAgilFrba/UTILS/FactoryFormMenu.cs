@@ -13,28 +13,28 @@ namespace PagoAgilFrba.UTILS
     public class FactoryFormMenu
     {
         
-        public Form getFormMenu(String selectedTag){
+        public Form getFormMenu(String selectedTag,Form prevForm){
             Form form = null;
             if(selectedTag.Equals("ABM de Rol")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }else if(selectedTag.Equals("Login y Seguridad")){
                 form = null;
             }else if(selectedTag.Equals("Registro de Usuario")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }else if(selectedTag.Equals("ABM de Cliente")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }else if(selectedTag.Equals("ABM de Empresa")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }else if(selectedTag.Equals("ABM de Sucursal")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }else if(selectedTag.Equals("ABM Facturas")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }else if(selectedTag.Equals("Registro de Pago de Facturas")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }else if(selectedTag.Equals("Rendicion de Facturas cobradas")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }else if(selectedTag.Equals("Listado Estadistico")){
-                form = new RolForm();
+                form = new RolForm(prevForm);
             }
             return form;
         }

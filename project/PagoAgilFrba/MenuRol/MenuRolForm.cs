@@ -60,12 +60,6 @@ namespace PagoAgilFrba.MenuRol
             rolMenuListBox.DisplayMember = RolListBoxMember;
             rolMenuListBox.ValueMember = RolListBoxMember;
             rolMenuListBox.DataSource = rolDTOS;
-           // TODO : ver como solucioner en el caso que solo se tenga un rol
-            /*if (existOnlyOneRol(rolDTOS))
-            {
-                selectedRolDTO = rolDTOS[0];
-                showMenuPrincipalForm();
-            }*/
         }
 
         private Boolean existAnyRol(List<RolDTO> rolDTOS)

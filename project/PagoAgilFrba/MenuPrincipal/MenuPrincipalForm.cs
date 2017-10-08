@@ -24,7 +24,8 @@ namespace PagoAgilFrba.MenuPrincipal
         private Form selectedFormOption;
         static private String labelException = "Problema con el funcionamiento de la opcion seleccionada:" ;
         private Form prevForm;
-        int top = 50;
+        private RolDTO rolDTO;
+        int top;
 
         public MenuPrincipalForm(Form menuRolForm,RolDTO rolDTO)
         {
@@ -32,14 +33,16 @@ namespace PagoAgilFrba.MenuPrincipal
             factoryFormMenu = new FactoryFormMenu();
             this.prevForm = menuRolForm;
             menuRolForm.Hide();
-            InitializeButtons(rolDTO);
-
+            this.rolDTO = rolDTO;
+            buttons = new List<Button>();
+            InitializeButtons();
         }
 
 
-        private void InitializeButtons(RolDTO rolDTO)
+        public void InitializeButtons()
         {
-            buttons = new List<Button>();
+            top = 50;
+            buttons.ForEach(x => { this.Controls.Remove(x); });
             menuPrincipalBusiness = new MenuPrincipalBusiness();
             listFuncionalidadDTO = menuPrincipalBusiness.getFuncionalidadByRol(rolDTO);
             listFuncionalidadDTO.ForEach(x => { addButtons(x); });
@@ -61,7 +64,7 @@ namespace PagoAgilFrba.MenuPrincipal
         protected void showForm(object sender, EventArgs e)
         {
             string selectedTag = ((Button)sender).Text;
-            selectedFormOption = factoryFormMenu.getFormMenu(selectedTag);
+            selectedFormOption = factoryFormMenu.getFormMenu(selectedTag,this);
             try{
                 selectedFormOption.Show();
             }

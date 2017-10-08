@@ -104,5 +104,17 @@ namespace DAO.DAOImp
 
 
 
+
+        public int addRol(string rolName)
+        {
+            using (var command = new SqlCommand("SET IDENTITY_INSERT NO_TENGO_IDEA.ROL OFF INSERT INTO  NO_TENGO_IDEA.ROL (NOMBRE,HABILITADO) "
+                                                +"VALUES(@ROLNAME,1) "))
+            {
+                command.Parameters.AddWithValue("@ROLNAME", rolName);
+                return save(command);
+            }
+        }
+
+
     }
 }

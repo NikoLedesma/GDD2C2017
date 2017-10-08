@@ -27,8 +27,8 @@ END
 	GO
 	CREATE TABLE NO_TENGO_IDEA.ROL 
 		(	
-		ID INTEGER PRIMARY KEY,
-		NOMBRE VARCHAR(50),
+		ID INTEGER NOT NULL IDENTITY(1,1) PRIMARY KEY ,
+		NOMBRE VARCHAR(50) NOT NULL UNIQUE,
 		HABILITADO BIT,
 		)
 	GO	
@@ -65,6 +65,7 @@ END
 		CONSTRAINT FK_FUNCIONALIDAD_ROL FOREIGN KEY (FUNCIONALIDAD_ID) REFERENCES NO_TENGO_IDEA.FUNCIONALIDAD (ID)
 		)
 	GO
+	SET IDENTITY_INSERT NO_TENGO_IDEA.ROL ON
 	INSERT INTO  NO_TENGO_IDEA.ROL (ID,NOMBRE,HABILITADO)
 	VALUES	(1,'Administrador',1), 
 			(2,'Cobrador',1) 
@@ -136,42 +137,3 @@ GO
 		SET @ESTADO_INICIO=1
 	END
 	
-	
-	/**************************************/
-	DELETE FROM NO_TENGO_IDEA.ROLXFUNCIONALIDAD WHERE 
-	ROL_ID IN (SELECT R.ID FROM NO_TENGO_IDEA.ROL R WHERE R.NOMBRE='')      
-	AND FUNCIONALIDAD_ID IN (SELECT F.ID FROM NO_TENGO_IDEA.FUNCIONALIDAD F WHERE F.NOMBRE = '');
-	
-	GO
-	INSERT INTO NO_TENGO_IDEA.ROLXFUNCIONALIDAD (ROL_ID,FUNCIONALIDAD_ID) SELECT 
-	(SELECT R.ID FROM NO_TENGO_IDEA.ROL R WHERE R.NOMBRE = 'rolx'), 
-	(SELECT F.ID FROM NO_TENGO_IDEA.FUNCIONALIDAD F WHERE F.NOMBRE = 'funx')
-	
-	/******************************************/
-
-	SELECT * FROM NO_TENGO_IDEA.ROL 
-	
-	UPDATE NO_TENGO_IDEA.ROL SET HABILITADO = 0 WHERE NOMBRE = ''  
-
-
-
-	/*
-//parent.ForeColor = Color.Gray; PARA poder agregar
-*/
-	        /*
- * para poder eliminar
- private void treeView1_BeforeSelect(object sender, TreeViewCancelEventArgs e)
-{
-if (Color.Gray == e.Node.ForeColor)
-e.Cancel = true;
-}
-	
-private void Form1_Load(object sender, EventArgs e)
-{
-foreach (TreeNode node in treeView1.Nodes)
-if (node.Text == "sample")
-node.ForeColor = Color.Gray;
-}
-         
-         
- */

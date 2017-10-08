@@ -1,5 +1,6 @@
 ﻿using Business;
 using DTO;
+using PagoAgilFrba.MenuPrincipal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,17 +17,25 @@ namespace PagoAgilFrba.AbmRol
     {
 
         private BusinessRolImpl businessRolImpl;
-
-        public RolForm()
+        private Form prevForm;
+        public RolForm(Form form)
         {
             InitializeComponent();
+            businessRolImpl = new BusinessRolImpl();
+            updateListRol();
+            prevForm = form;
+            prevForm.Hide();
+        }
+
+        public void updateListRol(){
+            rolTreeView.Nodes.Clear();
+            funcionalidadTreeView.Nodes.Clear();
             btnRemoveFromRol.Enabled = false;
             btnAddToRol.Enabled = false;
             btnDeleteRol.Enabled = false;
             btnAddRol.Enabled = false;
-            businessRolImpl = new BusinessRolImpl();
             List<RolDTO> listRolDTO = businessRolImpl.getAllRolesWithFunctionalidades();
-            listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));
+            listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));        
         }
 
         private void populateRolTreeView(RolDTO rolDTOSource)
@@ -48,8 +57,9 @@ namespace PagoAgilFrba.AbmRol
             rolTreeView.Nodes.Add(treeNode);
         }
 
-        public void createTreeFuncNodeWithColorRed( List<TreeNode> listNodeFuncionalidad, String Nombre){
-            TreeNode treeNode= new TreeNode(Nombre);
+        public void createTreeFuncNodeWithColorRed(List<TreeNode> listNodeFuncionalidad, String Nombre)
+        {
+            TreeNode treeNode = new TreeNode(Nombre);
             treeNode.ForeColor = Color.Gray;
             listNodeFuncionalidad.Add(treeNode);
         }
@@ -58,22 +68,33 @@ namespace PagoAgilFrba.AbmRol
         private void rolTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             TreeView rolTreeView = (TreeView)sender;
-            if (isAParentNode(rolTreeView.SelectedNode))
+            if (Color.Gray != rolTreeView.SelectedNode.ForeColor)
             {
-                btnDeleteRol.Enabled = true;
-                btnRemoveFromRol.Enabled = false;
-                btnAddToRol.Enabled = false;
-                rolTreeView.SelectedNode.Expand();
-                populateFuncionalidadTreeView(rolTreeView.SelectedNode);
+                if (isAParentNode(rolTreeView.SelectedNode))
+                {
+                    btnDeleteRol.Enabled = true;
+                    btnRemoveFromRol.Enabled = false;
+                    btnAddToRol.Enabled = false;
+                    btnAddRol.Enabled = false;
+                }
+                else
+                {
+                    btnDeleteRol.Enabled = false;
+                    btnRemoveFromRol.Enabled = true;
+                    btnAddToRol.Enabled = false;
+                    btnAddRol.Enabled = false;
+                }
             }
             else
             {
                 btnDeleteRol.Enabled = false;
-                btnRemoveFromRol.Enabled = true;
+                btnRemoveFromRol.Enabled = false;
                 btnAddToRol.Enabled = false;
-                populateFuncionalidadTreeView(rolTreeView.SelectedNode.Parent);
+                btnAddRol.Enabled = true;
             }
-
+            TreeNode parentNode = getParent(rolTreeView.SelectedNode);
+            parentNode.Expand();
+            populateFuncionalidadTreeView(parentNode);
         }
 
 
@@ -83,7 +104,7 @@ namespace PagoAgilFrba.AbmRol
 
             if (Color.Gray == e.Node.ForeColor)
             {
-                e.Cancel = true;
+                //e.Cancel = true;
             }
 
         }
@@ -91,8 +112,17 @@ namespace PagoAgilFrba.AbmRol
 
         private void funcionalidadTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            btnAddToRol.Enabled = true;
-            btnDeleteRol.Enabled = false;
+            TreeNode parent = getParent(rolTreeView.SelectedNode);
+            if (parent.ForeColor != Color.Gray)
+            {
+                btnAddToRol.Enabled = true;
+                btnDeleteRol.Enabled = false;
+            }
+            else
+            {
+                btnAddToRol.Enabled = false;
+                btnDeleteRol.Enabled = false;
+            }
         }
 
         private void populateFuncionalidadTreeView(TreeNode parentRolNode)
@@ -150,6 +180,12 @@ namespace PagoAgilFrba.AbmRol
             return isAParentNode(node) ? node.Text : node.Parent.Text;
         }
 
+        private TreeNode getParent(TreeNode node)
+        {
+            return isAParentNode(node) ? node : node.Parent;
+        }
+
+
         private void disableButton(Button btn)
         {
             btn.Enabled = false;
@@ -162,19 +198,13 @@ namespace PagoAgilFrba.AbmRol
 
         private void addFuncionalidadNodeToRolTree(TreeNode node)
         {
-            if (isAParentNode(rolTreeView.SelectedNode))
-            {
-                rolTreeView.SelectedNode.Nodes.Add((TreeNode)funcionalidadTreeView.SelectedNode.Clone());
-            }
-            else
-            {
-                rolTreeView.SelectedNode.Parent.Nodes.Add((TreeNode)funcionalidadTreeView.SelectedNode.Clone());
-            }
+            TreeNode parentNode = getParent(rolTreeView.SelectedNode);
+            parentNode.Nodes.Add((TreeNode)funcionalidadTreeView.SelectedNode.Clone());
         }
 
         private void btnDeleteRol_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar el rol" + rolTreeView.SelectedNode.Text, "Baja de rol", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Esta seguro que desea Deshabilitar el rol" + rolTreeView.SelectedNode.Text, "Baja de rol", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 RolDTO rolDTO = new RolDTO(rolTreeView.SelectedNode.Text, false);
@@ -184,15 +214,34 @@ namespace PagoAgilFrba.AbmRol
                 listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));
                 btnDeleteRol.Enabled = false;
             }
-            else if (dialogResult == DialogResult.No)
-            {
-                ///NOTHING
-            }
         }
 
         private void btnAddRol_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show("Esta seguro que desea Habilitar el rol" + rolTreeView.SelectedNode.Text, "Alta de rol", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                TreeNode parent = getParent(rolTreeView.SelectedNode);
+                RolDTO rolDTO = new RolDTO(parent.Text, true);
+                List<RolDTO> listRolDTO = businessRolImpl.enableRol(rolDTO);
+                rolTreeView.Nodes.Clear();
+                funcionalidadTreeView.Nodes.Clear();
+                listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));
+                btnAddRol.Enabled = false;
+            }
         }
+
+        private void btnAgreeRol_Click(object sender, EventArgs e)
+        {
+            Form altaForm =new AltaRolForm(this);
+            altaForm.Show();
+        }
+
+        private void RolForm_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            prevForm.Show();
+            ((MenuPrincipalForm)prevForm).InitializeButtons();
+        }
+
     }
 }

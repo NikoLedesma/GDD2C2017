@@ -58,5 +58,14 @@ namespace DAO.DAOImp
 
 
 
+
+        public IEnumerable<Funcionalidad> getAllFuncionalidades()
+        {
+            using (var command = new SqlCommand("SELECT F.ID,F.NOMBRE FROM NO_TENGO_IDEA.FUNCIONALIDAD F"))
+            {
+                return GetRecords(command);
+            }
+
+        }
     }
 }
