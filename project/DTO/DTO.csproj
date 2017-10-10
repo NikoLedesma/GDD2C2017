@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteDTO.cs" />
     <Compile Include="Enums\IEnumsLogin.cs" />
     <Compile Include="Forms\LoginFormDTO.cs" />
     <Compile Include="FuncionalidadDTO.cs" />
