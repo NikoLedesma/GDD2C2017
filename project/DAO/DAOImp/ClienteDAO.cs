@@ -33,6 +33,64 @@ namespace DAO.DAOImp
             }
         }
 
+        public IEnumerable<Cliente> getAllByUsername(string nombre, string apellido, int dni)
+        {
+            String str = "" ;
+            if(nombre!=null && !nombre.Equals(apellido)){str += " AND CLIENTE_NOMBRE = @NOMBRE ";}
+            if (apellido != null && !apellido.Equals(apellido)){str += " AND CLIENTE_APELLIDO = @APELLIDO ";}
+            if (dni > 0){str += " AND CLIENTE_DNI = @DNI ";}
+
+            using (var command = new SqlCommand("SELECT CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_DNI,CLIENTE_MAIL,CLIENTE_DIRECCION,CLIENTE_NRO_PISO,CLIENTE_DEPTO,CLIENTE_LOCALIDAD,CLIENTE_NRO_TELEFONO,CLIENTE_COD_POSTAL,CLIENTE_FECHA_NACIMIENTO,CLIENTE_HABILITADO " +
+                          "FROM  NO_TENGO_IDEA.CLIENTE WHERE 1=1 " + str))
+            {
+                if (nombre != null && !nombre.Equals(apellido)){command.Parameters.AddWithValue("@NOMBRE", nombre);}
+                if (apellido != null && !apellido.Equals(apellido)){command.Parameters.AddWithValue("@APELLIDO", apellido);}
+                if (dni > 0){command.Parameters.AddWithValue("@DNI", dni);}
+                return GetRecords(command);
+            }
+            throw new NotImplementedException();
+        }
+
+
+
+        public IEnumerable<Cliente> update( Cliente cliente)
+        {
+            return null;
+        }
+
+
+
+
+
+
+
+
+        public override Cliente PopulateRecord(SqlDataReader reader)
+        {
+            Cliente cliente = new Cliente();
+            cliente.id = reader.GetInt32(0);
+            cliente.nombre = reader.GetString(1);
+            cliente.apellido = reader.GetString(2);
+            cliente.dni = reader.GetInt32(3);
+            cliente.mail = reader.GetString(4) ;
+            cliente.direccion = reader.GetString(5);
+            cliente.nroPiso = reader.GetInt16(6);
+            cliente.departamento = reader.GetString(7) [0];
+            cliente.localidad = reader.GetString(8);
+            cliente.nroTelefono =reader.GetInt32(9);
+            cliente.codPostal = reader.GetString(10);
+            cliente.fechaDeNacimiento = reader.GetDateTime(11);
+            cliente.habilitado = reader.GetBoolean(12);
+            return cliente;
+        }
+
+
+
+
+
+
+
+
 
     }
 }

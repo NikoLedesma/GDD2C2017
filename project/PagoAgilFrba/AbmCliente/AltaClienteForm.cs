@@ -1,5 +1,6 @@
 ﻿using Business;
 using DTO;
+using DTO.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,12 +19,25 @@ namespace PagoAgilFrba.AbmCliente
         private Form prevForm;
 
         private BusinessClienteImpl businessClienteImpl;
-        public AltaClienteForm(Form form)
+
+        private EnumFormMode formMode;
+
+        public AltaClienteForm(Form form,EnumFormMode enumFormMode)
         {
             InitializeComponent();
             businessClienteImpl = new BusinessClienteImpl();
             prevForm = form;
-        
+            form.Hide();
+            formMode = enumFormMode;
+            if (formMode == EnumFormMode.MODE_ALTA)
+            {
+                MessageBox.Show("INGRESO PARA EL ALTA");
+            }
+
+            if (formMode == EnumFormMode.MODE_MODIFICACION)
+            {
+                MessageBox.Show("INGRESO PARA LA MODIFICACION");
+            }
         }
 
         
@@ -46,6 +60,10 @@ namespace PagoAgilFrba.AbmCliente
         }
 
 
+        private void AltaClienteForm_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            this.prevForm.Show();
+        }
 
     }
 }
