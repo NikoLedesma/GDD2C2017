@@ -72,12 +72,6 @@
     <Compile Include="AbmCliente\ModClienteForm.Designer.cs">
       <DependentUpon>ModClienteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmEmpresa\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmEmpresa\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmFactura\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +153,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="UTILS\FactoryFormMenu.cs" />
+    <Compile Include="UTILS\Provider.cs" />
+    <Compile Include="UTILS\Validator.cs" />
     <EmbeddedResource Include="AbmCliente\AltaClienteForm.resx">
       <DependentUpon>AltaClienteForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,7 +237,9 @@
       <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AbmEmpresa\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

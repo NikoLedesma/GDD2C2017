@@ -19,9 +19,28 @@ namespace Business
             return clienteDAO.saveCliente(cliente);
         }
 
+
+        public List <ClienteDTO> getClientesByFilter(ClienteDTO clienteDTO){
+            ClienteDAO clienteDAO = new ClienteDAO();
+            List <ClienteDTO> clienteDTOList =  new List<ClienteDTO>();
+            List <Cliente> clienteList = new List<Cliente>();
+            clienteList = clienteDAO.getAllByUsername(clienteDTO.nombre,clienteDTO.apellido,clienteDTO.dni).ToList();
+            clienteList.ForEach(x => { clienteDTOList.Add(converterClienteToClienteDTO(x));});
+            return clienteDTOList;
+        }
+
+
+       /* public int unableCliente(ClienteDTO clienteDTO)
+        {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            return clienteDAO.deleteCliente(clienteDTO);
+        }*/
+
+
         public Cliente converterClienteDTOToCliente(ClienteDTO clienteDTO)
         {
             Cliente cliente = new Cliente();
+            cliente.id = clienteDTO.id;
             cliente.nombre = clienteDTO.nombre;
             cliente.apellido = clienteDTO.apellido;
             cliente.dni = clienteDTO.dni;
@@ -33,8 +52,34 @@ namespace Business
             cliente.localidad = clienteDTO.localidad;
             cliente.codPostal = clienteDTO.codPostal;
             cliente.fechaDeNacimiento = clienteDTO.fechaDeNacimiento;
+            cliente.habilitado = cliente.habilitado;
             return cliente;
         }
+
+
+        public ClienteDTO converterClienteToClienteDTO(Cliente cliente)
+        {
+            ClienteDTO clienteDTO = new ClienteDTO();
+            clienteDTO.id = cliente.id;
+            clienteDTO.nombre = cliente.nombre;
+            clienteDTO.apellido = cliente.apellido;
+            clienteDTO.dni = cliente.dni;
+            clienteDTO.mail = cliente.mail;
+            clienteDTO.nroTelefono = cliente.nroTelefono;
+            clienteDTO.direccion = cliente.direccion;
+            clienteDTO.nroPiso = cliente.nroPiso;
+            clienteDTO.departamento = cliente.departamento;
+            clienteDTO.localidad = cliente.localidad;
+            clienteDTO.codPostal = cliente.codPostal;
+            clienteDTO.fechaDeNacimiento = cliente.fechaDeNacimiento;
+            clienteDTO.habilitado = cliente.habilitado;
+            return clienteDTO;
+        }
+
+
+
+
+
     }
 
 }
