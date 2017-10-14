@@ -17,8 +17,8 @@ namespace DAO.DAOImp
             //                                "(SUCURSAL_NOMBRE,SUCURSAL_DIRECCION,SUCURSAL_NRO_PISO,SUCURSAL_DEPTO,SUCURSAL_LOCALIDAD,SUCURSAL_COD_POSTAL,SUCURSAL_HABILITADO) " +
             //                                    "VALUES (@NOMBRE,@DIRECCION,@NRO_PISO,@DEPTO,@LOCALIDAD,@COD_POSTAL,@HABILITADO)"))
            
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.SUCURSAL " +
-                                    "(SUCURSAL_NOMBRE,SUCURSAL_DIRECCION,SUCURSAL_COD_POSTAL,SUCURSAL_HABILITADO) " +
+            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Sucursal " +
+                                    "(sucu_nom,sucu_dire,sucu_cp,sucu_inactive) " +
                                     "VALUES (@NOMBRE,@DIRECCION,@COD_POSTAL,@HABILITADO)"))
                                                                                 
           {

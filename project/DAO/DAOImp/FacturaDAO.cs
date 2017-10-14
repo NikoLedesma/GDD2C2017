@@ -13,9 +13,9 @@ namespace DAO.DAOImp
     {
         public int saveFactura(Factura factura)
         {
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.FACTURA " +
-                                    "(FACTURA_CLIENTE,FACTURA_EMPRESA, FACTURA_NRO_FACT,FACTURA_FECHA_ALTA, FACTURA_FECHA_VENCIMIENTO, FACTURA_TOTAL, FACTURA_HABILITADO) " +
-                                    "VALUES (@CLIENTE,@EMPRESA,@NRO_FACT,@FECHA_ALTA,@FECHA_VENCIMIENTO,@TOTAL,@HABILITADO)"))
+            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Factura " +
+                                    "(fact_cliente,fact_empresa, fact_numero,fact_fecha_alta, fact_fecha_vencimiento, fact_total) " +
+                                    "VALUES (@CLIENTE,@EMPRESA,@NRO_FACT,@FECHA_ALTA,@FECHA_VENCIMIENTO,@TOTAL)"))
             {
                 command.Parameters.AddWithValue("@CLIENTE", factura.cliente);
                 command.Parameters.AddWithValue("@EMPRESA", factura.empresa); //todo ver seleccion acotada
@@ -23,7 +23,7 @@ namespace DAO.DAOImp
                 command.Parameters.AddWithValue("@FECHA_ALTA", factura.fechaDeAlta);
                 command.Parameters.AddWithValue("@FECHA_VENCIMIENTO", factura.fechaDeVencimiento);
                 command.Parameters.AddWithValue("@TOTAL", factura.total);
-                command.Parameters.AddWithValue("@HABILITADO", factura.habilitado);
+              //  command.Parameters.AddWithValue("@HABILITADO", factura.habilitado);
                 
                 return save(command);
 

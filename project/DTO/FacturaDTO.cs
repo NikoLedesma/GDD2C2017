@@ -14,7 +14,7 @@ namespace DTO
         public int nroFact { get; set; }
         public DateTime fechaDeAlta { get; set; }
         public DateTime fechaDeVencimiento { get; set; }
-        public int total { get; set; }
+        public float total { get; set; }
 
         //AGREGAR LOS ITEMS - MONTO - CANTIDAD
 

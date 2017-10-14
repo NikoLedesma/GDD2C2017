@@ -13,8 +13,8 @@ namespace DAO.DAOImp
     {
         public int saveEmpresa(Empresa empresa )
         {
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.EMPRESA " +
-                                    "(EMPRESA_NOMBRE,EMPRESA_CUIT, EMPRESA_DIRECCION,EMPRESA_RUBRO, EMPRESA_HABILITADO) " +
+            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Empresa " +
+                                    "(empr_nombre,empr_cuit, empr_direccion,empr_rubro, empr_inactivo) " +
                                     "VALUES (@NOMBRE,@CUIT,@DIRECCION,@RUBRO,@HABILITADO)"))
             {
                 command.Parameters.AddWithValue("@NOMBRE", empresa.nombre);

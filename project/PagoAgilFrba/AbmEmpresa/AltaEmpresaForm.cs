@@ -29,7 +29,7 @@ namespace PagoAgilFrba.AbmEmpresa
         {
             EmpresaDTO empresaDTO = new EmpresaDTO();
             empresaDTO.nombre = txtNombre.Text;
-            empresaDTO.cuit = Int32.Parse(txtCuit.Text);
+            empresaDTO.cuit = txtCuit.Text;
             empresaDTO.direccion = txtDireccion.Text;
             empresaDTO.rubro = txtRubro.Text;
             businessEmpresaImpl.saveEmpresa(empresaDTO);
