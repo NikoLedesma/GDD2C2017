@@ -23,7 +23,7 @@ namespace PagoAgilFrba.UTILS
             }else if(selectedTag.Equals("Registro de Usuario")){
                 form = new RolForm(prevForm);
             }else if(selectedTag.Equals("ABM de Cliente")){
-                form = new AltaClienteForm(prevForm);
+                form = new ModClienteForm(prevForm);
             }else if(selectedTag.Equals("ABM de Empresa")){
                 form = new RolForm(prevForm);
             }else if(selectedTag.Equals("ABM de Sucursal")){

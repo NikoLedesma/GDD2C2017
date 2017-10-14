@@ -66,6 +66,12 @@
     <Compile Include="AbmCliente\AltaClienteForm.Designer.cs">
       <DependentUpon>AltaClienteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\ModClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\ModClienteForm.Designer.cs">
+      <DependentUpon>ModClienteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmEmpresa\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     <Compile Include="UTILS\FactoryFormMenu.cs" />
     <EmbeddedResource Include="AbmCliente\AltaClienteForm.resx">
       <DependentUpon>AltaClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\ModClienteForm.resx">
+      <DependentUpon>ModClienteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
