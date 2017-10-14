@@ -72,11 +72,17 @@
     <Compile Include="AbmCliente\ModClienteForm.Designer.cs">
       <DependentUpon>ModClienteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmFactura\Form1.cs">
+    <Compile Include="AbmEmpresa\AltaEmpresaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmFactura\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmEmpresa\AltaEmpresaForm.Designer.cs">
+      <DependentUpon>AltaEmpresaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmFactura\AltaFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\AltaFacturaForm.Designer.cs">
+      <DependentUpon>AltaFacturaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\AltaRolForm.cs">
       <SubType>Form</SubType>
@@ -161,6 +167,12 @@
     <EmbeddedResource Include="AbmCliente\ModClienteForm.resx">
       <DependentUpon>ModClienteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmEmpresa\AltaEmpresaForm.resx">
+      <DependentUpon>AltaEmpresaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\AltaFacturaForm.resx">
+      <DependentUpon>AltaFacturaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,9 +249,7 @@
       <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AbmEmpresa\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

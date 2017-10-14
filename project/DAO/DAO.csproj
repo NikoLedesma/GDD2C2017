@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAOImp\ClienteDAO.cs" />
+    <Compile Include="DAOImp\EmpresaDAO.cs" />
+    <Compile Include="DAOImp\FacturaDAO.cs" />
     <Compile Include="DAOImp\FuncionalidadDAO.cs" />
     <Compile Include="DAOImp\RolDAO.cs" />
     <Compile Include="DAOImp\SucursalDAO.cs" />

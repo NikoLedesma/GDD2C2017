@@ -1,8 +1,8 @@
 ﻿using PagoAgilFrba.AbmCliente;
 using PagoAgilFrba.AbmSucursal;
-using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmFactura;
+using PagoAgilFrba.AbmRol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace PagoAgilFrba.UTILS
             }else if(selectedTag.Equals("Registro de Usuario")){
                 form = new RolForm(prevForm);
             }else if(selectedTag.Equals("ABM de Cliente")){
-                form = new ModClienteForm(prevForm);
+                form = new AltaClienteForm(prevForm);
             }else if(selectedTag.Equals("ABM de Empresa")){
                 form = new AltaEmpresaForm(prevForm);
             }else if(selectedTag.Equals("ABM de Sucursal")){

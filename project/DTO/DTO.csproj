@@ -40,8 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteDTO.cs" />
+    <Compile Include="EmpresaDTO.cs" />
     <Compile Include="Enums\EnumFormMode.cs" />
     <Compile Include="Enums\IEnumsLogin.cs" />
+    <Compile Include="FacturaDTO.cs" />
     <Compile Include="Forms\LoginFormDTO.cs" />
     <Compile Include="FuncionalidadDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

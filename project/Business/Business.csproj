@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessClienteImpl.cs" />
+    <Compile Include="BusinessEmpresaImpl.cs" />
+    <Compile Include="BusinessFacturaImpl.cs" />
     <Compile Include="BusinessRolImpl.cs" />
     <Compile Include="BusinessLoginImpl.cs" />
     <Compile Include="BusinessSucursalImpl.cs" />

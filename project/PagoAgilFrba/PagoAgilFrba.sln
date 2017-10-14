@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagoAgilFrba", "PagoAgilFrba.csproj", "{AC76EDC4-20B6-4599-B13A-E03CD10702A0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{31922321-9247-4362-B6F7-A5AB338AA422} = {31922321-9247-4362-B6F7-A5AB338AA422}
