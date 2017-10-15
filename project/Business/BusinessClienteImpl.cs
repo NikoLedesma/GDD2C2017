@@ -19,6 +19,12 @@ namespace Business
             return clienteDAO.saveCliente(cliente);
         }
 
+        public int updateCliente(ClienteDTO clienteDTO)
+        {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            Cliente cliente = converterClienteDTOToCliente(clienteDTO);
+            return clienteDAO.updateCliente(cliente);
+        }
 
         public List <ClienteDTO> getClientesByFilter(ClienteDTO clienteDTO){
             ClienteDAO clienteDAO = new ClienteDAO();
@@ -28,14 +34,6 @@ namespace Business
             clienteList.ForEach(x => { clienteDTOList.Add(converterClienteToClienteDTO(x));});
             return clienteDTOList;
         }
-
-
-       /* public int unableCliente(ClienteDTO clienteDTO)
-        {
-            ClienteDAO clienteDAO = new ClienteDAO();
-            return clienteDAO.deleteCliente(clienteDTO);
-        }*/
-
 
         public Cliente converterClienteDTOToCliente(ClienteDTO clienteDTO)
         {

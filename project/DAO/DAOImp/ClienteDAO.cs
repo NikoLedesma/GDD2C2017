@@ -59,12 +59,6 @@ namespace DAO.DAOImp
         }
 
 
-
-
-
-
-
-
         public override Cliente PopulateRecord(SqlDataReader reader)
         {
             Cliente cliente = new Cliente();
@@ -85,12 +79,28 @@ namespace DAO.DAOImp
         }
 
 
-
-
-
-
-
-
-
+        public int updateCliente(Cliente cliente)
+        {
+            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.CLIENTE SET " +
+                        "CLIENTE_NOMBRE=@NOMBRE,CLIENTE_APELLIDO=@APELLIDO,CLIENTE_DNI=@DNI,CLIENTE_MAIL=@MAIL,CLIENTE_DIRECCION=@DIRECCION,CLIENTE_NRO_PISO=@NRO_PISO,CLIENTE_DEPTO=@DEPTO,CLIENTE_LOCALIDAD=@LOCALIDAD,CLIENTE_NRO_TELEFONO=@NRO_TELEFONO,CLIENTE_COD_POSTAL=@COD_POSTAL,CLIENTE_FECHA_NACIMIENTO=@FECHA_DE_NACIMIENTO,CLIENTE_HABILITADO=@HABILITADO " +
+                        "WHERE CLIENTE_ID = @ID "))
+            
+            {
+                command.Parameters.AddWithValue("@NOMBRE", cliente.nombre);
+                command.Parameters.AddWithValue("@APELLIDO", cliente.apellido);
+                command.Parameters.AddWithValue("@DNI", cliente.dni);
+                command.Parameters.AddWithValue("@MAIL", cliente.mail);
+                command.Parameters.AddWithValue("@DIRECCION", cliente.direccion);
+                command.Parameters.AddWithValue("@NRO_PISO", cliente.nroPiso);
+                command.Parameters.AddWithValue("@DEPTO", cliente.departamento);
+                command.Parameters.AddWithValue("@LOCALIDAD", cliente.localidad);
+                command.Parameters.AddWithValue("@NRO_TELEFONO", cliente.nroTelefono);
+                command.Parameters.AddWithValue("@COD_POSTAL", cliente.codPostal);
+                command.Parameters.AddWithValue("@FECHA_DE_NACIMIENTO", cliente.fechaDeNacimiento);
+                command.Parameters.AddWithValue("@HABILITADO", cliente.habilitado);
+                command.Parameters.AddWithValue("@ID", cliente.id);
+                return save(command);
+            }
+        }
     }
 }

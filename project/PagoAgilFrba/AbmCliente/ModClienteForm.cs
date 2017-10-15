@@ -23,7 +23,8 @@ namespace PagoAgilFrba.AbmCliente
         private readonly static String HABILITADO_COLUMN_HEADER_NAME = "habilitado";
         private readonly static String ID_COLUMN_HEADER_NAME = "id";
         private readonly static String DNI_VALIDATION_MSG = " DNI ";
-       
+        private List<ClienteDTO> filteredClienteDTOs;
+
         public ModClienteForm(Form form)
         {
             InitializeComponent();
@@ -35,8 +36,8 @@ namespace PagoAgilFrba.AbmCliente
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             ClienteDTO fClienteDTO = validateAndFillFilterClientDTO();
-            List<ClienteDTO> clienteDTOs = businessClienteImpl.getClientesByFilter(fClienteDTO);
-            populateDataGridView(clienteDTOs);
+            filteredClienteDTOs = businessClienteImpl.getClientesByFilter(fClienteDTO);
+            populateDataGridView(filteredClienteDTOs);
         }
 
 
@@ -67,12 +68,15 @@ namespace PagoAgilFrba.AbmCliente
             var dataGridView = (DataGridView)sender;
             String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();      
             if(Validator.isSelectedModificarColumn(dataGridView,e.ColumnIndex)){
-                MessageBox.Show("Mod id:" + id);
-                AltaClienteForm form = new AltaClienteForm(this, EnumFormMode.MODE_MODIFICACION);
+                //MessageBox.Show("Mod id:" + id);
+                //TODO : VERIFICAR SI AGARRA EL CORRECTO OBJECTO
+                ClienteDTO cl = filteredClienteDTOs[e.RowIndex];
+                AltaClienteForm form = new AltaClienteForm(this, EnumFormMode.MODE_MODIFICACION,cl);
                 form.Show();
             }
             if(Validator.isSelectedBajarColumn(dataGridView,e.ColumnIndex)){
-                MessageBox.Show("Bajar id:" + id);
+                //TODO : 
+                MessageBox.Show("VER SI SE AGREGA EN LA MODIFICACION:" + id);
             }
 
         }
@@ -84,7 +88,7 @@ namespace PagoAgilFrba.AbmCliente
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            AltaClienteForm form = new AltaClienteForm(this, EnumFormMode.MODE_ALTA);
+            AltaClienteForm form = new AltaClienteForm(this, EnumFormMode.MODE_ALTA,null);
             form.Show();
         }
 

@@ -25,7 +25,7 @@ namespace PagoAgilFrba.UTILS
         {
             if (e.Column.Name.Equals(columnHeaderName))
             {
-                e.Column.Visible = false;
+                e.Column.ReadOnly = true;
             }
         }
     

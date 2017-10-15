@@ -141,6 +141,11 @@
             this.dataGVClientes.TabIndex = 3;
             this.dataGVClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVClientes_CellContentClick);
             this.dataGVClientes.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGVClientes_ColumnAdded);
+            //this.dataGVClientes.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGVClientes_RowsAdded);
+            //this.dataGVClientes.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGVClientes_RowPrePaint);
+            //this.dataGVClientes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVClientes_RowEnter);
+            //this.dataGVClientes.NewRowNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGVClientes_NewRowNeeded);
+
             // 
             // ModificarColumn
             // 
@@ -184,6 +189,8 @@
 
         }
 
+
+ 
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
