@@ -35,7 +35,6 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtCuit = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtRubro = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -97,13 +96,6 @@
             this.txtDireccion.Size = new System.Drawing.Size(100, 20);
             this.txtDireccion.TabIndex = 6;
             // 
-            // txtRubro
-            // 
-            this.txtRubro.Location = new System.Drawing.Point(121, 236);
-            this.txtRubro.Name = "txtRubro";
-            this.txtRubro.Size = new System.Drawing.Size(100, 20);
-            this.txtRubro.TabIndex = 7;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(170, 291);
@@ -117,10 +109,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-
-            this.comboBox1.Location = new System.Drawing.Point(235, 234);
+            this.comboBox1.Location = new System.Drawing.Point(121, 228);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(100, 21);
             this.comboBox1.TabIndex = 9;
             // 
             // AltaEmpresaForm
@@ -130,7 +121,6 @@
             this.ClientSize = new System.Drawing.Size(422, 382);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtRubro);
             this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.txtCuit);
             this.Controls.Add(this.txtNombre);
@@ -154,7 +144,6 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtCuit;
         private System.Windows.Forms.TextBox txtDireccion;
-        private System.Windows.Forms.TextBox txtRubro;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
     }

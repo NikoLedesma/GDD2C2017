@@ -43,10 +43,10 @@ namespace PagoAgilFrba.AbmEmpresa
             empresaDTO.nombre = txtNombre.Text;
             empresaDTO.cuit = txtCuit.Text;
             empresaDTO.direccion = txtDireccion.Text;
-            empresaDTO.rubro = txtRubro.Text;
+            empresaDTO.rubro = (int)this.comboBox1.SelectedValue; //txtRubro.Text;
             businessEmpresaImpl.saveEmpresa(empresaDTO);
 
-            MessageBox.Show("Se dio de alta la EMPRESA");
+            MessageBox.Show("Se dio de alta la EMPRESA, Rubro:");
         }
     }
 }

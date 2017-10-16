@@ -12,7 +12,7 @@ namespace Entities
         public String nombre { get; set; }
         public String cuit { get; set; }
         public String direccion { get; set; }
-        public String rubro { get; set; }
+        public int rubro { get; set; }
         public Boolean habilitado { get; set; }
     }
 }
