@@ -50,6 +50,16 @@ namespace DAO.DAOImp
             }
             throw new NotImplementedException();
         }
+        public IEnumerable<Cliente> getAll()
+        {
+
+            using (var command = new SqlCommand("select CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_DNI,CLIENTE_MAIL,CLIENTE_DIRECCION,CLIENTE_NRO_PISO,CLIENTE_DEPTO,CLIENTE_LOCALIDAD,CLIENTE_NRO_TELEFONO,CLIENTE_COD_POSTAL,CLIENTE_FECHA_NACIMIENTO,CLIENTE_HABILITADO from NO_TENGO_IDEA.Cliente"))
+            {
+                return GetRecords(command);
+            }
+        
+            throw new NotImplementedException();
+        }
 
 
 
@@ -62,19 +72,32 @@ namespace DAO.DAOImp
         public override Cliente PopulateRecord(SqlDataReader reader)
         {
             Cliente cliente = new Cliente();
-            cliente.id = reader.GetInt32(0);
-            cliente.nombre = reader.GetString(1);
-            cliente.apellido = reader.GetString(2);
-            cliente.dni = reader.GetInt32(3);
-            cliente.mail = reader.GetString(4) ;
-            cliente.direccion = reader.GetString(5);
-            cliente.nroPiso = reader.GetInt16(6);
-            cliente.departamento = reader.GetString(7) [0];
-            cliente.localidad = reader.GetString(8);
-            cliente.nroTelefono =reader.GetInt32(9);
-            cliente.codPostal = reader.GetString(10);
-            cliente.fechaDeNacimiento = reader.GetDateTime(11);
-            cliente.habilitado = reader.GetBoolean(12);
+            if (!reader.IsDBNull(0))
+                cliente.id = reader.GetInt32(0);
+            if (!reader.IsDBNull(1))
+                cliente.nombre = reader.GetString(1);
+            if (!reader.IsDBNull(2)) 
+                cliente.apellido = reader.GetString(2);
+            if (!reader.IsDBNull(3))
+                cliente.dni = reader.GetInt32(3);
+            if (!reader.IsDBNull(4))
+                cliente.mail = reader.GetString(4) ;
+            if (!reader.IsDBNull(5))    
+                cliente.direccion = reader.GetString(5);
+            if (!reader.IsDBNull(6))
+                cliente.nroPiso = reader.GetInt16(6);
+            if (!reader.IsDBNull(7))
+                cliente.departamento = reader.GetString(7) [0];
+            if (!reader.IsDBNull(8))
+                cliente.localidad = reader.GetString(8);
+            if (!reader.IsDBNull(9))
+                cliente.nroTelefono =reader.GetInt32(9);
+            if (!reader.IsDBNull(10))
+                cliente.codPostal = reader.GetString(10);
+            if (!reader.IsDBNull(11))
+                cliente.fechaDeNacimiento = reader.GetDateTime(11);
+            if (!reader.IsDBNull(12))
+                cliente.habilitado = reader.GetBoolean(12);
             return cliente;
         }
 

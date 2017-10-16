@@ -28,7 +28,7 @@ namespace PagoAgilFrba.AbmEmpresa
             prevForm = form;
             businessRubroImpl = new BusinessRubroImpl();
             listRubroDTO = businessRubroImpl.getRubros();
-            object[] objects = listRubroDTO.ConvertAll<object>(item => (object)item.nombre).ToArray();
+            //object[] objects = listRubroDTO.ConvertAll<object>(item => (object)item.nombre).ToArray();
            // listRubroDTO.ForEach(x => { objects.push(converterRubroToRubroDTO(x)); });
             //this.comboBox1.Items.AddRange(objects);//.DataSource = listRubroDTO;
             this.comboBox1.DataSource = listRubroDTO;

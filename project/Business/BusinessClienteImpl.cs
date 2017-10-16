@@ -34,7 +34,15 @@ namespace Business
             clienteList.ForEach(x => { clienteDTOList.Add(converterClienteToClienteDTO(x));});
             return clienteDTOList;
         }
-
+        public List<ClienteDTO> getAllCliente()
+        {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            List<ClienteDTO> clienteDTOList = new List<ClienteDTO>();
+            List<Cliente> clienteList = new List<Cliente>();
+            clienteList = clienteDAO.getAll().ToList();
+            clienteList.ForEach(x => { clienteDTOList.Add(converterClienteToClienteDTO(x)); });
+            return clienteDTOList;
+        }
         public Cliente converterClienteDTOToCliente(ClienteDTO clienteDTO)
         {
             Cliente cliente = new Cliente();

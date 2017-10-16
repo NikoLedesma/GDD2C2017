@@ -25,6 +25,24 @@ namespace DAO.DAOImp
                 return save(command);
             }
         }
+        public IEnumerable<Empresa> getAll()
+        {
+
+            using (var command = new SqlCommand("select empr_id, empr_nombre, empr_cuit from NO_TENGO_IDEA.Empresa"))
+            {
+                return GetRecords(command);
+            }
+
+            throw new NotImplementedException();
+        }
+        public override Empresa PopulateRecord(SqlDataReader reader)
+        {
+            Empresa empresa = new Empresa();
+            empresa.id = reader.GetInt32(0);
+            empresa.nombre = reader.GetString(1);
+            empresa.cuit = reader.GetString(2);
+            return empresa;
+        }
 
 
     }

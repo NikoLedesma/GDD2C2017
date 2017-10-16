@@ -28,6 +28,23 @@ namespace Business
             empresa.rubro = empresaDTO.rubro;
             return empresa;
         }
+        public List<EmpresaDTO> getEmpresas()
+        {
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+            List<EmpresaDTO> empresaDTOList = new List<EmpresaDTO>();
+            List<Empresa> empresaList = new List<Empresa>();
+            empresaList = empresaDAO.getAll().ToList();
+            empresaList.ForEach(x => { empresaDTOList.Add(converterEmpresatoEmpresaDTO(x)); });
+            return empresaDTOList;
+        }
+        public EmpresaDTO converterEmpresatoEmpresaDTO(Empresa empresa)
+        {
+            EmpresaDTO empresaDTO = new EmpresaDTO();
+            empresaDTO.id = empresa.id;
+            empresaDTO.nombre = empresa.nombre;
+            empresaDTO.cuit = empresa.cuit;
+            return empresaDTO;
+        }
                 
     }
 

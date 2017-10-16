@@ -9,8 +9,8 @@ namespace Entities
     public class Factura
     {
         public int id { get; set; }
-        public String cliente { get; set; }
-        public String empresa { get; set; }
+        public int cliente { get; set; }
+        public int empresa { get; set; }
         public int nroFact { get; set; }
         public DateTime fechaDeAlta { get; set; }
         public DateTime fechaDeVencimiento { get; set; }

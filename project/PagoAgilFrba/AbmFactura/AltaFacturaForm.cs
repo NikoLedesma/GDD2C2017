@@ -16,10 +16,29 @@ namespace PagoAgilFrba.AbmFactura
     {
         private Form prevForm;
         private BusinessFacturaImpl businessFacturaImpl;
+        private BusinessClienteImpl businessClienteImpl;
+        private BusinessEmpresaImpl businessEmpresaImpl;
+        private List<ClienteDTO> listClienteDTO;
+        private List<EmpresaDTO> listEmpresaDTO;
+
         public AltaFacturaForm(Form form)
         {
             InitializeComponent();
             businessFacturaImpl = new BusinessFacturaImpl();
+            businessClienteImpl = new BusinessClienteImpl();
+            businessEmpresaImpl = new BusinessEmpresaImpl();
+
+            listClienteDTO = businessClienteImpl.getAllCliente();
+            this.comboBox1.DataSource = listClienteDTO;
+            this.comboBox1.ValueMember = "id";
+            this.comboBox1.DisplayMember = "dni";
+
+            listEmpresaDTO = businessEmpresaImpl.getEmpresas();
+            this.comboBox2.DataSource = listEmpresaDTO;
+            this.comboBox2.ValueMember = "id";
+            this.comboBox2.DisplayMember = "cuit";
+
+
             prevForm = form;
             
         }
@@ -27,8 +46,8 @@ namespace PagoAgilFrba.AbmFactura
         private void button1_Click(object sender, EventArgs e)
         {
             FacturaDTO facturaDTO = new FacturaDTO();
-            facturaDTO.cliente = txtCliente.Text;
-            facturaDTO.empresa = txtEmpresa.Text; //falta ponerlo acotado
+            facturaDTO.cliente = (int)this.comboBox1.SelectedValue; //txtCliente.Text;
+            facturaDTO.empresa = (int)this.comboBox1.SelectedValue;//txtEmpresa.Text; //falta ponerlo acotado
             facturaDTO.nroFact = Int32.Parse(txtNroFact.Text);
             facturaDTO.fechaDeAlta = dateTimePickerAlta.Value;
             facturaDTO.fechaDeVencimiento = dateTimePickerVencimiento.Value;
