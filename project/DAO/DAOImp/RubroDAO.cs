@@ -14,10 +14,17 @@ namespace DAO.DAOImp
     {
         public IEnumerable<Rubro> getAllRubros()
         {
-            using (var command = new SqlCommand("select * from NO_TENGO_IDEA.Rubro"))
+            using (var command = new SqlCommand("select rubr_id, rubr_nombre from NO_TENGO_IDEA.Rubro"))
             {
                 return GetRecords(command);
             }
+        }
+        public override Rubro PopulateRecord(SqlDataReader reader)
+        {
+            Rubro rubro = new Rubro();
+            rubro.id = reader.GetInt32(0);
+            rubro.nombre = reader.GetString(1);
+            return rubro;
         }
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="DAOImp\FacturaDAO.cs" />
     <Compile Include="DAOImp\FuncionalidadDAO.cs" />
     <Compile Include="DAOImp\RolDAO.cs" />
+    <Compile Include="DAOImp\RubroDAO.cs" />
     <Compile Include="DAOImp\SucursalDAO.cs" />
     <Compile Include="DAOImp\UsuarioDAO.cs" />
     <Compile Include="GenericDAO\GenericDAO.cs" />

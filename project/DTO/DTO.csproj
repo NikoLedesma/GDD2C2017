@@ -48,6 +48,7 @@
     <Compile Include="FuncionalidadDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolDTO.cs" />
+    <Compile Include="RubroDTO.cs" />
     <Compile Include="SelectedFuncRolDTO.cs" />
     <Compile Include="SucursalDTO.cs" />
     <Compile Include="UsuarioDTO.cs" />
