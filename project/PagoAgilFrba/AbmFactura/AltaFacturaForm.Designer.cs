@@ -39,12 +39,11 @@
             this.dateTimePickerAlta = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerVencimiento = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Items = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontoName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.MontoName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,9 +61,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(90, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Empresa CUIT:";
+            this.label2.Text = "Empresa:";
             // 
             // label3
             // 
@@ -134,28 +133,12 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Items,
             this.MontoName,
             this.CantidadN});
-            this.dataGridView1.Location = new System.Drawing.Point(93, 298);
+            this.dataGridView1.Location = new System.Drawing.Point(168, 296);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(423, 106);
+            this.dataGridView1.Size = new System.Drawing.Size(244, 106);
             this.dataGridView1.TabIndex = 14;
-            // 
-            // Items
-            // 
-            this.Items.HeaderText = "ItemsHeader";
-            this.Items.Name = "Items";
-            // 
-            // MontoName
-            // 
-            this.MontoName.HeaderText = "Monto";
-            this.MontoName.Name = "MontoName";
-            // 
-            // CantidadN
-            // 
-            this.CantidadN.HeaderText = "Cantidad";
-            this.CantidadN.Name = "CantidadN";
             // 
             // button1
             // 
@@ -182,6 +165,16 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 17;
+            // 
+            // MontoName
+            // 
+            this.MontoName.HeaderText = "Monto";
+            this.MontoName.Name = "MontoName";
+            // 
+            // CantidadN
+            // 
+            this.CantidadN.HeaderText = "Cantidad";
+            this.CantidadN.Name = "CantidadN";
             // 
             // AltaFacturaForm
             // 
@@ -223,11 +216,10 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerAlta;
         private System.Windows.Forms.DateTimePicker dateTimePickerVencimiento;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Items;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MontoName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadN;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MontoName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadN;
     }
 }
