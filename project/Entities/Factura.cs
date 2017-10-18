@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Entities
 {
@@ -15,6 +16,7 @@ namespace Entities
         public DateTime fechaDeAlta { get; set; }
         public DateTime fechaDeVencimiento { get; set; }
         public float total { get; set; }
+        public DataTable items { get; set; }
 
         //AGREGAR LOS ITEMS - MONTO - CANTIDAD
 

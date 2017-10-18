@@ -55,7 +55,7 @@ namespace PagoAgilFrba.AbmFactura
 
             //FALTA AGREGAR LA GRILLA DE LOS TOTAL ITEMS MONTO Y CANTIDAD
 
-            //businessFacturaImpl.saveFactura(facturaDTO);
+            
             DataTable dt = new DataTable();
             dt.Columns.Add("monto", typeof(float));
             dt.Columns.Add("cantidad", typeof(int));
@@ -73,7 +73,8 @@ namespace PagoAgilFrba.AbmFactura
                 }
 
             }
-
+            facturaDTO.items = dt;
+            businessFacturaImpl.saveFactura(facturaDTO);
             MessageBox.Show("Se dio de alta la FACTURA");
         }
 

@@ -28,7 +28,7 @@ namespace Business
             factura.fechaDeAlta = facturaDTO.fechaDeAlta;
             factura.fechaDeVencimiento = facturaDTO.fechaDeVencimiento; 
             factura.total = facturaDTO.total;
-            
+            factura.items = facturaDTO.items;
             return factura;
         }
 
