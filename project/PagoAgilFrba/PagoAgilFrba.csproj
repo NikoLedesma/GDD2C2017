@@ -102,23 +102,11 @@
     <Compile Include="AbmSucursal\altaSucursalForm.Designer.cs">
       <DependentUpon>altaSucursalForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmSucursal\BajaSucursalForm.cs">
+    <Compile Include="AbmSucursal\ModSucursalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmSucursal\BajaSucursalForm.Designer.cs">
-      <DependentUpon>BajaSucursalForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmSucursal\BusquedaSucursalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmSucursal\BusquedaSucursalForm.Designer.cs">
-      <DependentUpon>BusquedaSucursalForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmSucursal\ModificacionSucursalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmSucursal\ModificacionSucursalForm.Designer.cs">
-      <DependentUpon>ModificacionSucursalForm.cs</DependentUpon>
+    <Compile Include="AbmSucursal\ModSucursalForm.Designer.cs">
+      <DependentUpon>ModSucursalForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
@@ -182,14 +170,8 @@
     <EmbeddedResource Include="AbmSucursal\altaSucursalForm.resx">
       <DependentUpon>altaSucursalForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmSucursal\BajaSucursalForm.resx">
-      <DependentUpon>BajaSucursalForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmSucursal\BusquedaSucursalForm.resx">
-      <DependentUpon>BusquedaSucursalForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmSucursal\ModificacionSucursalForm.resx">
-      <DependentUpon>ModificacionSucursalForm.cs</DependentUpon>
+    <EmbeddedResource Include="AbmSucursal\ModSucursalForm.resx">
+      <DependentUpon>ModSucursalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

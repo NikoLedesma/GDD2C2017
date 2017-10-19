@@ -11,7 +11,7 @@ namespace Entities
         public int id { get; set; }
         public String nombre { get; set; }
         public String direccion { get; set; }  
-        public String codPostal { get; set; }
+        public int codPostal { get; set; }
         public Boolean habilitado { get; set; }
     }
 

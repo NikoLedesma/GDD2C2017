@@ -91,7 +91,7 @@
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 45);
             this.btnAceptar.TabIndex = 13;
-            this.btnAceptar.Text = "DAR DE ALTA";
+            this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.button1_Click);
             // 

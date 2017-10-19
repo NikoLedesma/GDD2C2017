@@ -30,7 +30,7 @@ namespace PagoAgilFrba.UTILS
             }else if(selectedTag.Equals("ABM de Empresa")){
                 form = new AltaEmpresaForm(prevForm);
             }else if(selectedTag.Equals("ABM de Sucursal")){
-                form = new altaSucursalForm(prevForm);
+                form = new ModSucursalForm(prevForm);
             }else if(selectedTag.Equals("ABM Facturas")){
                 form = new AltaFacturaForm(prevForm);
             }else if(selectedTag.Equals("Registro de Pago de Facturas")){
