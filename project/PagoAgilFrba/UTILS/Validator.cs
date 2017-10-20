@@ -84,7 +84,6 @@ namespace PagoAgilFrba.UTILS
             }
         }
 
-
         public static Boolean validateEmptyTextBox(TextBox textBox,String message)
         {
             if (string.IsNullOrWhiteSpace(textBox.Text))
@@ -94,7 +93,7 @@ namespace PagoAgilFrba.UTILS
             }
             return true;
         }
-    
+
     
     }
 

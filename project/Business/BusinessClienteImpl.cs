@@ -43,6 +43,17 @@ namespace Business
             clienteList.ForEach(x => { clienteDTOList.Add(converterClienteToClienteDTO(x)); });
             return clienteDTOList;
         }
+
+
+        public int deleteCliente(ClienteDTO clienteDTO)
+        {
+            clienteDTO.habilitado = false;
+            ClienteDAO clienteDAO = new ClienteDAO();
+            Cliente cliente = converterClienteDTOToCliente(clienteDTO);
+            int a =clienteDAO.deleteCliente(cliente); 
+            return a; 
+        }
+
         public Cliente converterClienteDTOToCliente(ClienteDTO clienteDTO)
         {
             Cliente cliente = new Cliente();

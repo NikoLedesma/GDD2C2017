@@ -34,6 +34,7 @@ namespace PagoAgilFrba.AbmCliente
             prevForm = form;
             form.Hide();
             formMode = enumFormMode;
+
             if (formMode == EnumFormMode.MODE_ALTA)
             {
                 this.Text = ALTA_TITLE;

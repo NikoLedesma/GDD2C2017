@@ -35,8 +35,8 @@ namespace PagoAgilFrba.AbmCliente
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            ClienteDTO fClienteDTO = validateAndFillFilterClientDTO();
-            filteredClienteDTOs = businessClienteImpl.getClientesByFilter(fClienteDTO);
+            ClienteDTO filterClienteDTO = validateAndFillFilterClientDTO();
+            filteredClienteDTOs = businessClienteImpl.getClientesByFilter(filterClienteDTO);
             populateDataGridView(filteredClienteDTOs);
         }
 
@@ -75,8 +75,17 @@ namespace PagoAgilFrba.AbmCliente
                 form.Show();
             }
             if(Validator.isSelectedBajarColumn(dataGridView,e.ColumnIndex)){
-                //TODO : 
-                MessageBox.Show("VER SI SE AGREGA EN LA MODIFICACION:" + id);
+                //TODO : VERIFICAR SI AGARRA EL CORRECTO OBJECTO
+                ClienteDTO cl = filteredClienteDTOs[e.RowIndex];
+                if (cl.habilitado)
+                {
+                    cl.apellido = "Okuma";
+                    businessClienteImpl.deleteCliente(cl);
+                    MessageBox.Show("DESHABILITADO");
+                }
+                else {
+                    MessageBox.Show("NO ESTA HABILITADO");
+                }
             }
 
         }
