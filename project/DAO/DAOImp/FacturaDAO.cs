@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DAO.DAOImp
 {
@@ -13,17 +14,20 @@ namespace DAO.DAOImp
     {
         public int saveFactura(Factura factura)
         {
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Factura " +
+            using (var command = new SqlCommand("[NO_TENGO_IDEA].crearFactura"))/*new SqlCommand("INSERT INTO NO_TENGO_IDEA.Factura " +
                                     "(fact_cliente,fact_empresa, fact_numero,fact_fecha_alta, fact_fecha_vencimiento, fact_total) " +
-                                    "VALUES (@CLIENTE,@EMPRESA,@NRO_FACT,@FECHA_ALTA,@FECHA_VENCIMIENTO,@TOTAL)"))
+                                    "VALUES (@CLIENTE,@EMPRESA,@NRO_FACT,@FECHA_ALTA,@FECHA_VENCIMIENTO,@TOTAL)"))*/
             {
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@CLIENTE", factura.cliente);
                 command.Parameters.AddWithValue("@EMPRESA", factura.empresa); //todo ver seleccion acotada
-                command.Parameters.AddWithValue("@NRO_FACT", factura.nroFact);
-                command.Parameters.AddWithValue("@FECHA_ALTA", factura.fechaDeAlta);
-                command.Parameters.AddWithValue("@FECHA_VENCIMIENTO", factura.fechaDeVencimiento);
+                command.Parameters.AddWithValue("@NUMERO", factura.nroFact);
+                command.Parameters.AddWithValue("@FECHAALTA", factura.fechaDeAlta);
+                command.Parameters.AddWithValue("@FECHAVENC", factura.fechaDeVencimiento);
                 command.Parameters.AddWithValue("@TOTAL", factura.total);
-              //  command.Parameters.AddWithValue("@HABILITADO", factura.habilitado);
+                command.Parameters.AddWithValue("@ITEMS", factura.items);
+                command.Parameters.AddWithValue("@RESULT", 0);
+
                 
                 return save(command);
 
