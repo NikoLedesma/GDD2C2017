@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
@@ -39,9 +39,9 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dataGVClientes = new System.Windows.Forms.DataGridView();
-            this.ModificarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BajarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnAlta = new System.Windows.Forms.Button();
+            this.BajarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ModificarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVClientes)).BeginInit();
             this.SuspendLayout();
@@ -137,27 +137,11 @@
             this.BajarColumn});
             this.dataGVClientes.Location = new System.Drawing.Point(12, 213);
             this.dataGVClientes.Name = "dataGVClientes";
+            this.dataGVClientes.ReadOnly = true;
             this.dataGVClientes.Size = new System.Drawing.Size(693, 200);
             this.dataGVClientes.TabIndex = 3;
             this.dataGVClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVClientes_CellContentClick);
             this.dataGVClientes.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGVClientes_ColumnAdded);
-            //this.dataGVClientes.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGVClientes_RowsAdded);
-            //this.dataGVClientes.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGVClientes_RowPrePaint);
-            //this.dataGVClientes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVClientes_RowEnter);
-            //this.dataGVClientes.NewRowNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGVClientes_NewRowNeeded);
-
-            // 
-            // ModificarColumn
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            this.ModificarColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ModificarColumn.HeaderText = "Modificar";
-            this.ModificarColumn.Name = "ModificarColumn";
-            // 
-            // BajarColumn
-            // 
-            this.BajarColumn.HeaderText = "Bajar";
-            this.BajarColumn.Name = "BajarColumn";
             // 
             // btnAlta
             // 
@@ -168,6 +152,20 @@
             this.btnAlta.Text = "Alta";
             this.btnAlta.UseVisualStyleBackColor = true;
             this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
+            // 
+            // BajarColumn
+            // 
+            this.BajarColumn.HeaderText = "Bajar";
+            this.BajarColumn.Name = "BajarColumn";
+            this.BajarColumn.ReadOnly = true;
+            // 
+            // ModificarColumn
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            this.ModificarColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ModificarColumn.HeaderText = "Modificar";
+            this.ModificarColumn.Name = "ModificarColumn";
+            this.ModificarColumn.ReadOnly = true;
             // 
             // ModClienteForm
             // 
@@ -203,8 +201,8 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridView dataGVClientes;
+        private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.DataGridViewButtonColumn ModificarColumn;
         private System.Windows.Forms.DataGridViewButtonColumn BajarColumn;
-        private System.Windows.Forms.Button btnAlta;
     }
 }

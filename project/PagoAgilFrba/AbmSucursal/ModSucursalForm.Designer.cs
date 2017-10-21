@@ -72,11 +72,11 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(650, 193);
+            this.btnBuscar.Location = new System.Drawing.Point(620, 193);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 30);
             this.btnBuscar.TabIndex = 5;
-            this.btnBuscar.Text = "BUSCAR";
+            this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -103,11 +103,11 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(12, 193);
+            this.btnLimpiar.Location = new System.Drawing.Point(28, 193);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(106, 30);
             this.btnLimpiar.TabIndex = 9;
-            this.btnLimpiar.Text = "LIMPIAR DATOS";
+            this.btnLimpiar.Text = "Limpiar Datos";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
@@ -115,9 +115,9 @@
             // 
             this.btnAltaSucursal.Location = new System.Drawing.Point(12, 430);
             this.btnAltaSucursal.Name = "btnAltaSucursal";
-            this.btnAltaSucursal.Size = new System.Drawing.Size(82, 34);
+            this.btnAltaSucursal.Size = new System.Drawing.Size(82, 35);
             this.btnAltaSucursal.TabIndex = 10;
-            this.btnAltaSucursal.Text = "ALTA NUEVA SUCURSAL";
+            this.btnAltaSucursal.Text = "Alta Sucursal";
             this.btnAltaSucursal.UseVisualStyleBackColor = true;
             this.btnAltaSucursal.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -130,6 +130,7 @@
             this.BajarColumn});
             this.dataGridView1.Location = new System.Drawing.Point(12, 229);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(713, 195);
             this.dataGridView1.TabIndex = 11;
             // 
@@ -137,11 +138,13 @@
             // 
             this.ModificarColumn.HeaderText = "Modificar";
             this.ModificarColumn.Name = "ModificarColumn";
+            this.ModificarColumn.ReadOnly = true;
             // 
             // BajarColumn
             // 
             this.BajarColumn.HeaderText = "Bajar";
             this.BajarColumn.Name = "BajarColumn";
+            this.BajarColumn.ReadOnly = true;
             // 
             // ModSucursalForm
             // 
