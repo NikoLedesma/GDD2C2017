@@ -57,6 +57,7 @@ namespace PagoAgilFrba.AbmFactura
 
             
             DataTable dt = new DataTable();
+            dt.Columns.Add("factura", typeof(int));
             dt.Columns.Add("monto", typeof(float));
             dt.Columns.Add("cantidad", typeof(int));
 
