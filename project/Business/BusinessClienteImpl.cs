@@ -69,7 +69,7 @@ namespace Business
             cliente.localidad = clienteDTO.localidad;
             cliente.codPostal = clienteDTO.codPostal;
             cliente.fechaDeNacimiento = clienteDTO.fechaDeNacimiento;
-            cliente.habilitado = cliente.habilitado;
+            cliente.habilitado = clienteDTO.habilitado;
             return cliente;
         }
 

@@ -43,16 +43,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtCodPostal = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtDirCalle = new System.Windows.Forms.TextBox();
-            this.txtNumPiso = new System.Windows.Forms.TextBox();
-            this.txtDepartamento = new System.Windows.Forms.TextBox();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
+            this.txtDepartamento = new System.Windows.Forms.TextBox();
+            this.txtNumPiso = new System.Windows.Forms.TextBox();
+            this.txtDirCalle = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.dateTimePickerNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.groupBoxHabilitacion = new System.Windows.Forms.GroupBox();
+            this.radioBtnHabilitado = new System.Windows.Forms.RadioButton();
+            this.radioBtnDeshabilitado = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            this.groupBoxHabilitacion.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -138,7 +142,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(210, 383);
+            this.label6.Location = new System.Drawing.Point(210, 318);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 13);
             this.label6.TabIndex = 10;
@@ -157,7 +161,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 383);
+            this.label7.Location = new System.Drawing.Point(21, 318);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 13;
@@ -165,7 +169,7 @@
             // 
             // txtCodPostal
             // 
-            this.txtCodPostal.Location = new System.Drawing.Point(101, 380);
+            this.txtCodPostal.Location = new System.Drawing.Point(101, 315);
             this.txtCodPostal.Name = "txtCodPostal";
             this.txtCodPostal.Size = new System.Drawing.Size(100, 20);
             this.txtCodPostal.TabIndex = 14;
@@ -182,37 +186,38 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(34, 179);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(463, 179);
+            this.groupBox1.Size = new System.Drawing.Size(464, 118);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Direccion";
             // 
-            // label8
+            // txtLocalidad
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(41, 43);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Dirección calle:";
+            this.txtLocalidad.Location = new System.Drawing.Point(313, 80);
+            this.txtLocalidad.Name = "txtLocalidad";
+            this.txtLocalidad.Size = new System.Drawing.Size(100, 20);
+            this.txtLocalidad.TabIndex = 12;
             // 
-            // label9
+            // txtDepartamento
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(251, 83);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(56, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Localidad:";
+            this.txtDepartamento.Location = new System.Drawing.Point(124, 80);
+            this.txtDepartamento.Name = "txtDepartamento";
+            this.txtDepartamento.Size = new System.Drawing.Size(100, 20);
+            this.txtDepartamento.TabIndex = 11;
             // 
-            // label10
+            // txtNumPiso
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(44, 83);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Departamento:";
+            this.txtNumPiso.Location = new System.Drawing.Point(313, 40);
+            this.txtNumPiso.Name = "txtNumPiso";
+            this.txtNumPiso.Size = new System.Drawing.Size(100, 20);
+            this.txtNumPiso.TabIndex = 10;
+            // 
+            // txtDirCalle
+            // 
+            this.txtDirCalle.Location = new System.Drawing.Point(124, 40);
+            this.txtDirCalle.Name = "txtDirCalle";
+            this.txtDirCalle.Size = new System.Drawing.Size(100, 20);
+            this.txtDirCalle.TabIndex = 9;
             // 
             // label11
             // 
@@ -223,46 +228,79 @@
             this.label11.TabIndex = 2;
             this.label11.Text = "Numero Piso:";
             // 
-            // txtDirCalle
+            // label10
             // 
-            this.txtDirCalle.Location = new System.Drawing.Point(124, 40);
-            this.txtDirCalle.Name = "txtDirCalle";
-            this.txtDirCalle.Size = new System.Drawing.Size(100, 20);
-            this.txtDirCalle.TabIndex = 9;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(44, 83);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Departamento:";
             // 
-            // txtNumPiso
+            // label9
             // 
-            this.txtNumPiso.Location = new System.Drawing.Point(313, 40);
-            this.txtNumPiso.Name = "txtNumPiso";
-            this.txtNumPiso.Size = new System.Drawing.Size(100, 20);
-            this.txtNumPiso.TabIndex = 10;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(251, 83);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(56, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Localidad:";
             // 
-            // txtDepartamento
+            // label8
             // 
-            this.txtDepartamento.Location = new System.Drawing.Point(124, 80);
-            this.txtDepartamento.Name = "txtDepartamento";
-            this.txtDepartamento.Size = new System.Drawing.Size(100, 20);
-            this.txtDepartamento.TabIndex = 11;
-            // 
-            // txtLocalidad
-            // 
-            this.txtLocalidad.Location = new System.Drawing.Point(313, 80);
-            this.txtLocalidad.Name = "txtLocalidad";
-            this.txtLocalidad.Size = new System.Drawing.Size(100, 20);
-            this.txtLocalidad.TabIndex = 12;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(41, 43);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Dirección calle:";
             // 
             // dateTimePickerNacimiento
             // 
-            this.dateTimePickerNacimiento.Location = new System.Drawing.Point(323, 380);
+            this.dateTimePickerNacimiento.Location = new System.Drawing.Point(323, 315);
             this.dateTimePickerNacimiento.Name = "dateTimePickerNacimiento";
             this.dateTimePickerNacimiento.Size = new System.Drawing.Size(193, 20);
             this.dateTimePickerNacimiento.TabIndex = 16;
+            // 
+            // groupBoxHabilitacion
+            // 
+            this.groupBoxHabilitacion.Controls.Add(this.radioBtnDeshabilitado);
+            this.groupBoxHabilitacion.Controls.Add(this.radioBtnHabilitado);
+            this.groupBoxHabilitacion.Location = new System.Drawing.Point(24, 341);
+            this.groupBoxHabilitacion.Name = "groupBoxHabilitacion";
+            this.groupBoxHabilitacion.Size = new System.Drawing.Size(492, 54);
+            this.groupBoxHabilitacion.TabIndex = 17;
+            this.groupBoxHabilitacion.TabStop = false;
+            this.groupBoxHabilitacion.Text = "Habilitacion de cliente";
+            // 
+            // radioBtnHabilitado
+            // 
+            this.radioBtnHabilitado.AutoSize = true;
+            this.radioBtnHabilitado.Location = new System.Drawing.Point(134, 29);
+            this.radioBtnHabilitado.Name = "radioBtnHabilitado";
+            this.radioBtnHabilitado.Size = new System.Drawing.Size(72, 17);
+            this.radioBtnHabilitado.TabIndex = 0;
+            this.radioBtnHabilitado.TabStop = true;
+            this.radioBtnHabilitado.Text = "Habilitado";
+            this.radioBtnHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnDeshabilitado
+            // 
+            this.radioBtnDeshabilitado.AutoSize = true;
+            this.radioBtnDeshabilitado.Location = new System.Drawing.Point(250, 29);
+            this.radioBtnDeshabilitado.Name = "radioBtnDeshabilitado";
+            this.radioBtnDeshabilitado.Size = new System.Drawing.Size(89, 17);
+            this.radioBtnDeshabilitado.TabIndex = 1;
+            this.radioBtnDeshabilitado.TabStop = true;
+            this.radioBtnDeshabilitado.Text = "Deshabilitado";
+            this.radioBtnDeshabilitado.UseVisualStyleBackColor = true;
             // 
             // AltaClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 481);
+            this.Controls.Add(this.groupBoxHabilitacion);
             this.Controls.Add(this.dateTimePickerNacimiento);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtCodPostal);
@@ -281,14 +319,13 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaClienteForm";
             this.Text = "AltaClienteForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaClienteForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBoxHabilitacion.ResumeLayout(false);
+            this.groupBoxHabilitacion.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
-
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaClienteForm_FormClosing);
-
 
         }
 
@@ -318,5 +355,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePickerNacimiento;
         private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.GroupBox groupBoxHabilitacion;
+        private System.Windows.Forms.RadioButton radioBtnDeshabilitado;
+        private System.Windows.Forms.RadioButton radioBtnHabilitado;
     }
 }

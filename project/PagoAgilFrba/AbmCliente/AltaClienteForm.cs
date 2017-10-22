@@ -39,6 +39,7 @@ namespace PagoAgilFrba.AbmCliente
             {
                 this.Text = ALTA_TITLE;
                 this.clienteDTOToUpdateOrSave = new ClienteDTO();
+                disabledRadioButtons();
             }
 
             if (formMode == EnumFormMode.MODE_MODIFICACION)
@@ -115,6 +116,14 @@ namespace PagoAgilFrba.AbmCliente
             txtDepartamento.Text = cl.departamento.ToString();
             txtLocalidad.Text = cl.localidad;
             txtCodPostal.Text = cl.codPostal;
+            if (cl.habilitado)
+            {
+                disabledRadioButtons();
+            }
+            else
+            {
+                radioBtnDeshabilitado.Select();
+            }
             dateTimePickerNacimiento.Value = cl.fechaDeNacimiento;
         }
 
@@ -131,7 +140,14 @@ namespace PagoAgilFrba.AbmCliente
             clienteDTOToUpdateOrSave.localidad = txtLocalidad.Text;
             clienteDTOToUpdateOrSave.codPostal = txtCodPostal.Text;
             clienteDTOToUpdateOrSave.fechaDeNacimiento = dateTimePickerNacimiento.Value;
+            clienteDTOToUpdateOrSave.habilitado = radioBtnHabilitado.Checked;
             return clienteDTOToUpdateOrSave;
+        }
+
+        private void disabledRadioButtons() {
+            radioBtnHabilitado.Select();
+            radioBtnHabilitado.Enabled = false;
+            radioBtnDeshabilitado.Enabled = false;
         }
 
 
