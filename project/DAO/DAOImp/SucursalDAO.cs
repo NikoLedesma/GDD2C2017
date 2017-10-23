@@ -46,7 +46,7 @@ namespace DAO.DAOImp
         {
             String str = "";
             if (!String.IsNullOrEmpty(nombre)) { str += " AND sucu_nom LIKE @NOMBRE + '%' "; }
-            if (!String.IsNullOrEmpty(apellido)) { str += " AND sucu_dire LIKE @NOMBRE + '%' "; }
+            if (!String.IsNullOrEmpty(apellido)) { str += " AND sucu_dire LIKE @APELLIDO+ '%' "; }
             if (dni > 0) { str += " AND sucu_cp = @DNI "; }
 
             using (var command = new SqlCommand("SELECT sucu_id,sucu_nom,sucu_dire,sucu_cp,sucu_inactive " +

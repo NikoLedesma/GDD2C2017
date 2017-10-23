@@ -28,7 +28,6 @@ namespace Business
             empresa.rubro = empresaDTO.rubro;
             empresa.habilitado = empresaDTO.habilitado;
             empresa.cuit = empresaDTO.cuit;
-            empresa.habilitado = empresa.habilitado;
             return empresa;
         }
         public List<EmpresaDTO> getEmpresas() //trae las todas las empresas
