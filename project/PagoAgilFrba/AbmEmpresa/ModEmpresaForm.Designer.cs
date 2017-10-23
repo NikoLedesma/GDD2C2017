@@ -39,7 +39,7 @@
             this.btnAltaEmp = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ModificarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BajaColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.BajarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,6 +119,7 @@
             this.btnAltaEmp.TabIndex = 9;
             this.btnAltaEmp.Text = "Alta Empresa";
             this.btnAltaEmp.UseVisualStyleBackColor = true;
+            this.btnAltaEmp.Click += new System.EventHandler(this.btnAltaEmp_Click);
             // 
             // dataGridView1
             // 
@@ -126,12 +127,13 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ModificarColumn,
-            this.BajaColumn});
+            this.BajarColumn});
             this.dataGridView1.Location = new System.Drawing.Point(12, 203);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(686, 199);
+            this.dataGridView1.Size = new System.Drawing.Size(987, 199);
             this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVEmpresa_CellContentClick);
             // 
             // ModificarColumn
             // 
@@ -139,17 +141,17 @@
             this.ModificarColumn.Name = "ModificarColumn";
             this.ModificarColumn.ReadOnly = true;
             // 
-            // BajaColumn
+            // BajarColumn
             // 
-            this.BajaColumn.HeaderText = "Baja";
-            this.BajaColumn.Name = "BajaColumn";
-            this.BajaColumn.ReadOnly = true;
+            this.BajarColumn.HeaderText = "Bajar";
+            this.BajarColumn.Name = "BajarColumn";
+            this.BajarColumn.ReadOnly = true;
             // 
             // ModEmpresaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 443);
+            this.ClientSize = new System.Drawing.Size(1011, 443);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnAltaEmp);
             this.Controls.Add(this.btnBuscar);
@@ -162,6 +164,7 @@
             this.Controls.Add(this.txtNombre);
             this.Name = "ModEmpresaForm";
             this.Text = "Buscar Empresa";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModEmpresaForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -181,6 +184,6 @@
         private System.Windows.Forms.Button btnAltaEmp;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewButtonColumn ModificarColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn BajaColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn BajarColumn;
     }
 }

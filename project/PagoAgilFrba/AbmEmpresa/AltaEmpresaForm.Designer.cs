@@ -37,6 +37,8 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.radioBtnHabilitado = new System.Windows.Forms.RadioButton();
+            this.radioBtnDeshabilitado = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label1
@@ -98,11 +100,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(170, 291);
+            this.button1.Location = new System.Drawing.Point(184, 365);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 46);
+            this.button1.Size = new System.Drawing.Size(62, 30);
             this.button1.TabIndex = 8;
-            this.button1.Text = "DAR DE ALTA";
+            this.button1.Text = "Aceptar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -114,11 +116,35 @@
             this.comboBox1.Size = new System.Drawing.Size(100, 21);
             this.comboBox1.TabIndex = 9;
             // 
+            // radioBtnHabilitado
+            // 
+            this.radioBtnHabilitado.AutoSize = true;
+            this.radioBtnHabilitado.Location = new System.Drawing.Point(102, 305);
+            this.radioBtnHabilitado.Name = "radioBtnHabilitado";
+            this.radioBtnHabilitado.Size = new System.Drawing.Size(72, 17);
+            this.radioBtnHabilitado.TabIndex = 10;
+            this.radioBtnHabilitado.TabStop = true;
+            this.radioBtnHabilitado.Text = "Habilitado";
+            this.radioBtnHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnDeshabilitado
+            // 
+            this.radioBtnDeshabilitado.AutoSize = true;
+            this.radioBtnDeshabilitado.Location = new System.Drawing.Point(239, 305);
+            this.radioBtnDeshabilitado.Name = "radioBtnDeshabilitado";
+            this.radioBtnDeshabilitado.Size = new System.Drawing.Size(89, 17);
+            this.radioBtnDeshabilitado.TabIndex = 11;
+            this.radioBtnDeshabilitado.TabStop = true;
+            this.radioBtnDeshabilitado.Text = "Deshabilitado";
+            this.radioBtnDeshabilitado.UseVisualStyleBackColor = true;
+            // 
             // AltaEmpresaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 382);
+            this.ClientSize = new System.Drawing.Size(440, 407);
+            this.Controls.Add(this.radioBtnDeshabilitado);
+            this.Controls.Add(this.radioBtnHabilitado);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtDireccion);
@@ -130,6 +156,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaEmpresaForm";
             this.Text = "Alta de Empresa";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaEmpresaForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,5 +173,7 @@
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.RadioButton radioBtnHabilitado;
+        private System.Windows.Forms.RadioButton radioBtnDeshabilitado;
     }
 }

@@ -22,29 +22,62 @@ namespace Business
         public Empresa converterEmpresaDTOToEmpresa(EmpresaDTO empresaDTO)
         {
             Empresa empresa = new Empresa();
+            empresa.id = empresaDTO.id;
             empresa.nombre = empresaDTO.nombre;
-            empresa.cuit = empresaDTO.cuit;
             empresa.direccion = empresaDTO.direccion;
             empresa.rubro = empresaDTO.rubro;
+            empresa.habilitado = empresaDTO.habilitado;
+            empresa.cuit = empresaDTO.cuit;
+            empresa.habilitado = empresa.habilitado;
             return empresa;
         }
-        public List<EmpresaDTO> getEmpresas()
+        public List<EmpresaDTO> getEmpresas() //trae las todas las empresas
         {
             EmpresaDAO empresaDAO = new EmpresaDAO();
             List<EmpresaDTO> empresaDTOList = new List<EmpresaDTO>();
             List<Empresa> empresaList = new List<Empresa>();
             empresaList = empresaDAO.getAll().ToList();
-            empresaList.ForEach(x => { empresaDTOList.Add(converterEmpresatoEmpresaDTO(x)); });
+            empresaList.ForEach(x => { empresaDTOList.Add(converterEmpresaToEmpresaDTO(x)); });
             return empresaDTOList;
         }
-        public EmpresaDTO converterEmpresatoEmpresaDTO(Empresa empresa)
+        public EmpresaDTO converterEmpresaToEmpresaDTO(Empresa empresa)
         {
             EmpresaDTO empresaDTO = new EmpresaDTO();
             empresaDTO.id = empresa.id;
             empresaDTO.nombre = empresa.nombre;
+            empresaDTO.direccion = empresa.direccion;
+            empresaDTO.rubro = empresa.rubro;
+            empresaDTO.habilitado = empresa.habilitado;
             empresaDTO.cuit = empresa.cuit;
             return empresaDTO;
         }
+
+        public List<EmpresaDTO> getEmpresasByFilter(EmpresaDTO empresaDTO)
+        {
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+            List<EmpresaDTO> empresaDTOList = new List<EmpresaDTO>();
+            List<Empresa> empresaList = new List<Empresa>();
+            empresaList = empresaDAO.getAllByUsername(empresaDTO.nombre, empresaDTO.cuit, empresaDTO.rubro).ToList();
+            empresaList.ForEach(x => { empresaDTOList.Add(converterEmpresaToEmpresaDTO(x)); });
+            return empresaDTOList;
+        }
+
+        public int updateEmpresa(EmpresaDTO empresaDTO)
+        {
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+            Empresa empresa = converterEmpresaDTOToEmpresa(empresaDTO);
+            return empresaDAO.updateEmpresa(empresa);
+        }
+
+        public int deleteEmpresa(EmpresaDTO empresaDTO)
+        {
+            empresaDTO.habilitado = true; //va true porq en base de datos esta como inactiva el campo
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+            Empresa empresa = converterEmpresaDTOToEmpresa(empresaDTO);
+            int a = empresaDAO.deleteEmpresa(empresa);
+            return a;
+        }
+
                 
     }
 

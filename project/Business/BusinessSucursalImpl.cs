@@ -22,9 +22,11 @@ namespace Business
         public Sucursal converterSucursalDTOToSucursal(SucursalDTO sucursalDTO)
         {
             Sucursal sucursal = new Sucursal();
+            sucursal.id = sucursalDTO.id;
             sucursal.nombre = sucursalDTO.nombre;
             sucursal.direccion = sucursalDTO.direccion;
             sucursal.codPostal = sucursalDTO.codPostal;
+            sucursal.habilitado = sucursalDTO.habilitado;
             return sucursal;
         }
 
@@ -66,6 +68,14 @@ namespace Business
             return sucursalDTO;
         }
 
+        public int deleteSucursal(SucursalDTO sucursalDTO)
+        {
+            sucursalDTO.habilitado = true; //va true porq en base de datos esta como inactiva el campo
+            SucursalDAO sucursalDAO = new SucursalDAO();
+            Sucursal sucursal = converterSucursalDTOToSucursal(sucursalDTO);
+            int a = sucursalDAO.deleteSucursal(sucursal);
+            return a;
+        }
 
 
     }

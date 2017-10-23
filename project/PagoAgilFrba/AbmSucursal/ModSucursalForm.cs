@@ -47,7 +47,7 @@ namespace PagoAgilFrba.AbmSucursal
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            businessSucursalImpl = new BusinessSucursalImpl();
             SucursalDTO fSucursalDTO = validateAndFillFilterSucursalDTO();
             filteredSucursalDTOs = businessSucursalImpl.getSucursalesByFilter(fSucursalDTO);
             populateDataGridView(filteredSucursalDTOs);
@@ -74,7 +74,7 @@ namespace PagoAgilFrba.AbmSucursal
         //desde aca -- arranca el tema de agregar las columnas id y habilitado y permite elegirla y selecccionarla
 
         protected void dataGVSucursal_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
+        {//esto es para que no se vea la columna de id. ---
             Provider.matchAndTurnOffColumnVisibility(e, ID_COLUMN_HEADER_NAME);
             Provider.matchAndTurnOnColumnReadOnly(e, HABILITADO_COLUMN_HEADER_NAME);
         }
@@ -93,19 +93,29 @@ namespace PagoAgilFrba.AbmSucursal
             }
             if (Validator.isSelectedBajarColumn(dataGridView, e.ColumnIndex))
             {
-                //TODO : 
-                MessageBox.Show("VER SI SE AGREGA EN LA MODIFICACION:" + id);
+                SucursalDTO cl = filteredSucursalDTOs[e.RowIndex];
+                if (cl.habilitado == false) //tengo que poner false porque quedaron al reves los datos en la base. pusieron inactiva
+                {
+                    //cl.apellido = "Okuma";
+                    businessSucursalImpl.deleteSucursal(cl);
+                    MessageBox.Show("Sucursal Eliminada");
+                }
+                else
+                {
+                    MessageBox.Show("La sucursal no existe (ya habia sido eliminada)");
+                }
+                
             }
 
         }
 
-        private void ModClienteForm_FormClosing(Object sender, FormClosingEventArgs e)
+        private void ModSucursalForm_FormClosing(Object sender, FormClosingEventArgs e)
         {
             this.prevForm.Show();
         }
         //hasta aca
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void btnLimpiar_Click(object sender, EventArgs e) //todavia no esta hecho
         {
 
         }

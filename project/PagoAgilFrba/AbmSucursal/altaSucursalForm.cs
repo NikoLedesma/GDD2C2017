@@ -40,6 +40,7 @@ namespace PagoAgilFrba.AbmSucursal
                 //DAR DE ALTA SUCURSAL
                 this.Text = ALTA_TITLE;
                 this.sucursalDTOToUpdateOrSave = new SucursalDTO();
+                disabledRadioButtons();
             }
 
             if (formMode == EnumFormMode.MODE_MODIFICACION)
@@ -47,9 +48,18 @@ namespace PagoAgilFrba.AbmSucursal
                 //MODIFICAR SUCURSAL
                 this.Text = String.Format(MODIF_TITLE, suc.id);
                 this.sucursalDTOToUpdateOrSave = suc;
+
                 txtNombre.Text = suc.nombre;
                 txtDireccion.Text = suc.direccion;
                 txtCodPostal.Text = suc.codPostal.ToString();
+                if (suc.habilitado)
+                {
+                    disabledRadioButtons();
+                }
+                else
+                {
+                    radioBtnDeshabilitado.Select();
+                }
                 
             }
         }
@@ -63,7 +73,7 @@ namespace PagoAgilFrba.AbmSucursal
             sucursalDTO.codPostal = Int32.Parse(txtCodPostal.Text); //Int32.Parse(txtNumPiso.Text);
             saveOrUpdateSucursal(sucursalDTO);
 
-            MessageBox.Show("Se dio de alta la SUCURSAL");
+            //MessageBox.Show("Se dio de alta la SUCURSAL");
 
         }
 
@@ -106,9 +116,17 @@ namespace PagoAgilFrba.AbmSucursal
             return result;
         }
 
+        private void altaSucursalForm_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            this.prevForm.Show();
+        }
 
-
-
+        private void disabledRadioButtons()
+        {
+            radioBtnHabilitado.Select();
+            radioBtnHabilitado.Enabled = false;
+            radioBtnDeshabilitado.Enabled = false;
+        }
     }
 
 }

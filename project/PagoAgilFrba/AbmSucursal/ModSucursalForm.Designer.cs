@@ -133,6 +133,8 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(713, 195);
             this.dataGridView1.TabIndex = 11;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVSucursal_CellContentClick);
+
             // 
             // ModificarColumn
             // 
@@ -166,6 +168,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModSucursalForm_FormClosing);
+
 
         }
 

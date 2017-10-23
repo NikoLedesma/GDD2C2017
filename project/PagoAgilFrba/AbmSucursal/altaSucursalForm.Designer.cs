@@ -35,6 +35,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.radioBtnHabilitado = new System.Windows.Forms.RadioButton();
+            this.radioBtnDeshabilitado = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // txtCodPostal
@@ -87,7 +89,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(197, 326);
+            this.btnAceptar.Location = new System.Drawing.Point(206, 363);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 45);
             this.btnAceptar.TabIndex = 13;
@@ -95,11 +97,35 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.button1_Click);
             // 
+            // radioBtnHabilitado
+            // 
+            this.radioBtnHabilitado.AutoSize = true;
+            this.radioBtnHabilitado.Location = new System.Drawing.Point(110, 307);
+            this.radioBtnHabilitado.Name = "radioBtnHabilitado";
+            this.radioBtnHabilitado.Size = new System.Drawing.Size(72, 17);
+            this.radioBtnHabilitado.TabIndex = 14;
+            this.radioBtnHabilitado.TabStop = true;
+            this.radioBtnHabilitado.Text = "Habilitado";
+            this.radioBtnHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnDeshabilitado
+            // 
+            this.radioBtnDeshabilitado.AutoSize = true;
+            this.radioBtnDeshabilitado.Location = new System.Drawing.Point(280, 307);
+            this.radioBtnDeshabilitado.Name = "radioBtnDeshabilitado";
+            this.radioBtnDeshabilitado.Size = new System.Drawing.Size(89, 17);
+            this.radioBtnDeshabilitado.TabIndex = 15;
+            this.radioBtnDeshabilitado.TabStop = true;
+            this.radioBtnDeshabilitado.Text = "Deshabilitado";
+            this.radioBtnDeshabilitado.UseVisualStyleBackColor = true;
+            // 
             // altaSucursalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 430);
+            this.Controls.Add(this.radioBtnDeshabilitado);
+            this.Controls.Add(this.radioBtnHabilitado);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
@@ -109,6 +135,7 @@
             this.Controls.Add(this.txtCodPostal);
             this.Name = "altaSucursalForm";
             this.Text = "altaSucursalForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.altaSucursalForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +150,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.RadioButton radioBtnHabilitado;
+        private System.Windows.Forms.RadioButton radioBtnDeshabilitado;
 
     }
 }
