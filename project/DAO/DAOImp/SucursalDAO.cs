@@ -30,7 +30,7 @@ namespace DAO.DAOImp
         {
             using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.Sucursal SET " +
                         "sucu_nom=@NOMBRE,sucu_dire=@DIRECCION,sucu_cp=@COD_POSTAL,sucu_inactive=@HABILITADO " +
-                        "WHERE SUCURSAL_ID = @ID "))
+                        "WHERE sucu_id= @ID "))
             {
                 command.Parameters.AddWithValue("@NOMBRE", sucursal.nombre);
                 command.Parameters.AddWithValue("@DIRECCION", sucursal.direccion);

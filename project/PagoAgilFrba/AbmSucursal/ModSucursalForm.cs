@@ -75,6 +75,7 @@ namespace PagoAgilFrba.AbmSucursal
 
         protected void dataGVSucursal_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {//esto es para que no se vea la columna de id. ---
+
             Provider.matchAndTurnOffColumnVisibility(e, ID_COLUMN_HEADER_NAME);
             Provider.matchAndTurnOnColumnReadOnly(e, HABILITADO_COLUMN_HEADER_NAME);
         }
@@ -85,7 +86,7 @@ namespace PagoAgilFrba.AbmSucursal
             String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();
             if (Validator.isSelectedModificarColumn(dataGridView, e.ColumnIndex))
             {
-                //MessageBox.Show("Mod id:" + id);
+                MessageBox.Show("Mod id:" + id);
                 //TODO : VERIFICAR SI AGARRA EL CORRECTO OBJECTO
                 SucursalDTO cl = filteredSucursalDTOs[e.RowIndex];
                 altaSucursalForm form = new altaSucursalForm(this, EnumFormMode.MODE_MODIFICACION, cl);

@@ -68,7 +68,6 @@ namespace PagoAgilFrba.AbmEmpresa
         private void button1_Click(object sender, EventArgs e)
         {
             //FALTA AGREGAR VALIDACIONES ANTES DEL ACEPTAR
-            EmpresaDTO empDTOModifOAlta = new EmpresaDTO();
             empDTOModifOAlta.nombre = txtNombre.Text;
             empDTOModifOAlta.cuit = txtCuit.Text;
             empDTOModifOAlta.direccion = txtDireccion.Text;
@@ -82,7 +81,7 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 try{
                     businessEmpresaImpl.saveEmpresa(empDTOModifOAlta);
-                    MessageBox.Show("Se dio de alta la EMPRESA, Rubro:" + empDTOModifOAlta.id);
+                    MessageBox.Show("Se dio de alta la EMPRESA, id:" + empDTOModifOAlta.id);
                     MessageBox.Show(MSG_SUCCESS_SAVE);
                      this.Close();
                 }catch(Exception){

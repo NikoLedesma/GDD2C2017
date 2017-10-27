@@ -15,7 +15,7 @@ namespace DAO.DAOImp
         {
             using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Empresa " +
                                     "(empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit) " +
-                                    "VALUES (@NOMBRE,@CUIT,@DIRECCION,@RUBRO,@HABILITADO)"))
+                                    "VALUES (@NOMBRE,@DIRECCION,@RUBRO,@HABILITADO,@CUIT)"))
             {
                 command.Parameters.AddWithValue("@NOMBRE", empresa.nombre);
                 command.Parameters.AddWithValue("@DIRECCION", empresa.direccion);
@@ -100,7 +100,7 @@ namespace DAO.DAOImp
         public int updateEmpresa(Empresa empresa) //aca tengo que modificar todos los campos de la base de datos
         { 
               using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.Empresa SET " +
-                        "empr_nombre=@NOMBRE,empr_direccion=@DIRECCION,empr_cuit=@CUIT, empr_rubro=@RUBRO, empr_inactivo=@INACTIVO" +
+                        "empr_nombre=@NOMBRE,empr_direccion=@DIRECCION,empr_cuit=@CUIT, empr_rubro=@RUBRO, empr_inactivo=@INACTIVO " +
                         "WHERE empr_id = @ID "))
             {
                 command.Parameters.AddWithValue("@ID", empresa.id);

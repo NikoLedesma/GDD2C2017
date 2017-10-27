@@ -67,11 +67,10 @@ namespace PagoAgilFrba.AbmSucursal
 
         private void button1_Click(object sender, EventArgs e) //aceptar y dar de alta
         {
-            SucursalDTO sucursalDTO = new SucursalDTO();
-            sucursalDTO.nombre = txtNombre.Text;
-            sucursalDTO.direccion = txtDireccion.Text;
-            sucursalDTO.codPostal = Int32.Parse(txtCodPostal.Text); //Int32.Parse(txtNumPiso.Text);
-            saveOrUpdateSucursal(sucursalDTO);
+            sucursalDTOToUpdateOrSave.nombre = txtNombre.Text;
+            sucursalDTOToUpdateOrSave.direccion = txtDireccion.Text;
+            sucursalDTOToUpdateOrSave.codPostal = Int32.Parse(txtCodPostal.Text); //Int32.Parse(txtNumPiso.Text);
+            saveOrUpdateSucursal(sucursalDTOToUpdateOrSave);
 
             //MessageBox.Show("Se dio de alta la SUCURSAL");
 
