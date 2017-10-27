@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO.Enums;
 
 namespace PagoAgilFrba.AbmFactura
 {
@@ -20,6 +21,10 @@ namespace PagoAgilFrba.AbmFactura
         private BusinessEmpresaImpl businessEmpresaImpl;
         private List<ClienteDTO> listClienteDTO;
         private List<EmpresaDTO> listEmpresaDTO;
+        private EnumFormMode formMode;
+        private static String ALTA_TITLE = "ALTA DE Factura";
+        private FacturaDTO facturaDTOToUpdateOrSave;
+        private static String MODIF_TITLE = "MODIFICACION DE FACTURA(ID:{0})";
 
         public AltaFacturaForm(Form form)
         {
@@ -41,6 +46,63 @@ namespace PagoAgilFrba.AbmFactura
 
             prevForm = form;
             
+        }
+        public AltaFacturaForm(Form form,EnumFormMode enumFormMode,FacturaDTO cl)
+        {
+            InitializeComponent();
+            businessClienteImpl = new BusinessClienteImpl();
+            prevForm = form;
+            form.Hide();
+            formMode = enumFormMode;
+
+            if (formMode == EnumFormMode.MODE_ALTA)
+            {
+                businessFacturaImpl = new BusinessFacturaImpl();
+                businessClienteImpl = new BusinessClienteImpl();
+                businessEmpresaImpl = new BusinessEmpresaImpl();
+
+                listClienteDTO = businessClienteImpl.getAllCliente();
+                this.comboBox1.DataSource = listClienteDTO;
+                this.comboBox1.ValueMember = "id";
+                this.comboBox1.DisplayMember = "dni";
+
+                listEmpresaDTO = businessEmpresaImpl.getEmpresas();
+                this.comboBox2.DataSource = listEmpresaDTO;
+                this.comboBox2.ValueMember = "id";
+                this.comboBox2.DisplayMember = "cuit";
+                this.Text = ALTA_TITLE;
+                this.facturaDTOToUpdateOrSave = new FacturaDTO();
+                //disabledRadioButtons();
+            }
+
+            if (formMode == EnumFormMode.MODE_MODIFICACION)
+            {
+                this.Text = String.Format(MODIF_TITLE, cl.id);
+                this.facturaDTOToUpdateOrSave = cl;
+                //populateAllInputsToModify(cl);
+            }
+        }
+        private void populateAllInputsToModify(FacturaDTO fc)
+        {
+            /*txtNombre.Text = fc.nombre;
+            txtApellido.Text = fc.apellido;
+            txtDNI.Text = fc.dni.ToString();
+            txtMail.Text = fc.mail;
+            txtTelefono.Text = fc.nroTelefono.ToString();
+            txtDirCalle.Text = fc.direccion;
+            txtNumPiso.Text = fc.nroPiso.ToString();
+            txtDepartamento.Text = fc.departamento.ToString();
+            txtLocalidad.Text = fc.localidad;
+            txtCodPostal.Text = fc.codPostal;
+            if (fc.habilitado)
+            {
+                disabledRadioButtons();
+            }
+            else
+            {
+                radioBtnDeshabilitado.Select();
+            }
+            dateTimePickerNacimiento.Value = cl.fechaDeNacimiento;*/
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -77,6 +139,12 @@ namespace PagoAgilFrba.AbmFactura
             int resu = businessFacturaImpl.saveFactura(facturaDTO);
             MessageBox.Show("Se dio de alta la FACTURA, resu:"+resu);
         }
+        /*private void disabledRadioButtons()
+        {
+            radioBtnHabilitado.Select();
+            radioBtnHabilitado.Enabled = false;
+            radioBtnDeshabilitado.Enabled = false;
+        }*/
 
     }
 
