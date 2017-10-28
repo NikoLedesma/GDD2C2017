@@ -3,6 +3,7 @@ using PagoAgilFrba.AbmSucursal;
 using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmFactura;
+using PagoAgilFrba.Rendicion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace PagoAgilFrba.UTILS
             }else if(selectedTag.Equals("Registro de Pago de Facturas")){
                 form = new RolForm(prevForm);
             }else if(selectedTag.Equals("Rendicion de Facturas cobradas")){
-                form = new RolForm(prevForm);
+                form = new RendicionForm(prevForm);
             }else if(selectedTag.Equals("Listado Estadistico")){
                 form = new RolForm(prevForm);
             }

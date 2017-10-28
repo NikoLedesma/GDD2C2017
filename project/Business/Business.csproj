@@ -43,6 +43,7 @@
     <Compile Include="BusinessClienteImpl.cs" />
     <Compile Include="BusinessEmpresaImpl.cs" />
     <Compile Include="BusinessFacturaImpl.cs" />
+    <Compile Include="BusinessRendicionImpl.cs" />
     <Compile Include="BusinessRolImpl.cs" />
     <Compile Include="BusinessLoginImpl.cs" />
     <Compile Include="BusinessRubroImpl.cs" />
