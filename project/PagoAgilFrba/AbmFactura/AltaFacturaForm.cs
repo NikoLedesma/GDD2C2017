@@ -109,7 +109,7 @@ namespace PagoAgilFrba.AbmFactura
         {
             FacturaDTO facturaDTO = new FacturaDTO();
             facturaDTO.cliente = (int)this.comboBox1.SelectedValue; //txtCliente.Text;
-            facturaDTO.empresa = (int)this.comboBox1.SelectedValue;//txtEmpresa.Text; //falta ponerlo acotado
+            facturaDTO.empresa = (int)this.comboBox2.SelectedValue;//txtEmpresa.Text; //falta ponerlo acotado
             facturaDTO.nroFact = Int32.Parse(txtNroFact.Text);
             facturaDTO.fechaDeAlta = dateTimePickerAlta.Value;
             facturaDTO.fechaDeVencimiento = dateTimePickerVencimiento.Value;

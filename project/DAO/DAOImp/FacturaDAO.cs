@@ -33,6 +33,46 @@ namespace DAO.DAOImp
 
             }
         }
+        public IEnumerable<Factura> getAllByUsername(int cliente, int empresa)
+        {
+            String str = "";
+            if (cliente > 0) { str += " AND fact_cliente = @CLIENTE "; }
+            if (empresa > 0) { str += " AND fact_empresa = @EMPRESA "; }
+            
+
+            using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total] " +
+                          "FROM  NO_TENGO_IDEA.Factura WHERE 1=1 " + str))
+            {
+                if (cliente > 0) { command.Parameters.AddWithValue("@CLIENTE", cliente); }
+                if (empresa > 0) { command.Parameters.AddWithValue("@EMPRESA", empresa); }
+                
+                return GetRecords(command);
+            }
+            throw new NotImplementedException();
+        }
+        public override Factura PopulateRecord(SqlDataReader reader)
+        {
+            Factura factura = new Factura();
+            if (!reader.IsDBNull(0))
+                factura.id = reader.GetInt32(0);
+            if (!reader.IsDBNull(1))
+                factura.cliente = reader.GetInt32(1);
+            if (!reader.IsDBNull(2))
+                factura.empresa = reader.GetInt32(2);
+            if (!reader.IsDBNull(3))
+                factura.nroFact = reader.GetInt32(3);
+            if (!reader.IsDBNull(4))
+                factura.fechaDeAlta = reader.GetDateTime(4);
+            if (!reader.IsDBNull(5))
+                factura.fechaDeVencimiento = reader.GetDateTime(5);
+            if (!reader.IsDBNull(6))
+            {
+                float readerResult = (float)reader.GetDouble(6);
+
+                factura.total = readerResult;
+            }
+            return factura;
+        }
         
     }
 

@@ -22,6 +22,7 @@ namespace PagoAgilFrba.AbmFactura
         private BusinessEmpresaImpl businessEmpresaImpl;
         private List<ClienteDTO> listClienteDTO;
         private List<EmpresaDTO> listEmpresaDTO;
+        private List<FacturaDTO> filteredFacturaDTOs;
 
         public modFacturaForm(Form form)
         {
@@ -47,11 +48,33 @@ namespace PagoAgilFrba.AbmFactura
         {
 
         }
-
+        private FacturaDTO validateAndFillFilterFacturaDTO()
+        {
+            FacturaDTO facturaDTO = new FacturaDTO();
+            facturaDTO.cliente = (int)this.comboBox1.SelectedValue; //txtCliente.Text;
+            facturaDTO.empresa = (int)this.comboBox2.SelectedValue;
+            //fFacturaDTO.dni = Validator.validatePositiveIntegerTextBox(txtDNI, DNI_VALIDATION_MSG);
+            return facturaDTO;
+        }
         private void btnAlta_Click(object sender, EventArgs e)
         {
             AltaFacturaForm form = new AltaFacturaForm(this, EnumFormMode.MODE_ALTA, null);
             form.Show();
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {   
+            FacturaDTO filterFacturaDTO = validateAndFillFilterFacturaDTO();
+            filteredFacturaDTOs = businessFacturaImpl.getFacturaByFilter(filterFacturaDTO);
+            populateDataGridView(filteredFacturaDTOs);
+        }
+        private void populateDataGridView(List<FacturaDTO> facturasList)
+        {
+
+            var bindingList = new BindingList<FacturaDTO>(facturasList);
+            var source = new BindingSource(bindingList, null);
+            dataGVClientes.DataSource = source;
+        }
+        
     }
 }
