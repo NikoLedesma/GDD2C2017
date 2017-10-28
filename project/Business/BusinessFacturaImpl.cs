@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Business
 {
@@ -40,6 +41,26 @@ namespace Business
             facturaList.ForEach(x => { facturaDTOList.Add(converterFacturaToFacturaDTO(x)); });
             return facturaDTOList;
         }
+        public List<ItemFacturaDTO> getItems(int facturaId) //trae las todas las empresas
+        {
+            ItemFacturaDAO itemFacturaDAO = new ItemFacturaDAO();
+
+            List<ItemFacturaDTO> ItemFacturaDTOList = new List<ItemFacturaDTO>();
+            List<ItemFactura> itemsList = new List<ItemFactura>();
+
+            itemsList = itemFacturaDAO.getAllItems(facturaId).ToList();
+
+            itemsList.ForEach(x => { ItemFacturaDTOList.Add(converterItemToItemDTO(x)); });
+            return ItemFacturaDTOList;
+        }
+        public ItemFacturaDTO converterItemToItemDTO(ItemFactura item)
+        {
+            ItemFacturaDTO itemDTO = new ItemFacturaDTO();
+            itemDTO.id = item.id;
+            itemDTO.cantidad = item.cantidad;
+            itemDTO.monto = item.monto;
+            return itemDTO;
+        }
         public FacturaDTO converterFacturaToFacturaDTO(Factura factura)
         {
             FacturaDTO facturaDTO = new FacturaDTO();
@@ -49,6 +70,7 @@ namespace Business
             facturaDTO.habilitado = factura.habilitado;
             facturaDTO.fechaDeAlta = factura.fechaDeAlta;
             facturaDTO.fechaDeVencimiento = factura.fechaDeVencimiento;
+            facturaDTO.nroFact = factura.nroFact;
             facturaDTO.total = factura.total;
             facturaDTO.items = factura.items;
             return facturaDTO;

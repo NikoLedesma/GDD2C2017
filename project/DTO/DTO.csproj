@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ItemFacturaDTO.cs" />
     <Compile Include="ClienteDTO.cs" />
     <Compile Include="EmpresaDTO.cs" />
     <Compile Include="Enums\EnumFormMode.cs" />

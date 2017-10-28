@@ -97,6 +97,9 @@
             this.dataGVClientes.ReadOnly = true;
             this.dataGVClientes.Size = new System.Drawing.Size(693, 200);
             this.dataGVClientes.TabIndex = 7;
+            this.dataGVClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVClientes_CellContentClick);
+            //this.dataGVClientes.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGVClientes_ColumnAdded);
+          
             // 
             // ModificarColumn
             // 

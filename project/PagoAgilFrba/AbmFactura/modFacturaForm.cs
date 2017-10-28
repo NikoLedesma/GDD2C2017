@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Business;
 using DTO;
 using DTO.Enums;
-
+using PagoAgilFrba.UTILS;
 
 namespace PagoAgilFrba.AbmFactura
 {
@@ -23,6 +23,8 @@ namespace PagoAgilFrba.AbmFactura
         private List<ClienteDTO> listClienteDTO;
         private List<EmpresaDTO> listEmpresaDTO;
         private List<FacturaDTO> filteredFacturaDTOs;
+        private readonly static String ID_COLUMN_HEADER_NAME = "id";
+
 
         public modFacturaForm(Form form)
         {
@@ -75,6 +77,19 @@ namespace PagoAgilFrba.AbmFactura
             var source = new BindingSource(bindingList, null);
             dataGVClientes.DataSource = source;
         }
-        
+        private void dataGVClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var dataGridView = (DataGridView)sender;
+            String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();
+            //MessageBox.Show("Mod id:" + id);
+            if (Validator.isSelectedModificarColumn(dataGridView, e.ColumnIndex))
+            {
+                
+                //TODO : VERIFICAR SI AGARRA EL CORRECTO OBJECTO
+                FacturaDTO facturaDTO = filteredFacturaDTOs[e.RowIndex];
+                AltaFacturaForm form = new AltaFacturaForm(this, EnumFormMode.MODE_MODIFICACION, facturaDTO);
+                form.Show();
+            }
+        }
     }
 }

@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DTO.Enums;
-
 namespace PagoAgilFrba.AbmFactura
 {
     public partial class AltaFacturaForm : Form
@@ -21,6 +20,9 @@ namespace PagoAgilFrba.AbmFactura
         private BusinessEmpresaImpl businessEmpresaImpl;
         private List<ClienteDTO> listClienteDTO;
         private List<EmpresaDTO> listEmpresaDTO;
+        private List<ItemFacturaDTO> listItemDTOs;
+        
+
         private EnumFormMode formMode;
         private static String ALTA_TITLE = "ALTA DE Factura";
         private FacturaDTO facturaDTOToUpdateOrSave;
@@ -54,22 +56,23 @@ namespace PagoAgilFrba.AbmFactura
             prevForm = form;
             form.Hide();
             formMode = enumFormMode;
+            businessFacturaImpl = new BusinessFacturaImpl();
+            businessClienteImpl = new BusinessClienteImpl();
+            businessEmpresaImpl = new BusinessEmpresaImpl();
+
+            listClienteDTO = businessClienteImpl.getAllCliente();
+            this.comboBox1.DataSource = listClienteDTO;
+            this.comboBox1.ValueMember = "id";
+            this.comboBox1.DisplayMember = "dni";
+
+            listEmpresaDTO = businessEmpresaImpl.getEmpresas();
+            this.comboBox2.DataSource = listEmpresaDTO;
+            this.comboBox2.ValueMember = "id";
+            this.comboBox2.DisplayMember = "cuit";
 
             if (formMode == EnumFormMode.MODE_ALTA)
             {
-                businessFacturaImpl = new BusinessFacturaImpl();
-                businessClienteImpl = new BusinessClienteImpl();
-                businessEmpresaImpl = new BusinessEmpresaImpl();
 
-                listClienteDTO = businessClienteImpl.getAllCliente();
-                this.comboBox1.DataSource = listClienteDTO;
-                this.comboBox1.ValueMember = "id";
-                this.comboBox1.DisplayMember = "dni";
-
-                listEmpresaDTO = businessEmpresaImpl.getEmpresas();
-                this.comboBox2.DataSource = listEmpresaDTO;
-                this.comboBox2.ValueMember = "id";
-                this.comboBox2.DisplayMember = "cuit";
                 this.Text = ALTA_TITLE;
                 this.facturaDTOToUpdateOrSave = new FacturaDTO();
                 //disabledRadioButtons();
@@ -79,32 +82,59 @@ namespace PagoAgilFrba.AbmFactura
             {
                 this.Text = String.Format(MODIF_TITLE, cl.id);
                 this.facturaDTOToUpdateOrSave = cl;
-                //populateAllInputsToModify(cl);
+                populateAllInputsToModify(cl);
             }
         }
         private void populateAllInputsToModify(FacturaDTO fc)
         {
-            /*txtNombre.Text = fc.nombre;
-            txtApellido.Text = fc.apellido;
-            txtDNI.Text = fc.dni.ToString();
-            txtMail.Text = fc.mail;
-            txtTelefono.Text = fc.nroTelefono.ToString();
-            txtDirCalle.Text = fc.direccion;
-            txtNumPiso.Text = fc.nroPiso.ToString();
-            txtDepartamento.Text = fc.departamento.ToString();
-            txtLocalidad.Text = fc.localidad;
-            txtCodPostal.Text = fc.codPostal;
-            if (fc.habilitado)
-            {
-                disabledRadioButtons();
-            }
-            else
-            {
-                radioBtnDeshabilitado.Select();
-            }
-            dateTimePickerNacimiento.Value = cl.fechaDeNacimiento;*/
-        }
+            this.comboBox1.SelectedValue = fc.cliente; //txtCliente.Text;
+            this.comboBox2.SelectedValue = fc.empresa;//txtEmpresa.Text; //falta ponerlo acotado
+            txtNroFact.Text = fc.nroFact.ToString();
+            dateTimePickerAlta.Value = fc.fechaDeAlta;
+            dateTimePickerVencimiento.Value = fc.fechaDeVencimiento;
+            txtTotal.Text = fc.total.ToString();
 
+           listItemDTOs = businessFacturaImpl.getItems(fc.id);
+           populateDataGridView(listItemDTOs);
+           /* DataTable dt = new DataTable();
+            dt.Columns.Add("Monto", typeof(float));
+            dt.Columns.Add("Cantidad", typeof(int));
+
+            DataRow row;
+            row = dt.NewRow();
+
+            row["Monto"] = 200;
+            row["Cantidad"] = 1;
+            dt.Rows.Add(row);
+            row = dt.NewRow();
+            row["Monto"] = 400;
+            row["Cantidad"] = 2;
+            dt.Rows.Add(row);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                this.dataGridView1.Rows.Add(dr.ItemArray);
+
+            }*/
+            
+
+        }
+        private void populateDataGridView(List<ItemFacturaDTO> list)
+        {
+
+            list.ForEach(x => { this.dataGridView1.Rows.Add(converterItemDTOToRow(x)); });
+            /*var bindingList = new BindingList<ItemFacturaDTO>(List);
+            var source = new BindingSource(bindingList, null);
+            this.dataGridView1.DataSource = source;*/
+        }
+        private DataGridViewRow converterItemDTOToRow(ItemFacturaDTO item)
+        {
+            DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+            row.Cells[0].Value = item.monto;
+            row.Cells[1].Value = item.cantidad;
+            return row;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             FacturaDTO facturaDTO = new FacturaDTO();
@@ -121,6 +151,7 @@ namespace PagoAgilFrba.AbmFactura
             DataTable dt = new DataTable();
             dt.Columns.Add("monto", typeof(float));
             dt.Columns.Add("cantidad", typeof(int));
+
 
             foreach (DataGridViewRow row in this.dataGridView1.Rows)
             {
