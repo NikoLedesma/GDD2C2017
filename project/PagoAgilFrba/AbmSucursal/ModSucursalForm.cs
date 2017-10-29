@@ -22,11 +22,9 @@ namespace PagoAgilFrba.AbmSucursal
         private readonly static String HABILITADO_COLUMN_HEADER_NAME = "habilitado";
         private readonly static String ID_COLUMN_HEADER_NAME = "id";
         private readonly static String DNI_VALIDATION_MSG = " COD POSTAL ";
-
         private List<SucursalDTO> filteredSucursalDTOs;
 
         public ModSucursalForm(Form form)
-
         {
             InitializeComponent();
             form.Hide();
@@ -35,15 +33,12 @@ namespace PagoAgilFrba.AbmSucursal
 
         }
 
-
-
         private void button3_Click(object sender, EventArgs e)
         {
             altaSucursalForm form = new altaSucursalForm(this, EnumFormMode.MODE_ALTA, null);
             form.Show();
 
         }
-
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -62,8 +57,6 @@ namespace PagoAgilFrba.AbmSucursal
             return fSucursalDTO;
         }
 
-
-
         private void populateDataGridView(List<SucursalDTO> sucuList)
         {
             var bindingList = new BindingList<SucursalDTO>(sucuList);
@@ -75,7 +68,6 @@ namespace PagoAgilFrba.AbmSucursal
 
         protected void dataGVSucursal_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {//esto es para que no se vea la columna de id. ---
-
             Provider.matchAndTurnOffColumnVisibility(e, ID_COLUMN_HEADER_NAME);
             Provider.matchAndTurnOnColumnReadOnly(e, HABILITADO_COLUMN_HEADER_NAME);
         }
@@ -118,7 +110,13 @@ namespace PagoAgilFrba.AbmSucursal
 
         private void btnLimpiar_Click(object sender, EventArgs e) //todavia no esta hecho
         {
-
+            txtNombre.Clear();
+            txtDireccion.Clear();
+            dataGridView1.Rows.Clear();
+            //dataGridView1.Columns.Clear();
+            //dataGridView1.DataSource = Nothing;
         }
+
+
     }
 }
