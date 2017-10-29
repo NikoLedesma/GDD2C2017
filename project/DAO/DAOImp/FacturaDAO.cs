@@ -19,6 +19,7 @@ namespace DAO.DAOImp
                                     "VALUES (@CLIENTE,@EMPRESA,@NRO_FACT,@FECHA_ALTA,@FECHA_VENCIMIENTO,@TOTAL)"))*/
             {
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@ID", factura.id);
                 command.Parameters.AddWithValue("@CLIENTE", factura.cliente);
                 command.Parameters.AddWithValue("@EMPRESA", factura.empresa); //todo ver seleccion acotada
                 command.Parameters.AddWithValue("@NUMERO", factura.nroFact);

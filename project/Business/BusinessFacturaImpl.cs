@@ -23,6 +23,7 @@ namespace Business
         public Factura converterFacturaDTOToFactura(FacturaDTO facturaDTO)
         {
             Factura factura = new Factura();
+            factura.id = facturaDTO.id;
             factura.cliente = facturaDTO.cliente;
             factura.empresa = facturaDTO.empresa;
             factura.nroFact = facturaDTO.nroFact;

@@ -39,11 +39,11 @@
             this.dateTimePickerAlta = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerVencimiento = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.MontoName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.MontoName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,10 +135,20 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MontoName,
             this.CantidadN});
-            this.dataGridView1.Location = new System.Drawing.Point(168, 296);
+            this.dataGridView1.Location = new System.Drawing.Point(169, 287);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(244, 106);
+            this.dataGridView1.Size = new System.Drawing.Size(243, 134);
             this.dataGridView1.TabIndex = 14;
+            // 
+            // MontoName
+            // 
+            this.MontoName.HeaderText = "Monto";
+            this.MontoName.Name = "MontoName";
+            // 
+            // CantidadN
+            // 
+            this.CantidadN.HeaderText = "Cantidad";
+            this.CantidadN.Name = "CantidadN";
             // 
             // button1
             // 
@@ -165,16 +175,6 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 17;
-            // 
-            // MontoName
-            // 
-            this.MontoName.HeaderText = "Monto";
-            this.MontoName.Name = "MontoName";
-            // 
-            // CantidadN
-            // 
-            this.CantidadN.HeaderText = "Cantidad";
-            this.CantidadN.Name = "CantidadN";
             // 
             // AltaFacturaForm
             // 

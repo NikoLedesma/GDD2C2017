@@ -21,12 +21,18 @@ namespace PagoAgilFrba.AbmFactura
         private List<ClienteDTO> listClienteDTO;
         private List<EmpresaDTO> listEmpresaDTO;
         private List<ItemFacturaDTO> listItemDTOs;
-        
 
         private EnumFormMode formMode;
         private static String ALTA_TITLE = "ALTA DE Factura";
         private FacturaDTO facturaDTOToUpdateOrSave;
         private static String MODIF_TITLE = "MODIFICACION DE FACTURA(ID:{0})";
+
+        private static String MSG_ERROR_SAVE = "ERROR:NO SE PUDO DAR DE ALTA A UNA FACTURA";
+        private static String MSG_ERROR_UPDATE = "ERROR:NO SE PUDO ACTUALIZAR A LA FACTURA";
+
+        private static String MSG_SUCCESS_SAVE = "LA FACTURA SE DIO DE ALTA";
+        private static String MSG_SUCCESS_UPDATE = "LA FACTURA SE MODIFICO";
+        DataTable dtItems = new DataTable();
 
         public AltaFacturaForm(Form form)
         {
@@ -94,7 +100,16 @@ namespace PagoAgilFrba.AbmFactura
             dateTimePickerVencimiento.Value = fc.fechaDeVencimiento;
             txtTotal.Text = fc.total.ToString();
 
-           listItemDTOs = businessFacturaImpl.getItems(fc.id);
+            listItemDTOs = businessFacturaImpl.getItems(fc.id);
+            
+            dtItems.Columns.Add("monto", typeof(float));
+            dtItems.Columns.Add("cantidad", typeof(int));
+            dtItems.Columns.Add("id", typeof(int));
+
+            listItemDTOs.ForEach(x => { converterItemListToRow(x, dtItems); });
+
+
+            facturaDTOToUpdateOrSave.items = dtItems;
            populateDataGridView(listItemDTOs);
            /* DataTable dt = new DataTable();
             dt.Columns.Add("Monto", typeof(float));
@@ -120,6 +135,16 @@ namespace PagoAgilFrba.AbmFactura
             
 
         }
+        public DataRow converterItemListToRow(ItemFacturaDTO item, DataTable tabla)
+        {
+
+            DataRow row = tabla.NewRow();
+            row["monto"] = item.monto;
+            row["cantidad"] = item.cantidad;
+            row["id"] = item.id;
+            tabla.Rows.Add(row);
+            return row;
+        }
         private void populateDataGridView(List<ItemFacturaDTO> list)
         {
 
@@ -143,7 +168,8 @@ namespace PagoAgilFrba.AbmFactura
             facturaDTO.nroFact = Int32.Parse(txtNroFact.Text);
             facturaDTO.fechaDeAlta = dateTimePickerAlta.Value;
             facturaDTO.fechaDeVencimiento = dateTimePickerVencimiento.Value;
-            facturaDTO.total = Int32.Parse(txtTotal.Text);
+            facturaDTO.total = Convert.ToSingle(txtTotal.Text);
+            
 
             //FALTA AGREGAR LA GRILLA DE LOS TOTAL ITEMS MONTO Y CANTIDAD
 
@@ -151,12 +177,15 @@ namespace PagoAgilFrba.AbmFactura
             DataTable dt = new DataTable();
             dt.Columns.Add("monto", typeof(float));
             dt.Columns.Add("cantidad", typeof(int));
+            dt.Columns.Add("id", typeof(int));
+            
 
 
             foreach (DataGridViewRow row in this.dataGridView1.Rows)
             {
                 
                 var cell = row.Cells[0].Value;
+
                 if (cell != null)
                 {
 
@@ -167,8 +196,43 @@ namespace PagoAgilFrba.AbmFactura
 
             }
             facturaDTO.items = dt;
-            int resu = businessFacturaImpl.saveFactura(facturaDTO);
-            MessageBox.Show("Se dio de alta la FACTURA, resu:"+resu);
+            
+
+            if (formMode == EnumFormMode.MODE_ALTA)
+            {
+                try
+                {
+                    int resu = businessFacturaImpl.saveFactura(facturaDTO);
+                    MessageBox.Show(MSG_SUCCESS_SAVE);
+                    this.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(MSG_ERROR_SAVE);
+                }
+            }
+
+            if (formMode == EnumFormMode.MODE_MODIFICACION)
+            {
+                try
+                {
+                    facturaDTO.id = facturaDTOToUpdateOrSave.id;
+                    DataRowCollection items = facturaDTO.items.Rows;
+                    foreach (DataRow row in items)
+                    {
+                        int currentIndex = items.IndexOf(row);
+                        row["id"] = facturaDTOToUpdateOrSave.items.Rows[currentIndex]["id"];
+                        //MessageBox.Show("Agrego al DTO el id:" + row["id"]);
+                    }
+                    int resu = businessFacturaImpl.saveFactura(facturaDTO);
+                    MessageBox.Show(MSG_SUCCESS_UPDATE);
+                    this.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(MSG_ERROR_UPDATE);
+                }
+            }
         }
         /*private void disabledRadioButtons()
         {
