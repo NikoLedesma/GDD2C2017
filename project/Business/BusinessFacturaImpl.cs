@@ -31,6 +31,7 @@ namespace Business
             factura.fechaDeVencimiento = facturaDTO.fechaDeVencimiento; 
             factura.total = facturaDTO.total;
             factura.items = facturaDTO.items;
+            factura.habilitado = facturaDTO.habilitado;
             return factura;
         }
         public List<FacturaDTO> getFacturaByFilter(FacturaDTO facturaDTO)

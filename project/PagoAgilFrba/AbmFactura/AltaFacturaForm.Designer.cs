@@ -44,7 +44,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.radioBtnDeshabilitado = new System.Windows.Forms.RadioButton();
+            this.radioBtnHabilitado = new System.Windows.Forms.RadioButton();
+            this.groupBoxHabilitacion = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBoxHabilitacion.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -152,7 +156,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(305, 427);
+            this.button1.Location = new System.Drawing.Point(292, 573);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(81, 39);
             this.button1.TabIndex = 15;
@@ -176,11 +180,45 @@
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 17;
             // 
+            // radioBtnDeshabilitado
+            // 
+            this.radioBtnDeshabilitado.AutoSize = true;
+            this.radioBtnDeshabilitado.Location = new System.Drawing.Point(250, 29);
+            this.radioBtnDeshabilitado.Name = "radioBtnDeshabilitado";
+            this.radioBtnDeshabilitado.Size = new System.Drawing.Size(89, 17);
+            this.radioBtnDeshabilitado.TabIndex = 1;
+            this.radioBtnDeshabilitado.TabStop = true;
+            this.radioBtnDeshabilitado.Text = "Deshabilitado";
+            this.radioBtnDeshabilitado.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnHabilitado
+            // 
+            this.radioBtnHabilitado.AutoSize = true;
+            this.radioBtnHabilitado.Location = new System.Drawing.Point(134, 29);
+            this.radioBtnHabilitado.Name = "radioBtnHabilitado";
+            this.radioBtnHabilitado.Size = new System.Drawing.Size(72, 17);
+            this.radioBtnHabilitado.TabIndex = 0;
+            this.radioBtnHabilitado.TabStop = true;
+            this.radioBtnHabilitado.Text = "Habilitado";
+            this.radioBtnHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxHabilitacion
+            // 
+            this.groupBoxHabilitacion.Controls.Add(this.radioBtnDeshabilitado);
+            this.groupBoxHabilitacion.Controls.Add(this.radioBtnHabilitado);
+            this.groupBoxHabilitacion.Location = new System.Drawing.Point(93, 475);
+            this.groupBoxHabilitacion.Name = "groupBoxHabilitacion";
+            this.groupBoxHabilitacion.Size = new System.Drawing.Size(492, 54);
+            this.groupBoxHabilitacion.TabIndex = 18;
+            this.groupBoxHabilitacion.TabStop = false;
+            this.groupBoxHabilitacion.Text = "Habilitacion de factura";
+            // 
             // AltaFacturaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 492);
+            this.ClientSize = new System.Drawing.Size(716, 624);
+            this.Controls.Add(this.groupBoxHabilitacion);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
@@ -198,6 +236,8 @@
             this.Name = "AltaFacturaForm";
             this.Text = "Alta Factura";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBoxHabilitacion.ResumeLayout(false);
+            this.groupBoxHabilitacion.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,5 +261,8 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadN;
+        private System.Windows.Forms.RadioButton radioBtnDeshabilitado;
+        private System.Windows.Forms.RadioButton radioBtnHabilitado;
+        private System.Windows.Forms.GroupBox groupBoxHabilitacion;
     }
 }

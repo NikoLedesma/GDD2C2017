@@ -99,6 +99,13 @@ namespace PagoAgilFrba.AbmFactura
             dateTimePickerAlta.Value = fc.fechaDeAlta;
             dateTimePickerVencimiento.Value = fc.fechaDeVencimiento;
             txtTotal.Text = fc.total.ToString();
+           // MessageBox.Show("fc.habilitado" + fc.habilitado);
+            if (fc.habilitado)
+                radioBtnHabilitado.Checked = true;
+            else
+                radioBtnDeshabilitado.Checked = true;
+
+    
 
             listItemDTOs = businessFacturaImpl.getItems(fc.id);
             
@@ -169,7 +176,7 @@ namespace PagoAgilFrba.AbmFactura
             facturaDTO.fechaDeAlta = dateTimePickerAlta.Value;
             facturaDTO.fechaDeVencimiento = dateTimePickerVencimiento.Value;
             facturaDTO.total = Convert.ToSingle(txtTotal.Text);
-            
+            facturaDTO.habilitado = radioBtnHabilitado.Checked;
 
             //FALTA AGREGAR LA GRILLA DE LOS TOTAL ITEMS MONTO Y CANTIDAD
 

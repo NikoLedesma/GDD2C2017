@@ -27,6 +27,7 @@ namespace DAO.DAOImp
                 command.Parameters.AddWithValue("@FECHAVENC", factura.fechaDeVencimiento);
                 command.Parameters.AddWithValue("@TOTAL", factura.total);
                 command.Parameters.AddWithValue("@ITEMS", factura.items);
+                command.Parameters.AddWithValue("@HABILITADA", factura.habilitado);
                 command.Parameters.AddWithValue("@RESULT", 0);
 
                 
@@ -39,9 +40,9 @@ namespace DAO.DAOImp
             String str = "";
             if (cliente > 0) { str += " AND fact_cliente = @CLIENTE "; }
             if (empresa > 0) { str += " AND fact_empresa = @EMPRESA "; }
-            
 
-            using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total] " +
+
+            using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total], [fact_inactiva] " +
                           "FROM  LOS_PUBERTOS.Factura WHERE 1=1 " + str))
             {
                 if (cliente > 0) { command.Parameters.AddWithValue("@CLIENTE", cliente); }
@@ -61,7 +62,7 @@ namespace DAO.DAOImp
 
             if (empresa > 0) { str += " AND fact_empresa = @EMPRESA "; }
 
-            using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total] " +
+            using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total], [fact_inactiva] " +
                           "FROM  LOS_PUBERTOS.Factura " + str2 + str))
             {
                 if (empresa > 0) { command.Parameters.AddWithValue("@EMPRESA", empresa); }
@@ -93,6 +94,8 @@ namespace DAO.DAOImp
 
                 factura.total = readerResult;
             }
+            if (!reader.IsDBNull(7))
+                factura.habilitado = reader.GetBoolean(7);
             return factura;
         }
         
