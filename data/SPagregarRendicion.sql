@@ -1,5 +1,5 @@
 
-CREATE TYPE [dbo].[TableParameterIDFACT] AS TABLE(
+CREATE TYPE [NO_TENGO_IDEA].[TableParameterIDFACT] AS TABLE(
 	[idsFac] [int] NULL
 )
 
