@@ -14,7 +14,7 @@ namespace DAO.DAOImp
     {
         public int saveFactura(Factura factura)
         {
-            using (var command = new SqlCommand("[NO_TENGO_IDEA].crearFactura"))/*new SqlCommand("INSERT INTO NO_TENGO_IDEA.Factura " +
+            using (var command = new SqlCommand("[LOS_PUBERTOS].crearFactura"))/*new SqlCommand("INSERT INTO LOS_PUBERTOS.Factura " +
                                     "(fact_cliente,fact_empresa, fact_numero,fact_fecha_alta, fact_fecha_vencimiento, fact_total) " +
                                     "VALUES (@CLIENTE,@EMPRESA,@NRO_FACT,@FECHA_ALTA,@FECHA_VENCIMIENTO,@TOTAL)"))*/
             {
@@ -42,7 +42,7 @@ namespace DAO.DAOImp
             
 
             using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total] " +
-                          "FROM  NO_TENGO_IDEA.Factura WHERE 1=1 " + str))
+                          "FROM  LOS_PUBERTOS.Factura WHERE 1=1 " + str))
             {
                 if (cliente > 0) { command.Parameters.AddWithValue("@CLIENTE", cliente); }
                 if (empresa > 0) { command.Parameters.AddWithValue("@EMPRESA", empresa); }
@@ -57,12 +57,12 @@ namespace DAO.DAOImp
         {
             String str = "";
             String str2 = "";
-            str2 += " LEFT JOIN NO_TENGO_IDEA.Rf ON fact_id = rf_factura LEFT JOIN NO_TENGO_IDEA.fd ON fact_id = fd_factura WHERE (rf_factura is null and fd_factura is null) ";
+            str2 += " LEFT JOIN LOS_PUBERTOS.Rf ON fact_id = rf_factura LEFT JOIN LOS_PUBERTOS.fd ON fact_id = fd_factura WHERE (rf_factura is null and fd_factura is null) ";
 
             if (empresa > 0) { str += " AND fact_empresa = @EMPRESA "; }
 
             using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total] " +
-                          "FROM  NO_TENGO_IDEA.Factura " + str2 + str))
+                          "FROM  LOS_PUBERTOS.Factura " + str2 + str))
             {
                 if (empresa > 0) { command.Parameters.AddWithValue("@EMPRESA", empresa); }
 

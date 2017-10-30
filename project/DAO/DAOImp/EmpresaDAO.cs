@@ -13,7 +13,7 @@ namespace DAO.DAOImp
     {
         public int saveEmpresa(Empresa empresa )
         {
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Empresa " +
+            using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.Empresa " +
                                     "(empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit) " +
                                     "VALUES (@NOMBRE,@DIRECCION,@RUBRO,@HABILITADO,@CUIT)"))
             {
@@ -28,7 +28,7 @@ namespace DAO.DAOImp
         public IEnumerable<Empresa> getAll()
         {
 
-            using (var command = new SqlCommand("select empr_id,empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit from NO_TENGO_IDEA.Empresa"))
+            using (var command = new SqlCommand("select empr_id,empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit from LOS_PUBERTOS.Empresa"))
             {
                 return GetRecords(command);
             }
@@ -64,7 +64,7 @@ namespace DAO.DAOImp
             if (rubro > 0) { str += " AND empr_rubro = @DNI "; }
             //en el comando sql capaz que puedo no traerme el id si no lo uso
             using (var command = new SqlCommand("SELECT empr_id, empr_nombre, empr_direccion, empr_rubro,empr_inactivo,empr_cuit " +
-                          "FROM  NO_TENGO_IDEA.Empresa WHERE 1=1 " + str))
+                          "FROM  LOS_PUBERTOS.Empresa WHERE 1=1 " + str))
             {
                 if (!String.IsNullOrEmpty(nombre)) { command.Parameters.AddWithValue("@NOMBRE", nombre); }
                 if (!String.IsNullOrEmpty(cuit)) { command.Parameters.AddWithValue("@APELLIDO", cuit); }
@@ -86,7 +86,7 @@ namespace DAO.DAOImp
 
         public int deleteEmpresa(Empresa empresa)
         {
-            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.Empresa SET empr_inactivo=@HABILITADO " +
+            using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.Empresa SET empr_inactivo=@HABILITADO " +
             "WHERE empr_id = @ID "))
             {
                 command.Parameters.AddWithValue("@HABILITADO", empresa.habilitado);
@@ -99,7 +99,7 @@ namespace DAO.DAOImp
         
         public int updateEmpresa(Empresa empresa) //aca tengo que modificar todos los campos de la base de datos
         { 
-              using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.Empresa SET " +
+              using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.Empresa SET " +
                         "empr_nombre=@NOMBRE,empr_direccion=@DIRECCION,empr_cuit=@CUIT, empr_rubro=@RUBRO, empr_inactivo=@INACTIVO " +
                         "WHERE empr_id = @ID "))
             {

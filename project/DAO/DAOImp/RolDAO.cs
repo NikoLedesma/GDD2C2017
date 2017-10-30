@@ -26,8 +26,8 @@ namespace DAO.DAOImp
 
 
         public IEnumerable<Rol> getAllByUsername(String username) {
-            using ( var command =  new SqlCommand("SELECT R.ID,R.NOMBRE,R.HABILITADO FROM NO_TENGO_IDEA.ROL R INNER JOIN "+
-                   "NO_TENGO_IDEA.USUARIOXROL UXR ON UXR.ROL_ID = R.ID  INNER JOIN NO_TENGO_IDEA.USUARIO U ON U.ID =UXR.USUARIO_ID "+
+            using ( var command =  new SqlCommand("SELECT R.ID,R.NOMBRE,R.HABILITADO FROM LOS_PUBERTOS.ROL R INNER JOIN "+
+                   "LOS_PUBERTOS.USUARIOXROL UXR ON UXR.ROL_ID = R.ID  INNER JOIN LOS_PUBERTOS.USUARIO U ON U.ID =UXR.USUARIO_ID "+
                    "WHERE U.USERNAME = @USERNAME"))
             {
                 command.Parameters.AddWithValue("@USERNAME",username);
@@ -38,7 +38,7 @@ namespace DAO.DAOImp
 
         public IEnumerable<Rol> getAll( )
         {
-            using (var command = new SqlCommand("SELECT R.ID,R.NOMBRE,R.HABILITADO FROM NO_TENGO_IDEA.ROL R"))
+            using (var command = new SqlCommand("SELECT R.ID,R.NOMBRE,R.HABILITADO FROM LOS_PUBERTOS.ROL R"))
             {
                 return GetRecords(command);
             }
@@ -60,9 +60,9 @@ namespace DAO.DAOImp
         public int removeFuncionalidadByRolName(string rolName, string funcionalidadName)
         {
 
-            using (var command = new SqlCommand("DELETE FROM NO_TENGO_IDEA.ROLXFUNCIONALIDAD WHERE "+
-                                "ROL_ID IN (SELECT R.ID FROM NO_TENGO_IDEA.ROL R WHERE R.NOMBRE=@ROLNAME) AND "+
-                                "FUNCIONALIDAD_ID IN (SELECT F.ID FROM NO_TENGO_IDEA.FUNCIONALIDAD F WHERE F.NOMBRE = @FUNCIONALIDADNAME)" ))
+            using (var command = new SqlCommand("DELETE FROM LOS_PUBERTOS.ROLXFUNCIONALIDAD WHERE "+
+                                "ROL_ID IN (SELECT R.ID FROM LOS_PUBERTOS.ROL R WHERE R.NOMBRE=@ROLNAME) AND "+
+                                "FUNCIONALIDAD_ID IN (SELECT F.ID FROM LOS_PUBERTOS.FUNCIONALIDAD F WHERE F.NOMBRE = @FUNCIONALIDADNAME)" ))
             {
                 command.Parameters.AddWithValue("@ROLNAME", rolName);
                 command.Parameters.AddWithValue("@FUNCIONALIDADNAME", funcionalidadName);
@@ -73,9 +73,9 @@ namespace DAO.DAOImp
 
         public int addFuncionalidadToRol(string rolName, string funcionalidadName)
         {
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.ROLXFUNCIONALIDAD (ROL_ID,FUNCIONALIDAD_ID) SELECT " +
-                    "(SELECT R.ID FROM NO_TENGO_IDEA.ROL R WHERE R.NOMBRE = @ROLNAME), " +
-                    "(SELECT F.ID FROM NO_TENGO_IDEA.FUNCIONALIDAD F WHERE F.NOMBRE = @FUNCIONALIDADNAME ) "))
+            using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.ROLXFUNCIONALIDAD (ROL_ID,FUNCIONALIDAD_ID) SELECT " +
+                    "(SELECT R.ID FROM LOS_PUBERTOS.ROL R WHERE R.NOMBRE = @ROLNAME), " +
+                    "(SELECT F.ID FROM LOS_PUBERTOS.FUNCIONALIDAD F WHERE F.NOMBRE = @FUNCIONALIDADNAME ) "))
             {
                 command.Parameters.AddWithValue("@ROLNAME", rolName);
                 command.Parameters.AddWithValue("@FUNCIONALIDADNAME", funcionalidadName);
@@ -85,7 +85,7 @@ namespace DAO.DAOImp
 
         public int deleteLogicalByName(string rolName)
         {
-            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.ROL SET HABILITADO = 0 WHERE NOMBRE = @ROLNAME ") )
+            using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.ROL SET HABILITADO = 0 WHERE NOMBRE = @ROLNAME ") )
             {
                 command.Parameters.AddWithValue("@ROLNAME", rolName);
                 return save(command);
@@ -95,7 +95,7 @@ namespace DAO.DAOImp
 
         public int addLogicalByName(string rolName)
         {
-            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.ROL SET HABILITADO = 1 WHERE NOMBRE = @ROLNAME "))
+            using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.ROL SET HABILITADO = 1 WHERE NOMBRE = @ROLNAME "))
             {
                 command.Parameters.AddWithValue("@ROLNAME", rolName);
                 return save(command);
@@ -107,7 +107,7 @@ namespace DAO.DAOImp
 
         public int addRol(string rolName)
         {
-            using (var command = new SqlCommand("SET IDENTITY_INSERT NO_TENGO_IDEA.ROL OFF INSERT INTO  NO_TENGO_IDEA.ROL (NOMBRE,HABILITADO) "
+            using (var command = new SqlCommand("SET IDENTITY_INSERT LOS_PUBERTOS.ROL OFF INSERT INTO  LOS_PUBERTOS.ROL (NOMBRE,HABILITADO) "
                                                 +"VALUES(@ROLNAME,1) "))
             {
                 command.Parameters.AddWithValue("@ROLNAME", rolName);

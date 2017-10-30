@@ -14,7 +14,7 @@ namespace DAO.DAOImp
     {
         public IEnumerable<Rubro> getAllRubros()
         {
-            using (var command = new SqlCommand("select rubr_id, rubr_nombre from NO_TENGO_IDEA.Rubro"))
+            using (var command = new SqlCommand("select rubr_id, rubr_nombre from LOS_PUBERTOS.Rubro"))
             {
                 return GetRecords(command);
             }

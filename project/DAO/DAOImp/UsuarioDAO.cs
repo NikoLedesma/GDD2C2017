@@ -25,7 +25,7 @@ namespace DAO.DAOImp
 
         public IEnumerable<Usuario> GetAll()
         {
-            using (var command = new SqlCommand("SELECT ID,USERNAME,PASS,HABILITADO,CANT_INTENTOS_FALLIDOS FROM NO_TENGO_IDEA.USUARIO"))
+            using (var command = new SqlCommand("SELECT ID,USERNAME,PASS,HABILITADO,CANT_INTENTOS_FALLIDOS FROM LOS_PUBERTOS.USUARIO"))
             {
                 return GetRecords(command);
             }
@@ -33,7 +33,7 @@ namespace DAO.DAOImp
 
         public Usuario GetByLogin(String username, String password)
         {
-            using (var command = new SqlCommand("SELECT ID,USERNAME,PASS,HABILITADO,CANT_INTENTOS_FALLIDOS FROM NO_TENGO_IDEA.USUARIO WHERE NO_TENGO_IDEA.USUARIO.USERNAME = @USERNAME AND NO_TENGO_IDEA.USUARIO.PASS = @PASSWORD"))
+            using (var command = new SqlCommand("SELECT ID,USERNAME,PASS,HABILITADO,CANT_INTENTOS_FALLIDOS FROM LOS_PUBERTOS.USUARIO WHERE LOS_PUBERTOS.USUARIO.USERNAME = @USERNAME AND LOS_PUBERTOS.USUARIO.PASS = @PASSWORD"))
             {
                 command.Parameters.AddWithValue("@USERNAME", username);
                 command.Parameters.AddWithValue("@PASSWORD", password);
@@ -44,7 +44,7 @@ namespace DAO.DAOImp
         public int execLogin(String username, String password)
         {
 
-            using (var command = new SqlCommand("NO_TENGO_IDEA.SP_INICIAR_SESION_DE_USUARIO"))
+            using (var command = new SqlCommand("LOS_PUBERTOS.SP_INICIAR_SESION_DE_USUARIO"))
             {
                 command.Parameters.AddWithValue("@USERNAME", username);
                 command.Parameters.AddWithValue("@PASSWORD", password);
@@ -55,7 +55,7 @@ namespace DAO.DAOImp
         }
 
         public void add(String username, String password,int id){
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.USUARIO  (ID,USERNAME,PASS,HABILITADO,CANT_INTENTOS_FALLIDOS) "
+            using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.USUARIO  (ID,USERNAME,PASS,HABILITADO,CANT_INTENTOS_FALLIDOS) "
                                                 + "VALUES (@ID,@USERNAME,@PASSWORD,1,1)"))
             {
                 command.Parameters.AddWithValue("@USERNAME", username);

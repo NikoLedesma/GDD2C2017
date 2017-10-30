@@ -21,7 +21,7 @@ namespace DAO.DAOImp
 
 
             using (var command = new SqlCommand("SELECT [item_id],[item_monto], [item_cantidad] " +
-                          "FROM  NO_TENGO_IDEA.Item WHERE 1=1 " + str))
+                          "FROM  LOS_PUBERTOS.Item WHERE 1=1 " + str))
             {
                 if (facturaId > 0) { command.Parameters.AddWithValue("@FACTURA", facturaId); }
 

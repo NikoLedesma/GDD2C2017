@@ -13,7 +13,7 @@ namespace DAO.DAOImp
     {
         public int saveSucursal(Sucursal sucursal)
         {
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Sucursal " +
+            using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.Sucursal " +
                                     "(sucu_nom,sucu_dire,sucu_cp,sucu_inactive) " +
                                     "VALUES (@NOMBRE,@DIRECCION,@COD_POSTAL,@HABILITADO)"))
                                                                                 
@@ -28,7 +28,7 @@ namespace DAO.DAOImp
 
         public int updateSucursal(Sucursal sucursal) //Cambio los valores de la sucursal
         {
-            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.Sucursal SET " +
+            using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.Sucursal SET " +
                         "sucu_nom=@NOMBRE,sucu_dire=@DIRECCION,sucu_cp=@COD_POSTAL,sucu_inactive=@HABILITADO " +
                         "WHERE sucu_id= @ID "))
             {
@@ -50,7 +50,7 @@ namespace DAO.DAOImp
             if (dni > 0) { str += " AND sucu_cp = @DNI "; }
 
             using (var command = new SqlCommand("SELECT sucu_id,sucu_nom,sucu_dire,sucu_cp,sucu_inactive " +
-                          "FROM  NO_TENGO_IDEA.Sucursal WHERE 1=1 " + str))
+                          "FROM  LOS_PUBERTOS.Sucursal WHERE 1=1 " + str))
             {
 //////////VER PORQUE EN CLIENTE DAO EL NOMBRE LO COMPARA CON NOMBRE - LA LINEA DE ABAJO
 
@@ -65,7 +65,7 @@ namespace DAO.DAOImp
 
         public IEnumerable<Sucursal> getAll() //busco y traigo de la base de datos todas las sucursales
         {
-            using (var command = new SqlCommand("SELECT sucu_id,sucu_nom,sucu_dire,sucu_inactive from NO_TENGO_IDEA.Sucursal"))
+            using (var command = new SqlCommand("SELECT sucu_id,sucu_nom,sucu_dire,sucu_inactive from LOS_PUBERTOS.Sucursal"))
             {
                 return GetRecords(command);
             }
@@ -92,7 +92,7 @@ namespace DAO.DAOImp
 
         public int deleteSucursal(Sucursal sucursal)
         {
-            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.Sucursal SET sucu_inactive=@HABILITADO " +
+            using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.Sucursal SET sucu_inactive=@HABILITADO " +
             "WHERE sucu_id = @ID "))
             {
                 command.Parameters.AddWithValue("@HABILITADO", sucursal.habilitado);

@@ -13,7 +13,7 @@ namespace DAO.DAOImp
     {
         public int saveCliente(Cliente cliente)
         {
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.CLIENTE "+
+            using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.CLIENTE "+
 	                                "(CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_DNI,CLIENTE_MAIL,CLIENTE_DIRECCION,CLIENTE_NRO_PISO,CLIENTE_DEPTO,CLIENTE_LOCALIDAD,CLIENTE_NRO_TELEFONO,CLIENTE_COD_POSTAL,CLIENTE_FECHA_NACIMIENTO,CLIENTE_HABILITADO) "+
                                     "VALUES (@NOMBRE,@APELLIDO,@DNI,@MAIL,@DIRECCION,@NRO_PISO,@DEPTO,@LOCALIDAD,@NRO_TELEFONO,@COD_POSTAL,@FECHA_DE_NACIMIENTO,@HABILITADO)"))
             {
@@ -41,7 +41,7 @@ namespace DAO.DAOImp
             if (dni > 0) { str += " AND CLIENTE_DNI = @DNI "; }
 
             using (var command = new SqlCommand("SELECT CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_DNI,CLIENTE_MAIL,CLIENTE_DIRECCION,CLIENTE_NRO_PISO,CLIENTE_DEPTO,CLIENTE_LOCALIDAD,CLIENTE_NRO_TELEFONO,CLIENTE_COD_POSTAL,CLIENTE_FECHA_NACIMIENTO,CLIENTE_HABILITADO " +
-                          "FROM  NO_TENGO_IDEA.CLIENTE WHERE 1=1 " + str))
+                          "FROM  LOS_PUBERTOS.CLIENTE WHERE 1=1 " + str))
             {
                 if (!String.IsNullOrEmpty(nombre)) { command.Parameters.AddWithValue("@NOMBRE", nombre); }
                 if (!String.IsNullOrEmpty(apellido)) { command.Parameters.AddWithValue("@APELLIDO", apellido); }
@@ -53,7 +53,7 @@ namespace DAO.DAOImp
         public IEnumerable<Cliente> getAll()
         {
 
-            using (var command = new SqlCommand("select CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_DNI,CLIENTE_MAIL,CLIENTE_DIRECCION,CLIENTE_NRO_PISO,CLIENTE_DEPTO,CLIENTE_LOCALIDAD,CLIENTE_NRO_TELEFONO,CLIENTE_COD_POSTAL,CLIENTE_FECHA_NACIMIENTO,CLIENTE_HABILITADO from NO_TENGO_IDEA.Cliente"))
+            using (var command = new SqlCommand("select CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_DNI,CLIENTE_MAIL,CLIENTE_DIRECCION,CLIENTE_NRO_PISO,CLIENTE_DEPTO,CLIENTE_LOCALIDAD,CLIENTE_NRO_TELEFONO,CLIENTE_COD_POSTAL,CLIENTE_FECHA_NACIMIENTO,CLIENTE_HABILITADO from LOS_PUBERTOS.Cliente"))
             {
                 return GetRecords(command);
             }
@@ -104,7 +104,7 @@ namespace DAO.DAOImp
 
         public int updateCliente(Cliente cliente)
         {
-            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.CLIENTE SET " +
+            using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.CLIENTE SET " +
                         "CLIENTE_NOMBRE=@NOMBRE,CLIENTE_APELLIDO=@APELLIDO,CLIENTE_DNI=@DNI,CLIENTE_MAIL=@MAIL,CLIENTE_DIRECCION=@DIRECCION,CLIENTE_NRO_PISO=@NRO_PISO,CLIENTE_DEPTO=@DEPTO,CLIENTE_LOCALIDAD=@LOCALIDAD,CLIENTE_NRO_TELEFONO=@NRO_TELEFONO,CLIENTE_COD_POSTAL=@COD_POSTAL,CLIENTE_FECHA_NACIMIENTO=@FECHA_DE_NACIMIENTO,CLIENTE_HABILITADO=@HABILITADO " +
                         "WHERE CLIENTE_ID = @ID "))
             
@@ -128,7 +128,7 @@ namespace DAO.DAOImp
 
         public int deleteCliente(Cliente cliente)
         {
-            using (var command = new SqlCommand("UPDATE NO_TENGO_IDEA.CLIENTE SET CLIENTE_HABILITADO=@HABILITADO " +
+            using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.CLIENTE SET CLIENTE_HABILITADO=@HABILITADO " +
             "WHERE CLIENTE_ID = @ID "))
             {
                 command.Parameters.AddWithValue("@HABILITADO", cliente.habilitado);

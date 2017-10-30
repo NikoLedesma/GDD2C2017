@@ -13,8 +13,8 @@ namespace DAO.DAOImp
     {
         public IEnumerable<Funcionalidad> getFuncionalidadByRolId(int rolID)
         {
-            using (var command = new SqlCommand("SELECT F.ID, F.NOMBRE FROM NO_TENGO_IDEA.FUNCIONALIDAD F INNER JOIN "+
-                "NO_TENGO_IDEA.ROLXFUNCIONALIDAD RF ON F.ID = RF.FUNCIONALIDAD_ID WHERE RF.ROL_ID = @ROLID "))
+            using (var command = new SqlCommand("SELECT F.ID, F.NOMBRE FROM LOS_PUBERTOS.FUNCIONALIDAD F INNER JOIN "+
+                "LOS_PUBERTOS.ROLXFUNCIONALIDAD RF ON F.ID = RF.FUNCIONALIDAD_ID WHERE RF.ROL_ID = @ROLID "))
             {
                 command.Parameters.AddWithValue("@ROLID", rolID);
                 return GetRecords(command);
@@ -24,9 +24,9 @@ namespace DAO.DAOImp
 
         public IEnumerable<Funcionalidad> getFuncionalidadByRolName(String rolName)
         {
-            using (var command = new SqlCommand("SELECT F.ID, F.NOMBRE FROM NO_TENGO_IDEA.FUNCIONALIDAD F " +
-                "INNER JOIN NO_TENGO_IDEA.ROLXFUNCIONALIDAD RF ON F.ID = RF.FUNCIONALIDAD_ID " +
-                "INNER JOIN  NO_TENGO_IDEA.ROL R ON R.ID = RF.ROL_ID WHERE R.NOMBRE = @ROLNAME "))
+            using (var command = new SqlCommand("SELECT F.ID, F.NOMBRE FROM LOS_PUBERTOS.FUNCIONALIDAD F " +
+                "INNER JOIN LOS_PUBERTOS.ROLXFUNCIONALIDAD RF ON F.ID = RF.FUNCIONALIDAD_ID " +
+                "INNER JOIN  LOS_PUBERTOS.ROL R ON R.ID = RF.ROL_ID WHERE R.NOMBRE = @ROLNAME "))
             {
                 command.Parameters.AddWithValue("@ROLNAME", rolName);
                 return GetRecords(command);
@@ -37,10 +37,10 @@ namespace DAO.DAOImp
 
         public IEnumerable<Funcionalidad> getFuncionalidadNotAddedByRolName(String rolName)
         {
-            using (var command = new SqlCommand("SELECT F.ID, F.NOMBRE FROM NO_TENGO_IDEA.FUNCIONALIDAD F EXCEPT "+
-                "SELECT F.ID, F.NOMBRE FROM NO_TENGO_IDEA.FUNCIONALIDAD F " +
-                "INNER JOIN NO_TENGO_IDEA.ROLXFUNCIONALIDAD RF ON F.ID = RF.FUNCIONALIDAD_ID " +
-                "INNER JOIN  NO_TENGO_IDEA.ROL R ON R.ID = RF.ROL_ID WHERE R.NOMBRE = @ROLNAME "))
+            using (var command = new SqlCommand("SELECT F.ID, F.NOMBRE FROM LOS_PUBERTOS.FUNCIONALIDAD F EXCEPT "+
+                "SELECT F.ID, F.NOMBRE FROM LOS_PUBERTOS.FUNCIONALIDAD F " +
+                "INNER JOIN LOS_PUBERTOS.ROLXFUNCIONALIDAD RF ON F.ID = RF.FUNCIONALIDAD_ID " +
+                "INNER JOIN  LOS_PUBERTOS.ROL R ON R.ID = RF.ROL_ID WHERE R.NOMBRE = @ROLNAME "))
             {
                 command.Parameters.AddWithValue("@ROLNAME", rolName);
                 return GetRecords(command);
@@ -61,7 +61,7 @@ namespace DAO.DAOImp
 
         public IEnumerable<Funcionalidad> getAllFuncionalidades()
         {
-            using (var command = new SqlCommand("SELECT F.ID,F.NOMBRE FROM NO_TENGO_IDEA.FUNCIONALIDAD F"))
+            using (var command = new SqlCommand("SELECT F.ID,F.NOMBRE FROM LOS_PUBERTOS.FUNCIONALIDAD F"))
             {
                 return GetRecords(command);
             }

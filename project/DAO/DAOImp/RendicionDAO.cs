@@ -15,11 +15,11 @@ namespace DAO.DAOImp
 
         public int saveRendicion(Rendicion rendicion)
         {
-            /*using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Rendicion " +
+            /*using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.Rendicion " +
                         "(rend_fecha,rend_importe,rend_porcentaje) " +
                         "VALUES (@FECHA,@IMPORTE,@PORCENTAJE)"))
             */
-            using (var command = new SqlCommand("[NO_TENGO_IDEA].agregarRendicion"))
+            using (var command = new SqlCommand("[LOS_PUBERTOS].agregarRendicion"))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@FECHA", rendicion.fecha);
