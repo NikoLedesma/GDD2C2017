@@ -51,6 +51,27 @@ namespace DAO.DAOImp
             }
             throw new NotImplementedException();
         }
+
+
+        public IEnumerable<Factura> getAllFactARendir(int empresa)
+        {
+            String str = "";
+            String str2 = "";
+            str2 += " LEFT JOIN NO_TENGO_IDEA.Rf ON fact_id = rf_factura LEFT JOIN NO_TENGO_IDEA.fd ON fact_id = fd_factura WHERE (rf_factura is null and fd_factura is null) ";
+
+            if (empresa > 0) { str += " AND fact_empresa = @EMPRESA "; }
+
+            using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total] " +
+                          "FROM  NO_TENGO_IDEA.Factura " + str2 + str))
+            {
+                if (empresa > 0) { command.Parameters.AddWithValue("@EMPRESA", empresa); }
+
+                return GetRecords(command);
+            }
+            throw new NotImplementedException();
+        }
+
+
         public override Factura PopulateRecord(SqlDataReader reader)
         {
             Factura factura = new Factura();

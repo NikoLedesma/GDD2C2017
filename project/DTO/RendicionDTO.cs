@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DTO
 {
@@ -14,6 +15,7 @@ namespace DTO
         public int numero { get; set; }
         public float porcentaje { get; set; }
         public int empresa { get; set; }
+        public DataTable idFact { get; set; }
         
     }
 }

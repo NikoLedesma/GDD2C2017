@@ -23,6 +23,7 @@ namespace PagoAgilFrba.Rendicion
 
         private List<EmpresaDTO> listEmpresaDTO;
         private List<FacturaDTO> filtroRendicionesDTOs;
+        private DataTable facturasID;
 
         public RendicionForm(Form form)
         {
@@ -44,25 +45,46 @@ namespace PagoAgilFrba.Rendicion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-
             FacturaDTO rendiciones = pantallaFacturasDTO();
-            filtroRendicionesDTOs = businessFacturaImpl.getFacturaByFilter(rendiciones); //Busco en la base de datos la empresa por filtros
+            filtroRendicionesDTOs = businessFacturaImpl.getFacturaByFilterRendicion(rendiciones); //Busco en la base de datos la empresa por filtros
             //FALTA AGREGARLE AL BUSINESS FACTURA UN FILTRO POR LA FECHA
             populateDataGridView(filtroRendicionesDTOs);
 
-            mostrarTotales();
+            int cantFact;
+            cantFact = filtroRendicionesDTOs.Count;
+            txtCantFact.Text = cantFact.ToString();
+
+            float sumaFact=0;
+            filtroRendicionesDTOs.ForEach(x => { sumaFact = sumaFact + x.total; });
+
+            facturasID = new DataTable();
+            facturasID.Columns.Add("id",typeof(int));
+
+            filtroRendicionesDTOs.ForEach(x => { addColumnInList(x, facturasID); });
+
+            mostrarTotales(sumaFact);
  
         }
 
-        private void mostrarTotales()
+        private void addColumnInList(FacturaDTO factura, DataTable facturasID)
         {
-           
-            txtSubTotal.Text = "1000"; //ESTE VALOR TIENE QUE SER LA SUMA DE TODAS LAS FACTURAS
+            DataRow row = facturasID.NewRow();
+            row["id"] = factura.id;
+            facturasID.Rows.Add(row);
+            
+        }
+
+        private void mostrarTotales(float subTotal)
+        {
+
+            txtSubTotal.Text = subTotal.ToString();
+            //txtSubTotal.Text = "1000"; //ESTE VALOR TIENE QUE SER LA SUMA DE TODAS LAS FACTURAS
 
             if (validateEmptyFields())
             {
-                txtImpCom.Text = (Int32.Parse(txtSubTotal.Text) * (Convert.ToDecimal(txtPorcCom.Text) / 100)).ToString();
-                txtTotal.Text = (Int32.Parse(txtSubTotal.Text) - Convert.ToDecimal(txtImpCom.Text)).ToString();
+                txtImpCom.Text = ((Convert.ToDecimal(subTotal)) * (Convert.ToDecimal(txtPorcCom.Text) / 100)).ToString();
+                txtTotal.Text = ((Convert.ToDecimal(subTotal)) - Convert.ToDecimal(txtImpCom.Text)).ToString();
+               
             }
                        
         }
@@ -107,6 +129,7 @@ namespace PagoAgilFrba.Rendicion
             rendicionDTO.fecha = dateTimePicker1.Value;
             rendicionDTO.importe = Convert.ToSingle(txtTotal.Text);
             rendicionDTO.porcentaje = Convert.ToSingle(txtPorcCom.Text);
+            rendicionDTO.idFact = facturasID;
             return rendicionDTO;
 
         }

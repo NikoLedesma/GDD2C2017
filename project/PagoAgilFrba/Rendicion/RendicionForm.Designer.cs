@@ -44,6 +44,8 @@
             this.txtSubTotal = new System.Windows.Forms.Label();
             this.txtImpCom = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtCantFact = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +60,7 @@
             this.groupBox1.Controls.Add(this.txtFecha);
             this.groupBox1.Location = new System.Drawing.Point(12, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(665, 122);
+            this.groupBox1.Size = new System.Drawing.Size(665, 108);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
@@ -116,7 +118,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 189);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 166);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(665, 200);
@@ -124,7 +126,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(602, 160);
+            this.btnBuscar.Location = new System.Drawing.Point(602, 137);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 4;
@@ -195,11 +197,31 @@
             this.txtTotal.TabIndex = 12;
             this.txtTotal.Text = "label6";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(108, 386);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Cantidad de Facturas:";
+            // 
+            // txtCantFact
+            // 
+            this.txtCantFact.AutoSize = true;
+            this.txtCantFact.Location = new System.Drawing.Point(222, 386);
+            this.txtCantFact.Name = "txtCantFact";
+            this.txtCantFact.Size = new System.Drawing.Size(35, 13);
+            this.txtCantFact.TabIndex = 14;
+            this.txtCantFact.Text = "label5";
+            // 
             // RendicionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(699, 544);
+            this.Controls.Add(this.txtCantFact);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.txtImpCom);
             this.Controls.Add(this.txtSubTotal);
@@ -239,5 +261,7 @@
         private System.Windows.Forms.Label txtSubTotal;
         private System.Windows.Forms.Label txtImpCom;
         private System.Windows.Forms.Label txtTotal;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label txtCantFact;
     }
 }

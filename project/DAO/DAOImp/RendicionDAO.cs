@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DAO.DAOImp
 {
@@ -14,18 +15,25 @@ namespace DAO.DAOImp
 
         public int saveRendicion(Rendicion rendicion)
         {
-            using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Rendicion " +
+            /*using (var command = new SqlCommand("INSERT INTO NO_TENGO_IDEA.Rendicion " +
                         "(rend_fecha,rend_importe,rend_porcentaje) " +
                         "VALUES (@FECHA,@IMPORTE,@PORCENTAJE)"))
+            */
+            using (var command = new SqlCommand("[NO_TENGO_IDEA].agregarRendicion"))
             {
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@FECHA", rendicion.fecha);
                 command.Parameters.AddWithValue("@IMPORTE", rendicion.importe);
                 command.Parameters.AddWithValue("@PORCENTAJE", rendicion.porcentaje);
+                command.Parameters.AddWithValue("@IDFACT", rendicion.idFact);
+                command.Parameters.AddWithValue("@RESULT", 0);
  
                 return save(command);
             }
 
         }
+
+ 
 
 
         public override Rendicion PopulateRecord(SqlDataReader reader)

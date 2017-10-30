@@ -27,6 +27,7 @@ namespace Business
             rendicion.importe = rendicionDTO.importe;
         //    rendicion.numero = rendicionDTO.numero;
             rendicion.porcentaje = rendicionDTO.porcentaje;
+            rendicion.idFact = rendicionDTO.idFact;
             return rendicion;
         }
 
