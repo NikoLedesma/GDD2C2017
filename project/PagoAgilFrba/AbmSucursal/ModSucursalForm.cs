@@ -112,6 +112,7 @@ namespace PagoAgilFrba.AbmSucursal
         {
             txtNombre.Clear();
             txtDireccion.Clear();
+            txtCodPostal.Clear();
             dataGridView1.Rows.Clear();
             //dataGridView1.Columns.Clear();
             //dataGridView1.DataSource = Nothing;

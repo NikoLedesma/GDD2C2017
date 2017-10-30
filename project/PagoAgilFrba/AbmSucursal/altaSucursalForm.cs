@@ -67,14 +67,27 @@ namespace PagoAgilFrba.AbmSucursal
 
         private void button1_Click(object sender, EventArgs e) //aceptar y dar de alta
         {
-            sucursalDTOToUpdateOrSave.nombre = txtNombre.Text;
-            sucursalDTOToUpdateOrSave.direccion = txtDireccion.Text;
-            sucursalDTOToUpdateOrSave.codPostal = Int32.Parse(txtCodPostal.Text); //Int32.Parse(txtNumPiso.Text);
-            saveOrUpdateSucursal(sucursalDTOToUpdateOrSave);
+            if (validateFields())
+            {
+                sucursalDTOToUpdateOrSave.nombre = txtNombre.Text;
+                sucursalDTOToUpdateOrSave.direccion = txtDireccion.Text;
+                sucursalDTOToUpdateOrSave.codPostal = Int32.Parse(txtCodPostal.Text); //Int32.Parse(txtNumPiso.Text);
+                saveOrUpdateSucursal(sucursalDTOToUpdateOrSave);
+            }
+         }
 
-            //MessageBox.Show("Se dio de alta la SUCURSAL");
-
+        private Boolean validateFields()
+        {
+            return validateEmptyFields(); //ACA DEBERIA VALIDAR Q NO HAYA MAS DE UNA CON EL MISMO COD POSTAL
         }
+
+        private Boolean validateEmptyFields()
+        {
+            Boolean result = Validator.validateEmptyTextBox(txtNombre, "NOMBRE") && Validator.validateEmptyTextBox(txtDireccion, "DIRECCION")
+            && Validator.validateEmptyTextBox(txtCodPostal, "CODIGO POSTAL");
+            return result;
+        }
+
 
 
         public void saveOrUpdateSucursal(SucursalDTO sucursalDTO)
@@ -107,13 +120,6 @@ namespace PagoAgilFrba.AbmSucursal
             }
         }
 
-        private Boolean validateEmptyFields()
-        {
-            Boolean result = Validator.validateEmptyTextBox(txtNombre, "NOMBRE") 
-                                && Validator.validateEmptyTextBox(txtDireccion, "DIRECCION")
-                                && Validator.validateEmptyTextBox(txtCodPostal, "CODIGO POSTAL");
-            return result;
-        }
 
         private void altaSucursalForm_FormClosing(Object sender, FormClosingEventArgs e)
         {

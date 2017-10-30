@@ -68,50 +68,61 @@ namespace PagoAgilFrba.AbmEmpresa
         private void button1_Click(object sender, EventArgs e)
         {
             //FALTA AGREGAR VALIDACIONES ANTES DEL ACEPTAR
-            empDTOModifOAlta.nombre = txtNombre.Text;
-            empDTOModifOAlta.cuit = txtCuit.Text;
-            empDTOModifOAlta.direccion = txtDireccion.Text;
-            empDTOModifOAlta.rubro = (int)this.comboBox1.SelectedValue; //txtRubro.Text;
-            empDTOModifOAlta.habilitado = radioBtnHabilitado.Checked;
-
-      //      empDTOModifOAlta = empresaDTOAltaOModif();
-
-
-            if (formMode == EnumFormMode.MODE_ALTA)
+            if (validateFields())//en esa funcion estan la validaciones falta validar el cuit
             {
-                try{
-                    businessEmpresaImpl.saveEmpresa(empDTOModifOAlta);
-                    MessageBox.Show("Se dio de alta la EMPRESA, id:" + empDTOModifOAlta.id);
-                    MessageBox.Show(MSG_SUCCESS_SAVE);
-                     this.Close();
-                }catch(Exception){
-                    MessageBox.Show(MSG_ERROR_SAVE);   
-                }
-            }
+                empDTOModifOAlta.nombre = txtNombre.Text;
+                empDTOModifOAlta.cuit = txtCuit.Text;
+                empDTOModifOAlta.direccion = txtDireccion.Text;
+                empDTOModifOAlta.rubro = (int)this.comboBox1.SelectedValue; //txtRubro.Text;
+                empDTOModifOAlta.habilitado = radioBtnHabilitado.Checked;
+                //      empDTOModifOAlta = empresaDTOAltaOModif();
 
-            if (formMode == EnumFormMode.MODE_MODIFICACION)
-            {
-                try
+                if (formMode == EnumFormMode.MODE_ALTA)
                 {
-                    businessEmpresaImpl.updateEmpresa(empDTOModifOAlta);
-                    MessageBox.Show(MSG_SUCCESS_UPDATE);
-                    this.Close();
+                    try
+                    {
+                        businessEmpresaImpl.saveEmpresa(empDTOModifOAlta);
+                      //  MessageBox.Show("Se dio de alta la EMPRESA, id:" + empDTOModifOAlta.id);
+                        MessageBox.Show(MSG_SUCCESS_SAVE);
+                        this.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(MSG_ERROR_SAVE);
+                    }
                 }
-                catch (Exception)
+                if (formMode == EnumFormMode.MODE_MODIFICACION)
                 {
-                    MessageBox.Show(MSG_ERROR_UPDATE);
+                    try
+                    {
+                        businessEmpresaImpl.updateEmpresa(empDTOModifOAlta);
+                        MessageBox.Show(MSG_SUCCESS_UPDATE);
+                        this.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(MSG_ERROR_UPDATE);
+                    }
                 }
-            }
                 
+            }
+      
         }
 
 
+        private Boolean validateFields()
+        {
+            return validateEmptyFields(); //ACA DEBERIA VALIDAR Q NO HAYA MAS DE UNA CON EL MISMO CUIT
+        }
 
+        private Boolean validateEmptyFields()
+        {
+            Boolean result = Validator.validateEmptyTextBox(txtNombre, "NOMBRE") && Validator.validateEmptyTextBox(txtDireccion, "DIRECCION")
+            && Validator.validateEmptyTextBox(txtCuit, "CUIT");
+            return result;
+        }
 
-
-
-
-
+        
         private EmpresaDTO empresaDTOAltaOModif()
         {
             empDTOModifOAlta.nombre = txtNombre.Text;
@@ -137,8 +148,6 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 radioBtnDeshabilitado.Select();
             }
-
-
         }
 
         private void disabledRadioButtons()

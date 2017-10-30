@@ -111,6 +111,14 @@ namespace PagoAgilFrba.AbmEmpresa
             this.prevForm.Show();
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Clear();
+            txtCuit.Clear();
+            dataGridView1.Rows.Clear();
+        }
+
+
 
     }
 
