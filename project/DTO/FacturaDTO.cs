@@ -21,6 +21,8 @@ namespace DTO
 
         public Boolean habilitado { get; set; }
 
+
+        public DateTime fechaDeDevolucion { get; set; }
     }
 
 }

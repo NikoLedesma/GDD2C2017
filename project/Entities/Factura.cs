@@ -21,6 +21,7 @@ namespace Entities
         //AGREGAR LOS ITEMS - MONTO - CANTIDAD
 
         public Boolean habilitado { get; set; }
+        public DateTime fechaDevolucion { get; set; }
     }
 
 }

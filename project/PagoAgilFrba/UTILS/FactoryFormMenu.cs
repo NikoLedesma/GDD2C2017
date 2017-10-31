@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PagoAgilFrba.RegistroPago;
 
 namespace PagoAgilFrba.UTILS
 {
@@ -35,7 +36,7 @@ namespace PagoAgilFrba.UTILS
             }else if(selectedTag.Equals("ABM Facturas")){
                 form = new modFacturaForm(prevForm);
             }else if(selectedTag.Equals("Registro de Pago de Facturas")){
-                form = new RolForm(prevForm);
+                form = new RegistroDePagoForm(prevForm);
             }else if(selectedTag.Equals("Rendicion de Facturas cobradas")){
                 form = new RendicionForm(prevForm);
             }else if(selectedTag.Equals("Listado Estadistico")){

@@ -44,7 +44,9 @@
     <Compile Include="Empresa.cs" />
     <Compile Include="Factura.cs" />
     <Compile Include="Funcionalidad.cs" />
+    <Compile Include="MedioDePago.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistroDePago.cs" />
     <Compile Include="Rendicion.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="Rubro.cs" />

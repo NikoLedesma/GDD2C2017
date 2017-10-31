@@ -73,6 +73,31 @@ namespace DAO.DAOImp
         }
 
 
+
+
+        public Factura getFacturaById(int nroFactura)
+        {
+            using (var command = new SqlCommand(" SELECT fact_id,fact_cliente,fact_empresa,fact_numero,fact_fecha_alta, " +
+                                                "fact_fecha_vencimiento,fact_total,fact_inactiva FROM LOS_PUBERTOS.Factura " +
+                                                "WHERE fact_numero = @NROFACTURA"))
+            {
+                command.Parameters.AddWithValue("@NROFACTURA", nroFactura);
+                return GetRecord(command);
+            }
+        }
+
+
+        public int verifiedFacturaById(int nroFactura)
+        {
+            using (var command = new SqlCommand("LOS_PUBERTOS.SP_VERIFICAR_FACTURA"))
+            {
+                command.Parameters.AddWithValue("@NUMERO_DE_FACTURA", nroFactura);
+                command.Parameters.Add("@ESTADO_FACTURA", SqlDbType.Int).Direction = ParameterDirection.Output;
+                ExecuteSP(command);
+                return Convert.ToInt32(command.Parameters["@ESTADO_FACTURA"].Value);
+            }
+        }
+
         public override Factura PopulateRecord(SqlDataReader reader)
         {
             Factura factura = new Factura();
