@@ -165,6 +165,7 @@
       <DependentUpon>RendicionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UTILS\FactoryFormMenu.cs" />
+    <Compile Include="UTILS\GlobalUtils.cs" />
     <Compile Include="UTILS\Provider.cs" />
     <Compile Include="UTILS\Validator.cs" />
     <EmbeddedResource Include="AbmCliente\AltaClienteForm.resx">

@@ -48,6 +48,7 @@ namespace PagoAgilFrba
                 loginFormDTO = businessLogin.checkLogin(usuarioDTO);
                 if (loginFormDTO.isLoginSuccessful())
                 {
+                    GlobalUtils.usuarioGlobalDTO = usuarioDTO;
                     showMenuRolFormOrMenuPpalForm();
                 }
                 else

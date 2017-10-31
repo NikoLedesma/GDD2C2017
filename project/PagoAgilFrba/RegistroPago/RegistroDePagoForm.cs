@@ -35,7 +35,6 @@ namespace PagoAgilFrba.RegistroPago
             registroDePagoDTO.facturasDTO = new List<FacturaDTO>();
             businessRegistroDePago = new BusinessRegistroDePagoImpl();
             populateDataGridView();
-
             /*************************/
             List<MedioDePagoDTO> medioDePagoDTOList= businessRegistroDePago.getAllMediosDePagos();
             comboBoxFormaDePago.DisplayMember ="nombre";
