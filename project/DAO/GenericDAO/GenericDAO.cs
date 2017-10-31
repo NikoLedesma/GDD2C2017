@@ -184,7 +184,29 @@ namespace DAO.GenericDAO
 
 
 
+        public int GetCount(SqlCommand command)
+        {
+            int count = -1;
+            command.Connection = _connection;
+            _connection.Open();
 
+            var reader = command.ExecuteReader();
+            try
+            {
+
+                if (reader.Read())
+                {
+                    count = reader.GetInt32(0);
+                }
+
+                reader.Close();
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return count;
+        }
 
 
 

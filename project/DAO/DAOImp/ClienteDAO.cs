@@ -136,5 +136,16 @@ namespace DAO.DAOImp
                 return save(command);
             }
         }
+
+        public int getMailCount(string mail)
+        {
+            using (var command = new SqlCommand("SELECT CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_DNI,CLIENTE_MAIL,CLIENTE_DIRECCION,CLIENTE_NRO_PISO,CLIENTE_DEPTO,"+
+                "CLIENTE_LOCALIDAD,CLIENTE_NRO_TELEFONO,CLIENTE_COD_POSTAL,CLIENTE_FECHA_NACIMIENTO,CLIENTE_HABILITADO from LOS_PUBERTOS.Cliente "+
+                "WHERE CLIENTE_MAIL = @CLIENTE_MAIL"))
+            {
+                command.Parameters.AddWithValue("@CLIENTE_MAIL", mail);
+                return  GetCount(command);
+            }
+        }
     }
 }
