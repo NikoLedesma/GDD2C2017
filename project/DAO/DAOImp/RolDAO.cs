@@ -116,5 +116,14 @@ namespace DAO.DAOImp
         }
 
 
+
+        public int getCountRolByName(string nameRol)
+        {
+            using (var command = new SqlCommand("SELECT COUNT(*) FROM LOS_PUBERTOS.ROL WHERE NOMBRE = @NOMBRE_ROL"))
+            {
+                command.Parameters.AddWithValue("@NOMBRE_ROL", nameRol);
+                return GetCount(command);
+            }
+        }
     }
 }

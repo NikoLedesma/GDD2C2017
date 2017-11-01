@@ -66,7 +66,7 @@
             this.funcionalidadesListBox.FormattingEnabled = true;
             this.funcionalidadesListBox.Location = new System.Drawing.Point(189, 128);
             this.funcionalidadesListBox.Name = "funcionalidadesListBox";
-            this.funcionalidadesListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.funcionalidadesListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.funcionalidadesListBox.Size = new System.Drawing.Size(190, 95);
             this.funcionalidadesListBox.TabIndex = 3;
             // 

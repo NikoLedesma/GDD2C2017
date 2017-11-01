@@ -111,5 +111,12 @@ namespace Business
             return listFuncionalidadDTO;
         }
 
+
+        public bool isExistingName(string nameRol)
+        {
+            RolDAO rolDAO = new RolDAO();
+            int res = rolDAO.getCountRolByName(nameRol);
+            return res == 1 ? true : false;
+        }
     }
 }
