@@ -120,6 +120,12 @@
     <Compile Include="AbmSucursal\ModSucursalForm.Designer.cs">
       <DependentUpon>ModSucursalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Devolucion\AltaDevolucionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devolucion\AltaDevolucionForm.Designer.cs">
+      <DependentUpon>AltaDevolucionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmSucursal\ModSucursalForm.resx">
       <DependentUpon>ModSucursalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devolucion\AltaDevolucionForm.resx">
+      <DependentUpon>AltaDevolucionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

@@ -18,7 +18,29 @@ namespace Business
             Rendicion rendicion = converterRendicionDTOToRendicion(rendicionDTO);
             return rendicionDAO.saveRendicion(rendicion);
         }
+        public List<RendicionDTO> getRendByEmpresa(int empresaId)
+        {
 
+            RendicionDAO rendicionDAO = new RendicionDAO();
+            List<RendicionDTO> listRendDTO = new List<RendicionDTO>();
+            List<Rendicion> rendicionList = new List<Rendicion>();
+
+            rendicionList = rendicionDAO.getRendicionByEmpresa(empresaId).ToList();
+            rendicionList.ForEach(x => { listRendDTO.Add(converterRendToRendDTO(x)); });
+
+            return listRendDTO;
+        }
+        public RendicionDTO converterRendToRendDTO(Rendicion rendicion)
+        {
+            RendicionDTO rendicionDTO = new RendicionDTO();
+            rendicionDTO.id = rendicionDTO.id;
+            rendicionDTO.fecha = rendicionDTO.fecha;
+            rendicionDTO.importe = rendicionDTO.importe;
+            //    rendicion.numero = rendicionDTO.numero;
+            rendicionDTO.porcentaje = rendicionDTO.porcentaje;
+            rendicionDTO.idFact = rendicionDTO.idFact;
+            return rendicionDTO;
+        }
         public Rendicion converterRendicionDTOToRendicion(RendicionDTO rendicionDTO)
         {
             Rendicion rendicion = new Rendicion();

@@ -4,6 +4,7 @@ using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmFactura;
 using PagoAgilFrba.Rendicion;
+using PagoAgilFrba.Devolucion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,8 @@ namespace PagoAgilFrba.UTILS
                 form = new modFacturaForm(prevForm);
             }else if(selectedTag.Equals("Registro de Pago de Facturas")){
                 form = new RegistroDePagoForm(prevForm);
+            }else if(selectedTag.Equals("Devoluciones")){
+                form = new AltaDevolucionForm(prevForm);
             }else if(selectedTag.Equals("Rendicion de Facturas cobradas")){
                 form = new RendicionForm(prevForm);
             }else if(selectedTag.Equals("Listado Estadistico")){
