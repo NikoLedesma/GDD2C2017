@@ -1,6 +1,8 @@
 ﻿using Business;
 using DTO;
 using PagoAgilFrba.MenuPrincipal;
+using PagoAgilFrba.MenuSucursal;
+using PagoAgilFrba.UTILS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +24,7 @@ namespace PagoAgilFrba.MenuRol
         private RolDTO selectedRolDTO;
         private static String RolListBoxMember = "Nombre";
         private LoginForm loginForm;
-        private MenuPrincipalForm menuPrincipalForm;
+        private MenuSucursalForm menuPrincipalForm;
 
         public MenuRolForm(LoginForm loginForm)
         {
@@ -51,8 +53,14 @@ namespace PagoAgilFrba.MenuRol
 
         void showMenuPrincipalForm()
         {
-            menuPrincipalForm = new MenuPrincipalForm(this,this.getSelectedRolDTO());
-            menuPrincipalForm.Show();
+            GlobalUtils.rolGlobalDTO = this.getSelectedRolDTO();
+            menuPrincipalForm = new MenuSucursalForm(this);
+
+
+            try { menuPrincipalForm.Show(); }
+            catch (System.ObjectDisposedException) {  }
+
+
         }
 
         void InitializeListBoxRol()

@@ -4,6 +4,7 @@ using DTO.Enums;
 using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.MenuPrincipal;
 using PagoAgilFrba.MenuRol;
+using PagoAgilFrba.MenuSucursal;
 using PagoAgilFrba.UTILS;
 using System;
 using System.Collections.Generic;
@@ -70,8 +71,9 @@ namespace PagoAgilFrba
             if (userHaveOnlyOneEnabledRol(usuarioDTO))
             {
                 RolDTO rolDTO = this.getTheOnlyOneEnabledRol(usuarioDTO);
-                form = new MenuPrincipalForm(this,rolDTO);
-                MessageBox.Show(String.Format(MSG_ONLY_ONE_ROL,rolDTO.Nombre,usuarioDTO.Username));
+                GlobalUtils.rolGlobalDTO = rolDTO;
+                MessageBox.Show(String.Format(MSG_ONLY_ONE_ROL, rolDTO.Nombre, usuarioDTO.Username));
+                form = new MenuSucursalForm(this);
             }
             else {
                 form = new MenuRolForm(this);

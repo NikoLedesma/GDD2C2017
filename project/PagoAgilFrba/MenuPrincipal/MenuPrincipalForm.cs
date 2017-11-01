@@ -27,13 +27,13 @@ namespace PagoAgilFrba.MenuPrincipal
         private RolDTO rolDTO;
         int top;
 
-        public MenuPrincipalForm(Form menuRolForm,RolDTO rolDTO)
+        public MenuPrincipalForm(Form menuRolForm)
         {
             InitializeComponent();
             factoryFormMenu = new FactoryFormMenu();
             this.prevForm = menuRolForm;
             menuRolForm.Hide();
-            this.rolDTO = rolDTO;
+            this.rolDTO = GlobalUtils.rolGlobalDTO;
             buttons = new List<Button>();
             InitializeButtons();
         }

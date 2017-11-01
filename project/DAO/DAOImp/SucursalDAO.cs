@@ -83,10 +83,10 @@ namespace DAO.DAOImp
                 sucursal.nombre = reader.GetString(1);
             if (!reader.IsDBNull(2))
                 sucursal.direccion = reader.GetString(2);
+            /*if (!reader.IsDBNull(3))
+                sucursal.codPostal = reader.GetInt32(3);*/
             if (!reader.IsDBNull(3))
-                sucursal.codPostal = reader.GetInt32(3);
-            if (!reader.IsDBNull(4))
-                sucursal.habilitado = reader.GetBoolean(4);
+                sucursal.habilitado = reader.GetBoolean(3);
             return sucursal;
         }
 
@@ -104,6 +104,19 @@ namespace DAO.DAOImp
 
 
 
+
+        public IEnumerable<Sucursal> getAllEnabledSucursalesByUsuario(String username)
+        {
+            using (var command = new SqlCommand("SELECT SUCU_ID,SUCU_NOM,SUCU_DIRE,SUCU_INACTIVE FROM LOS_PUBERTOS.USUARIO U "+
+                "INNER JOIN LOS_PUBERTOS.SU SU ON U.ID=SU.SU_USUARIO "+
+                "INNER JOIN LOS_PUBERTOS.SUCURSAL S ON SU.SU_SUCURSAL=S.SUCU_ID "+
+                "WHERE  U.USERNAME = @USERNAME AND (S.SUCU_INACTIVE = 1 OR S.SUCU_INACTIVE IS NULL)"))
+            {
+                command.Parameters.AddWithValue("@USERNAME", username);
+                return GetRecords(command);
+            }
+
+        }
     }
 
 }

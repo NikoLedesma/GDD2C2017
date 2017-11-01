@@ -78,6 +78,16 @@ namespace Business
         }
 
 
+
+        public List<SucursalDTO> getEnabledSucursalesByUsuario(UsuarioDTO usuarioDTO)
+        {
+            SucursalDAO sucursalDAO = new SucursalDAO();
+            List<SucursalDTO> sucursalDTOList = new List<SucursalDTO>();
+            List<Sucursal> sucursalList = new List<Sucursal>();
+            sucursalList = sucursalDAO.getAllEnabledSucursalesByUsuario(usuarioDTO.Username).ToList();
+            sucursalList.ForEach(x => { sucursalDTOList.Add(converterSucursalToSucursalDTO(x)); });
+            return sucursalDTOList;
+        }
     }
 
 }
