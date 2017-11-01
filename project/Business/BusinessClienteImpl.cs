@@ -54,6 +54,15 @@ namespace Business
             return a; 
         }
 
+
+        public bool isExistingMail(String mail)
+        {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            int res = clienteDAO.getMailCount(mail);
+            return  res==1? true : false;
+        }
+
+
         public Cliente converterClienteDTOToCliente(ClienteDTO clienteDTO)
         {
             Cliente cliente = new Cliente();
@@ -92,6 +101,8 @@ namespace Business
             clienteDTO.habilitado = cliente.habilitado;
             return clienteDTO;
         }
+
+
 
 
 

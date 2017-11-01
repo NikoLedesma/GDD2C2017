@@ -26,6 +26,7 @@ namespace PagoAgilFrba.AbmCliente
         private static String MODIF_TITLE = "MODIFICACION DE CLIENTE(ID:{0})";
         private static String MSG_SUCCESS_SAVE = "EL CLIENTE SE DIO DE ALTA";
         private static String MSG_SUCCESS_UPDATE = "EL CLIENTE SE MODIFICO";
+        private static String MSG_EMAI_ALREADY_EXISTS= "EL EMAIL INGRESADO YA EXISTE, INTENTE INGRESANDO OTRO";
 
         public AltaClienteForm(Form form,EnumFormMode enumFormMode,ClienteDTO cl)
         {
@@ -91,7 +92,7 @@ namespace PagoAgilFrba.AbmCliente
 
         private Boolean validateFields()
         {
-            return validateEmptyFields() && Validator.validateMailTextBox(txtMail);
+            return validateEmptyFields() && Validator.validateMailTextBox(txtMail) && !isExistingMail(txtMail);
         }
 
         private Boolean validateEmptyFields()
@@ -102,6 +103,16 @@ namespace PagoAgilFrba.AbmCliente
             && Validator.validateEmptyTextBox(txtNumPiso, "NRO PISO") && Validator.validateEmptyTextBox(txtDepartamento, "DEPARTAMENTO")
             && Validator.validateEmptyTextBox(txtLocalidad, "LOCALIDAD") && Validator.validateEmptyTextBox(txtCodPostal, "CODIGO POSTAL");
             return result;
+
+        }
+
+        private Boolean isExistingMail(TextBox txtMail){
+            Boolean isExistingMail = businessClienteImpl.isExistingMail(txtMail.Text);
+            if (isExistingMail)
+            {
+                MessageBox.Show(MSG_EMAI_ALREADY_EXISTS);
+            }
+            return isExistingMail;
         }
 
         private void populateAllInputsToModify(ClienteDTO cl)
