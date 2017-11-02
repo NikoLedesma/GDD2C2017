@@ -118,5 +118,12 @@ namespace Business
             int res = rolDAO.getCountRolByName(nameRol);
             return res == 1 ? true : false;
         }
+
+        public int changeNameByOther(string currentRolNameToChange, string newRolName)
+        {
+            RolDAO rolDAO = new RolDAO();
+            int res=rolDAO.changeNameByOther(currentRolNameToChange,newRolName);
+         return res;
+        }
     }
 }

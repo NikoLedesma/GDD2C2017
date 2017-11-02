@@ -34,6 +34,7 @@ namespace PagoAgilFrba.AbmRol
             btnAddToRol.Enabled = false;
             btnDeleteRol.Enabled = false;
             btnAddRol.Enabled = false;
+            btnModNombreRol.Enabled = false;
             List<RolDTO> listRolDTO = businessRolImpl.getAllRolesWithFunctionalidades();
             listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));        
         }
@@ -76,6 +77,7 @@ namespace PagoAgilFrba.AbmRol
                     btnRemoveFromRol.Enabled = false;
                     btnAddToRol.Enabled = false;
                     btnAddRol.Enabled = false;
+                    btnModNombreRol.Enabled = true;
                 }
                 else
                 {
@@ -83,6 +85,7 @@ namespace PagoAgilFrba.AbmRol
                     btnRemoveFromRol.Enabled = true;
                     btnAddToRol.Enabled = false;
                     btnAddRol.Enabled = false;
+                    btnModNombreRol.Enabled = false;
                 }
             }
             else
@@ -91,6 +94,7 @@ namespace PagoAgilFrba.AbmRol
                 btnRemoveFromRol.Enabled = false;
                 btnAddToRol.Enabled = false;
                 btnAddRol.Enabled = true;
+                btnModNombreRol.Enabled = false;
             }
             TreeNode parentNode = getParent(rolTreeView.SelectedNode);
             parentNode.Expand();
@@ -117,11 +121,13 @@ namespace PagoAgilFrba.AbmRol
             {
                 btnAddToRol.Enabled = true;
                 btnDeleteRol.Enabled = false;
+                btnModNombreRol.Enabled = false;
             }
             else
             {
                 btnAddToRol.Enabled = false;
                 btnDeleteRol.Enabled = false;
+                btnModNombreRol.Enabled = false;
             }
         }
 
@@ -160,10 +166,13 @@ namespace PagoAgilFrba.AbmRol
                 if (isAParentNode(rolTreeView.SelectedNode))
                 {
                     btnDeleteRol.Enabled = true;
+                    btnModNombreRol.Enabled = true;
                     rolTreeView.Focus();
                 }
             }
         }
+
+
 
         private Boolean isANodeSelected(TreeNode node)
         {
@@ -213,6 +222,7 @@ namespace PagoAgilFrba.AbmRol
                 funcionalidadTreeView.Nodes.Clear();
                 listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));
                 btnDeleteRol.Enabled = false;
+                btnModNombreRol.Enabled = false;
             }
         }
 
@@ -231,6 +241,35 @@ namespace PagoAgilFrba.AbmRol
             }
         }
 
+
+        private void btnModNombreRol_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Esta seguro que desea cambiar el nombre del rol " + rolTreeView.SelectedNode.Text, "Cambiar nombre de rol", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                CambiarNombreForm cambiarNombreDeRol = new CambiarNombreForm(this, rolTreeView.SelectedNode.Text);
+                cambiarNombreDeRol.Show();
+
+                /*TreeNode parent = getParent(rolTreeView.SelectedNode);
+                RolDTO rolDTO = new RolDTO(parent.Text, true);
+                List<RolDTO> listRolDTO = businessRolImpl.enableRol(rolDTO);
+                rolTreeView.Nodes.Clear();
+                funcionalidadTreeView.Nodes.Clear();
+                listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));
+                btnAddRol.Enabled = false;*/
+            }
+        }
+
+
+        public void updateNameOfRol(){
+            rolTreeView.Nodes.Clear();
+            funcionalidadTreeView.Nodes.Clear();
+            List<RolDTO> listRolDTO = businessRolImpl.getAllRolesWithFunctionalidades();
+            listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));
+            btnDeleteRol.Enabled = false;
+            btnModNombreRol.Enabled = false;
+        }
+
         private void btnAgreeRol_Click(object sender, EventArgs e)
         {
             Form altaForm =new AltaRolForm(this);
@@ -242,6 +281,7 @@ namespace PagoAgilFrba.AbmRol
             prevForm.Show();
             ((MenuPrincipalForm)prevForm).InitializeButtons();
         }
+
 
     }
 }

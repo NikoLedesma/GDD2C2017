@@ -102,6 +102,12 @@
     <Compile Include="AbmRol\AltaRolForm.Designer.cs">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRol\CambiarNombreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\CambiarNombreForm.Designer.cs">
+      <DependentUpon>CambiarNombreForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\RolForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,17 +132,17 @@
     <Compile Include="Devolucion\AltaDevolucionForm.Designer.cs">
       <DependentUpon>AltaDevolucionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListadoEstadistico\ListadoEstadisticoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoEstadisticoForm.Designer.cs">
+      <DependentUpon>ListadoEstadisticoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListadoEstadistico\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListadoEstadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuPrincipal\MenuPrincipalForm.cs">
       <SubType>Form</SubType>
@@ -200,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\CambiarNombreForm.resx">
+      <DependentUpon>CambiarNombreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\RolForm.resx">
       <DependentUpon>RolForm.cs</DependentUpon>

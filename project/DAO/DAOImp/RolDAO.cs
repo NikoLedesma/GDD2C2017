@@ -125,5 +125,16 @@ namespace DAO.DAOImp
                 return GetCount(command);
             }
         }
+
+
+        public int changeNameByOther(string currentRolNameToChange, string newRolName)
+        {
+            using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.ROL SET NOMBRE = @NOMBRE_ROL_NUEVO WHERE NOMBRE = @NOMBRE_ROL "))
+            {
+                command.Parameters.AddWithValue("@NOMBRE_ROL", currentRolNameToChange);
+                command.Parameters.AddWithValue("@NOMBRE_ROL_NUEVO", newRolName);
+                return save(command);
+            }
+        }
     }
 }
