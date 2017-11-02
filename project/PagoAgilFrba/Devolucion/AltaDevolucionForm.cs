@@ -20,6 +20,7 @@ namespace PagoAgilFrba.Devolucion
         private BusinessClienteImpl businessClienteImpl;
         private BusinessEmpresaImpl businessEmpresaImpl;
         private BusinessRendicionImpl businessRendicionImpl;
+        private BusinessDevolucionImpl businessDevolucionImpl;
         private List<ClienteDTO> listClienteDTO;
         private List<EmpresaDTO> listEmpresaDTO;
         private List<ItemFacturaDTO> listItemDTOs;
@@ -37,24 +38,45 @@ namespace PagoAgilFrba.Devolucion
             this.comboBox1.DataSource = listEmpresaDTO;
             this.comboBox1.ValueMember = "id";
             this.comboBox1.DisplayMember = "cuit";
+            
+            //MessageBox.Show("empresa:" + listEmpresaDTO[0].id);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            ComboBox cmb = (ComboBox)sender;
-            int selectedIndex = cmb.SelectedIndex;
-            int empresaId = (int)cmb.SelectedValue;
+            //ComboBox cmb = (ComboBox)sender;
+           //int selectedIndex = cmb.SelectedIndex;
+            EmpresaDTO empresaSelected = (EmpresaDTO)this.comboBox1.SelectedItem;
+            //int empresaId = int.Parse(facturaSeleccionada.id.ToString());
+           // string selectedEmployee = (string)this.comboBox1.SelectedItem;
+            //MessageBox.Show("selectedEmployee" + selectedEmployee);
+            //int asd = this.comboBox1.SelectedValue;
 
 
-            //int empresaId = (string) this.comboBox1.SelectedValue;
-            businessRendicionImpl = new BusinessRendicionImpl();
+            int empresaId = empresaSelected.id;
+            if (empresaId > 0)
+            {
 
-            listRendicionDTOs = businessRendicionImpl.getRendByEmpresa(empresaId);
+                businessRendicionImpl = new BusinessRendicionImpl();
 
-            this.comboBox1.DataSource = listRendicionDTOs;
-            this.comboBox1.ValueMember = "id";
-            this.comboBox1.DisplayMember = "numero";
+                listRendicionDTOs = businessRendicionImpl.getRendByEmpresa(empresaId);
+
+                this.comboBox2.DataSource = listRendicionDTOs;
+                this.comboBox2.ValueMember = "id";
+                this.comboBox2.DisplayMember = "fecha";
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DevolucionDTO devolucionDTO = new DevolucionDTO();
+            devolucionDTO.idRendicion = (int)this.comboBox2.SelectedValue;
+            devolucionDTO.razon = this.textBox1.Text;
+            businessDevolucionImpl = new BusinessDevolucionImpl();
+
+            int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
+            MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
         }
     }
 }

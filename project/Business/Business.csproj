@@ -49,6 +49,7 @@
     <Compile Include="BusinessLoginImpl.cs" />
     <Compile Include="BusinessRubroImpl.cs" />
     <Compile Include="BusinessSucursalImpl.cs" />
+    <Compile Include="BusinessDevolucionImpl.cs" />
     <Compile Include="MenuPrincipalBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

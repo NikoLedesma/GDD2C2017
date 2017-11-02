@@ -42,10 +42,10 @@ namespace DAO.DAOImp
                                                 "  ,[rend_fecha]" +
                                                 "  ,[rend_importe]" +
                                                 "  ,[rend_numero]" +
-                                                "  ,[rend_porcentaje]" +
-                                                "FROM [LOS_PUBERTOS].[Rendicion]" +
-                                                "JOIN [LOS_PUBERTOS].[Rf] ON rf_rendicion = rend_id" +
-                                                "JOIN [LOS_PUBERTOS].[Factura] ON rf_factura = fact_id" +
+                                                "  ,[rend_porcentaje] " +
+                                                "FROM [LOS_PUBERTOS].[Rendicion] " +
+                                                "JOIN [LOS_PUBERTOS].[Rf] ON rf_rendicion = rend_id " +
+                                                "JOIN [LOS_PUBERTOS].[Factura] ON rf_factura = fact_id " +
                                                 "WHERE 1=1 " + str))
             {
 
@@ -67,9 +67,9 @@ namespace DAO.DAOImp
             if (!reader.IsDBNull(1))
                 rendicion.fecha = reader.GetDateTime(1);
             if (!reader.IsDBNull(2))
-                rendicion.importe = reader.GetFloat(2);
-     //       if (!reader.IsDBNull(3))
-     //           rendicion.numero = reader.GetInt32(3);
+                rendicion.importe = (float)reader.GetDouble(2);
+            if (!reader.IsDBNull(3))
+                rendicion.numero = reader.GetInt32(3);
             if (!reader.IsDBNull(4))
                 rendicion.porcentaje = reader.GetFloat(4); 
             return rendicion;

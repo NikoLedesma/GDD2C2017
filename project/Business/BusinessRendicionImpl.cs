@@ -33,12 +33,12 @@ namespace Business
         public RendicionDTO converterRendToRendDTO(Rendicion rendicion)
         {
             RendicionDTO rendicionDTO = new RendicionDTO();
-            rendicionDTO.id = rendicionDTO.id;
-            rendicionDTO.fecha = rendicionDTO.fecha;
-            rendicionDTO.importe = rendicionDTO.importe;
+            rendicionDTO.id = rendicion.id;
+            rendicionDTO.fecha = rendicion.fecha;
+            rendicionDTO.importe = rendicion.importe;
             //    rendicion.numero = rendicionDTO.numero;
-            rendicionDTO.porcentaje = rendicionDTO.porcentaje;
-            rendicionDTO.idFact = rendicionDTO.idFact;
+            rendicionDTO.porcentaje = rendicion.porcentaje;
+            rendicionDTO.idFact = rendicion.idFact;
             return rendicionDTO;
         }
         public Rendicion converterRendicionDTOToRendicion(RendicionDTO rendicionDTO)

@@ -28,7 +28,7 @@ namespace DAO.DAOImp
         public IEnumerable<Empresa> getAll()
         {
 
-            using (var command = new SqlCommand("select empr_id,empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit from LOS_PUBERTOS.Empresa"))
+            using (var command = new SqlCommand("select empr_id,empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit from [LOS_PUBERTOS].Empresa"))
             {
                 return GetRecords(command);
             }
