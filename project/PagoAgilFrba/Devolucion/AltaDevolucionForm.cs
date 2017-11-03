@@ -45,14 +45,7 @@ namespace PagoAgilFrba.Devolucion
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //ComboBox cmb = (ComboBox)sender;
-           //int selectedIndex = cmb.SelectedIndex;
             EmpresaDTO empresaSelected = (EmpresaDTO)this.comboBox1.SelectedItem;
-            //int empresaId = int.Parse(facturaSeleccionada.id.ToString());
-           // string selectedEmployee = (string)this.comboBox1.SelectedItem;
-            //MessageBox.Show("selectedEmployee" + selectedEmployee);
-            //int asd = this.comboBox1.SelectedValue;
-
 
             int empresaId = empresaSelected.id;
             if (empresaId > 0)

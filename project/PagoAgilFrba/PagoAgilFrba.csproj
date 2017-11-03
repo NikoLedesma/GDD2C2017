@@ -132,6 +132,12 @@
     <Compile Include="Devolucion\AltaDevolucionForm.Designer.cs">
       <DependentUpon>AltaDevolucionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Devolucion\AltaDevolucionFacturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devolucion\AltaDevolucionFacturaForm.Designer.cs">
+      <DependentUpon>AltaDevolucionFacturaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListadoEstadistico\ListadoEstadisticoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Devolucion\AltaDevolucionForm.resx">
       <DependentUpon>AltaDevolucionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devolucion\AltaDevolucionFacturaForm.resx">
+      <DependentUpon>AltaDevolucionFacturaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

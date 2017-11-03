@@ -44,15 +44,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 365);
+            this.ClientSize = new System.Drawing.Size(335, 469);
             this.Controls.Add(this.label1);
             this.Name = "MenuPrincipalForm";
             this.Text = "MenuPrincipalForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuPrincipalForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
-
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuPrincipalForm_FormClosing);
         }
 
         #endregion

@@ -54,7 +54,16 @@ namespace Business
             
             return facturaDTOList;
         }
+        public List<FacturaDTO> getFacturaByClientAndEmpresa(int cliente, int empresa)
+        {
+            FacturaDAO facturaDAO = new FacturaDAO();
+            List<FacturaDTO> facturaDTOList = new List<FacturaDTO>();
+            List<Factura> facturaList = new List<Factura>();
+            facturaList = facturaDAO.getAllByUsername(cliente, empresa).ToList();
+            facturaList.ForEach(x => { facturaDTOList.Add(converterFacturaToFacturaDTO(x)); });
 
+            return facturaDTOList;
+        }
         public List<ItemFacturaDTO> getItems(int facturaId) //trae las todas las empresas
         {
             ItemFacturaDAO itemFacturaDAO = new ItemFacturaDAO();

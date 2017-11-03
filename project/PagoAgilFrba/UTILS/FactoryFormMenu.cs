@@ -40,7 +40,9 @@ namespace PagoAgilFrba.UTILS
                 form = new RegistroDePagoForm(prevForm);
             }else if(selectedTag.Equals("Devoluciones")){
                 form = new AltaDevolucionForm(prevForm);
-            }else if(selectedTag.Equals("Rendicion de Facturas cobradas")){
+            }else if (selectedTag.Equals("Devolucion Factura")){
+                form = new AltaDevolucionFacturaForm(prevForm);
+            }else if (selectedTag.Equals("Rendicion de Facturas cobradas")){
                 form = new RendicionForm(prevForm);
             }else if(selectedTag.Equals("Listado Estadistico")){
                 form = new RolForm(prevForm);
