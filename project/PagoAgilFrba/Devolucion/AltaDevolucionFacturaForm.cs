@@ -22,6 +22,8 @@ namespace PagoAgilFrba.Devolucion
         private List<ClienteDTO> listClienteDTO;
         private List<EmpresaDTO> listEmpresaDTO;
         private List<FacturaDTO> listFacturaDTO;
+        private BusinessDevolucionImpl businessDevolucionImpl;
+
         public AltaDevolucionFacturaForm(Form prevForm)
         {
             InitializeComponent();
@@ -90,6 +92,20 @@ namespace PagoAgilFrba.Devolucion
                 this.comboBox2.DisplayMember = "fecha";
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DevolucionDTO devolucionDTO = new DevolucionDTO();
+
+            devolucionDTO.idFact = (int)this.comboBox2.SelectedValue;
+
+            devolucionDTO.razon = this.textBox1.Text;
+
+            businessDevolucionImpl = new BusinessDevolucionImpl();
+
+            int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
+            MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
         }
     }
 }
