@@ -5,6 +5,7 @@ using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmFactura;
 using PagoAgilFrba.Rendicion;
 using PagoAgilFrba.Devolucion;
+using PagoAgilFrba.ListadoEstadistico;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace PagoAgilFrba.UTILS
             }else if (selectedTag.Equals("Rendicion de Facturas cobradas")){
                 form = new RendicionForm(prevForm);
             }else if(selectedTag.Equals("Listado Estadistico")){
-                form = new RolForm(prevForm);
+                form = new ListadoEstadisticoForm(prevForm);
             }
             return form;
         }

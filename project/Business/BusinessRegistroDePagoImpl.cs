@@ -20,7 +20,11 @@ namespace Business
             Factura factura = facturaDAO.getFacturaById(nroFactura);
             return convertFacturaToFacturaDTO(factura);
         }
-
+        public List<string> getTrimestres()
+        {
+            RegistroDePagoDAO registroDePagoDAO = new RegistroDePagoDAO();
+            return registroDePagoDAO.getAllTrimestres();
+        }
         public ResultCheckFactura verifiedFacturaById(int nroFactura)
         {
             FacturaDAO facturaDAO = new FacturaDAO();

@@ -34,6 +34,12 @@ namespace Business
             factura.habilitado = facturaDTO.habilitado;
             return factura;
         }
+
+        public List<string> getTrimestres()
+        {
+            FacturaDAO facturaDAO = new FacturaDAO();
+            return facturaDAO.getAllTrimestres();
+        }
         public List<FacturaDTO> getFacturaByFilter(FacturaDTO facturaDTO)
         {
             FacturaDAO facturaDAO = new FacturaDAO();

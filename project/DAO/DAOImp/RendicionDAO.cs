@@ -32,6 +32,13 @@ namespace DAO.DAOImp
             }
 
         }
+        public List<string> getAllTrimestres()
+        {
+            using (var command = new SqlCommand("SELECT CONCAT(DATEPART ( YEAR , rend_fecha ),CONCAT('-T:',DATEPART ( QUARTER , rend_fecha ))) FROM [LOS_PUBERTOS].[Rendicion] GROUP BY CONCAT(DATEPART ( YEAR , rend_fecha ),CONCAT('-T:',DATEPART ( QUARTER , rend_fecha )))"))
+            {
+                return GetArray(command);
+            }
+        }
         public IEnumerable<Rendicion> getRendicionByEmpresa(int empresaId) //aca tengo qe traer todos los campos
         {
             String str = "";

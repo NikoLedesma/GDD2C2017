@@ -28,6 +28,13 @@ namespace DAO.DAOImp
             }
 
         }
+        public List<string> getAllTrimestres()
+        {
+            using (var command = new SqlCommand("SELECT CONCAT(DATEPART ( YEAR , pago_fecha ),CONCAT('-T:',DATEPART ( QUARTER , pago_fecha ))) FROM [LOS_PUBERTOS].[Pago] GROUP BY CONCAT(DATEPART ( YEAR , pago_fecha ),CONCAT('-T:',DATEPART ( QUARTER , pago_fecha )))"))
+            {
+                return GetArray(command);
+            }
+        }
 
         public int saveFacturaToPago(Factura factura,int nroPago)
         {

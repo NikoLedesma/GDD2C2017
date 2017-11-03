@@ -94,7 +94,7 @@ namespace DAO.GenericDAO
                 return i;
             }
         }
-
+        
 
         public IEnumerable<T> GetRecords(SqlCommand command)
         {
@@ -114,6 +114,33 @@ namespace DAO.GenericDAO
                 _connection.Close();
             }
             return list;
+        }
+
+        public List<string> GetArray(SqlCommand command)
+        {
+            List<string> list = new List<string>();
+            command.Connection = _connection;
+            _connection.Open();
+            try
+            {
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(getStringOfReader(reader));
+                }
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return list;
+        }
+        public string getStringOfReader(SqlDataReader reader){
+                
+            var resu = "";
+            if (!reader.IsDBNull(0))
+                resu = reader.GetString(0);
+            return resu;
         }
 
         public T GetRecord(SqlCommand command)

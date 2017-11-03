@@ -18,6 +18,11 @@ namespace Business
             Rendicion rendicion = converterRendicionDTOToRendicion(rendicionDTO);
             return rendicionDAO.saveRendicion(rendicion);
         }
+        public List<string> getTrimestres()
+        {
+            RendicionDAO rendicionDAO = new RendicionDAO();
+            return rendicionDAO.getAllTrimestres();
+        }
         public List<RendicionDTO> getRendByEmpresa(int empresaId)
         {
 

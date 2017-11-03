@@ -231,6 +231,9 @@
     <EmbeddedResource Include="Devolucion\AltaDevolucionFacturaForm.resx">
       <DependentUpon>AltaDevolucionFacturaForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\ListadoEstadisticoForm.resx">
+      <DependentUpon>ListadoEstadisticoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

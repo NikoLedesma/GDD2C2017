@@ -86,6 +86,14 @@ namespace DAO.DAOImp
             }
         }
 
+        public List<string> getAllTrimestres()
+        {
+            using (var command = new SqlCommand("SELECT CONCAT(DATEPART ( YEAR , fact_fecha_alta ),CONCAT('-T:',DATEPART ( QUARTER , fact_fecha_alta ))) FROM [LOS_PUBERTOS].[Factura] GROUP BY CONCAT(DATEPART ( YEAR , fact_fecha_alta ),CONCAT('-T:',DATEPART ( QUARTER , fact_fecha_alta )))"))
+            {
+                return GetArray(command);
+            }
+        }
+
 
         public int verifiedFacturaById(int nroFactura)
         {
