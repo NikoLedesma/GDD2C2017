@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridViewFacturas = new System.Windows.Forms.DataGridView();
-            this.ColumnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddFactura = new System.Windows.Forms.Button();
             this.comboBoxFormaDePago = new System.Windows.Forms.ComboBox();
@@ -39,6 +38,7 @@
             this.btnPagar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdPago = new System.Windows.Forms.TextBox();
+            this.EliminarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFacturas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -48,19 +48,12 @@
             this.dataGridViewFacturas.AllowUserToAddRows = false;
             this.dataGridViewFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnEliminar});
+            this.EliminarColumn});
             this.dataGridViewFacturas.Location = new System.Drawing.Point(6, 28);
             this.dataGridViewFacturas.Name = "dataGridViewFacturas";
             this.dataGridViewFacturas.Size = new System.Drawing.Size(854, 217);
             this.dataGridViewFacturas.TabIndex = 0;
             this.dataGridViewFacturas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFacturas_CellContentClick);
-            // 
-            // ColumnEliminar
-            // 
-            this.ColumnEliminar.HeaderText = "Eliminar";
-            this.ColumnEliminar.Name = "ColumnEliminar";
-            this.ColumnEliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnEliminar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // label1
             // 
@@ -145,6 +138,13 @@
             this.txtIdPago.Size = new System.Drawing.Size(135, 20);
             this.txtIdPago.TabIndex = 7;
             // 
+            // EliminarColumn
+            // 
+            this.EliminarColumn.HeaderText = "Eliminar";
+            this.EliminarColumn.Name = "EliminarColumn";
+            this.EliminarColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EliminarColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // RegistroDePagoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,7 +171,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewFacturas;
-        private System.Windows.Forms.DataGridViewButtonColumn ColumnEliminar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddFactura;
         private System.Windows.Forms.ComboBox comboBoxFormaDePago;
@@ -181,6 +180,7 @@
         private System.Windows.Forms.TextBox txtIdPago;
         private System.Windows.Forms.TextBox txtImporte;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewButtonColumn EliminarColumn;
 
     }
 }

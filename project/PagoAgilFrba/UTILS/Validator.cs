@@ -13,7 +13,7 @@ namespace PagoAgilFrba.UTILS
 
         private readonly static String MODIFICAR_COLUMN = "ModificarColumn";
         private readonly static String BAJAR_COLUMN = "BajarColumn";
-        private readonly static String ELIMINAR_COLUMN = "EliminarColumn";
+        private readonly static String ELIMINAR_COLUMN = "EliminarColumns";
         private readonly static String MSG_INTEGERP_VALIDATION = "EL CAMPO {0} TIENE QUE SER ENTERO POSITIVO";
         private readonly static String MSG_MAIL_VALIDATION = "EL MAIL {0} ES INVALIDO";
         private readonly static String MSG_OBLIGATORY_VALIDATION = "EL CAMPO {0} ES OBLIGATORIO";
@@ -103,7 +103,9 @@ namespace PagoAgilFrba.UTILS
 
 
         public static Boolean dateIsLessThanSystemDate(DateTime dateTime) {
-            return DateTime.Compare(dateTime, GlobalUtils.getHoraDelSistemaDateTime()) <= 0;
+            DateTime systemTime = GlobalUtils.getHoraDelSistemaDateTime();
+            int res = DateTime.Compare(dateTime, systemTime);
+            return res <= 0;
         }
 
     
