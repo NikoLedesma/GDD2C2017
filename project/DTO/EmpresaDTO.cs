@@ -15,6 +15,7 @@ namespace DTO
         public int rubro { get; set; }
         public Boolean habilitado { get; set; }
         public String cuit { get; set; }
+        public DateTime fechaRendicion { get; set; }
 
     }
 

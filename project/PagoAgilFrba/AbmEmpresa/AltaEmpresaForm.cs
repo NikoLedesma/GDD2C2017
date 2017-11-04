@@ -75,6 +75,7 @@ namespace PagoAgilFrba.AbmEmpresa
                 empDTOModifOAlta.direccion = txtDireccion.Text;
                 empDTOModifOAlta.rubro = (int)this.comboBox1.SelectedValue; //txtRubro.Text;
                 empDTOModifOAlta.habilitado = radioBtnHabilitado.Checked;
+                empDTOModifOAlta.fechaRendicion = dateTimePicker1.Value;
                 //      empDTOModifOAlta = empresaDTOAltaOModif();
 
                 if (formMode == EnumFormMode.MODE_ALTA)
@@ -112,7 +113,7 @@ namespace PagoAgilFrba.AbmEmpresa
 
         private Boolean validateFields()
         {
-            return validateEmptyFields(); //ACA DEBERIA VALIDAR Q NO HAYA MAS DE UNA CON EL MISMO CUIT
+            return validateEmptyFields(); //ACA DEBERIA VALIDAR Q NO HAYA MAS DE UNA CON EL MISMO CUIT --> usamos trigger
         }
 
         private Boolean validateEmptyFields()
@@ -130,6 +131,8 @@ namespace PagoAgilFrba.AbmEmpresa
             empDTOModifOAlta.direccion = txtDireccion.Text;
             empDTOModifOAlta.rubro = (int)this.comboBox1.SelectedValue; //txtRubro.Text;
             empDTOModifOAlta.habilitado = radioBtnHabilitado.Checked;
+            empDTOModifOAlta.fechaRendicion = dateTimePicker1.Value;
+
             return empDTOModifOAlta;
         }
 
@@ -139,6 +142,7 @@ namespace PagoAgilFrba.AbmEmpresa
             txtNombre.Text = cl.nombre;
             txtDireccion.Text = cl.direccion;
             txtCuit.Text = cl.cuit;
+            dateTimePicker1.Value = cl.fechaRendicion;
             //faltaria ver si se puede modificar el rubro de una empresa
             if (cl.habilitado==false) //lo pongo asi porq figura inactivo
             {

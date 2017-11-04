@@ -14,21 +14,22 @@ namespace DAO.DAOImp
         public int saveEmpresa(Empresa empresa )
         {
             using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.Empresa " +
-                                    "(empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit) " +
-                                    "VALUES (@NOMBRE,@DIRECCION,@RUBRO,@HABILITADO,@CUIT)"))
+                                    "(empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit,empr_fechaRendicion) " +
+                                    "VALUES (@NOMBRE,@DIRECCION,@RUBRO,@HABILITADO,@CUIT,@FECHA_RENDICION)"))
             {
                 command.Parameters.AddWithValue("@NOMBRE", empresa.nombre);
                 command.Parameters.AddWithValue("@DIRECCION", empresa.direccion);
                 command.Parameters.AddWithValue("@RUBRO", empresa.rubro);
                 command.Parameters.AddWithValue("@HABILITADO", empresa.habilitado);
                 command.Parameters.AddWithValue("@CUIT", empresa.cuit);
+                command.Parameters.AddWithValue("@FECHA_RENDICION", empresa.fechaRendicion);
                 return save(command);
             }
         }
         public IEnumerable<Empresa> getAll()
         {
 
-            using (var command = new SqlCommand("select empr_id,empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit from [LOS_PUBERTOS].Empresa"))
+            using (var command = new SqlCommand("select empr_id,empr_nombre, empr_direccion,empr_rubro, empr_inactivo,empr_cuit, empr_fechaRendicion from [LOS_PUBERTOS].Empresa"))
             {
                 return GetRecords(command);
             }
@@ -52,6 +53,8 @@ namespace DAO.DAOImp
                 empresa.habilitado = reader.GetBoolean(4);
             if (!reader.IsDBNull(5)) 
                 empresa.cuit = reader.GetString(5);
+            if (!reader.IsDBNull(6))
+                empresa.fechaRendicion = reader.GetDateTime(6);
             return empresa;
         }
 
@@ -63,7 +66,7 @@ namespace DAO.DAOImp
             if (!String.IsNullOrEmpty(cuit)) { str += " AND empr_cuit LIKE @APELLIDO + '%' "; }
             if (rubro > 0) { str += " AND empr_rubro = @DNI "; }
             //en el comando sql capaz que puedo no traerme el id si no lo uso
-            using (var command = new SqlCommand("SELECT empr_id, empr_nombre, empr_direccion, empr_rubro,empr_inactivo,empr_cuit " +
+            using (var command = new SqlCommand("SELECT empr_id, empr_nombre, empr_direccion, empr_rubro,empr_inactivo,empr_cuit,empr_fechaRendicion " +
                           "FROM  LOS_PUBERTOS.Empresa WHERE 1=1 " + str))
             {
                 if (!String.IsNullOrEmpty(nombre)) { command.Parameters.AddWithValue("@NOMBRE", nombre); }
@@ -100,7 +103,7 @@ namespace DAO.DAOImp
         public int updateEmpresa(Empresa empresa) //aca tengo que modificar todos los campos de la base de datos
         { 
               using (var command = new SqlCommand("UPDATE LOS_PUBERTOS.Empresa SET " +
-                        "empr_nombre=@NOMBRE,empr_direccion=@DIRECCION,empr_cuit=@CUIT, empr_rubro=@RUBRO, empr_inactivo=@INACTIVO " +
+                        "empr_nombre=@NOMBRE,empr_direccion=@DIRECCION,empr_cuit=@CUIT, empr_rubro=@RUBRO, empr_inactivo=@INACTIVO, empr_fechaRendicion=@FECHA_RENDICION " +
                         "WHERE empr_id = @ID "))
             {
                 command.Parameters.AddWithValue("@ID", empresa.id);
@@ -109,10 +112,23 @@ namespace DAO.DAOImp
                 command.Parameters.AddWithValue("@CUIT", empresa.cuit);
                 command.Parameters.AddWithValue("@RUBRO", empresa.rubro);
                 command.Parameters.AddWithValue("@INACTIVO", empresa.habilitado);
+                command.Parameters.AddWithValue("@FECHA_RENDICION", empresa.fechaRendicion);
 
                 return save(command);
             }
     
+        }
+
+
+        public int getFechaRendicion(Empresa empresa) //tengo que comparar solo con el dia
+        {
+            using (var command = new SqlCommand("SELECT count(*) from [LOS_PUBERTOS].Empresa " +
+                "WHERE DAY(empr_fechaRendicion) = DAY(@FECHA_RENDICION) AND empr_id = @ID AND empr_inactivo=1"))
+            {
+                command.Parameters.AddWithValue("@ID", empresa.id);
+                command.Parameters.AddWithValue("@FECHA_RENDICION", empresa.fechaRendicion);
+                return GetCount(command);
+            }
         }
         
     }

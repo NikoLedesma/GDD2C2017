@@ -17,7 +17,8 @@ namespace Business
         {
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = converterEmpresaDTOToEmpresa(empresaDTO);
-            return empresaDAO.saveEmpresa(empresa);
+            int a = empresaDAO.saveEmpresa(empresa);
+            return a;
         }
 
         public Empresa converterEmpresaDTOToEmpresa(EmpresaDTO empresaDTO)
@@ -29,6 +30,7 @@ namespace Business
             empresa.rubro = empresaDTO.rubro;
             empresa.habilitado = empresaDTO.habilitado;
             empresa.cuit = empresaDTO.cuit;
+            empresa.fechaRendicion = empresaDTO.fechaRendicion;
             return empresa;
         }
         public List<EmpresaDTO> getEmpresas() //trae las todas las empresas
@@ -49,6 +51,7 @@ namespace Business
             empresaDTO.rubro = empresa.rubro;
             empresaDTO.habilitado = empresa.habilitado;
             empresaDTO.cuit = empresa.cuit;
+            empresaDTO.fechaRendicion = empresa.fechaRendicion;
             return empresaDTO;
         }
 
@@ -78,6 +81,16 @@ namespace Business
             return a;
         }
 
+        public bool ifFechaRendicionIgual(EmpresaDTO empresaDTO)
+        {
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+            Empresa empresa = converterEmpresaDTOToEmpresa(empresaDTO);
+            int res = empresaDAO.getFechaRendicion(empresa);
+          //  MessageBox.Show("el resu de fech rendicion es", res);
+       //ACA TENGO QUE PONER LAS POSIBILIDADES aca no estoy comparando solo por dia 
+            return res >= 1 ? true : false;
+
+        }
                 
     }
 

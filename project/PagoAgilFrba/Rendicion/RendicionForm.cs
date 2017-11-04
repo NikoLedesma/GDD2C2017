@@ -24,6 +24,8 @@ namespace PagoAgilFrba.Rendicion
         private List<EmpresaDTO> listEmpresaDTO;
         private List<FacturaDTO> filtroRendicionesDTOs;
         private DataTable facturasID;
+        
+        private static String MSG_EMAI_ALREADY_EXISTS = "LA FECHA DE RENDICION NO COINCIDE CON LA DE EMPRESA";
 
         public RendicionForm(Form form)
         {
@@ -36,6 +38,7 @@ namespace PagoAgilFrba.Rendicion
             businessRendicionImpl = new BusinessRendicionImpl();
 
             listEmpresaDTO = businessEmpresaImpl.getEmpresas();
+            
             this.comboBox1.DataSource = listEmpresaDTO;
             this.comboBox1.ValueMember = "id";
             this.comboBox1.DisplayMember = "empresa";
@@ -45,26 +48,52 @@ namespace PagoAgilFrba.Rendicion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            FacturaDTO rendiciones = pantallaFacturasDTO();
-            filtroRendicionesDTOs = businessFacturaImpl.getFacturaByFilterRendicion(rendiciones); //Busco en la base de datos la empresa por filtros
-            //FALTA AGREGARLE AL BUSINESS FACTURA UN FILTRO POR LA FECHA
-            populateDataGridView(filtroRendicionesDTOs);
+            if (verificarFechaEmpresa())
+            {
+                MessageBox.Show("EL DIA DE REINDICION COINCIDE");
 
-            int cantFact;
-            cantFact = filtroRendicionesDTOs.Count;
-            txtCantFact.Text = cantFact.ToString();
+                FacturaDTO rendiciones = pantallaFacturasDTO();
+                filtroRendicionesDTOs = businessFacturaImpl.getFacturaByFilterRendicion(rendiciones); //Busco en la base de datos la empresa por filtros
+                populateDataGridView(filtroRendicionesDTOs);
 
-            float sumaFact=0;
-            filtroRendicionesDTOs.ForEach(x => { sumaFact = sumaFact + x.total; });
+                int cantFact;
+                cantFact = filtroRendicionesDTOs.Count;
+                txtCantFact.Text = cantFact.ToString();
 
-            facturasID = new DataTable();
-            facturasID.Columns.Add("id",typeof(int));
+                float sumaFact = 0;
+                filtroRendicionesDTOs.ForEach(x => { sumaFact = sumaFact + x.total; });
 
-            filtroRendicionesDTOs.ForEach(x => { addColumnInList(x, facturasID); });
+                facturasID = new DataTable();
+                facturasID.Columns.Add("id", typeof(int));
 
-            mostrarTotales(sumaFact);
+                filtroRendicionesDTOs.ForEach(x => { addColumnInList(x, facturasID); });
+
+                mostrarTotales(sumaFact);
+
+            }
+            else
+            {
+                MessageBox.Show("No hay empresas habilitadas que realicen rendiciones este dia");
+            }
+            
  
         }
+
+        private Boolean verificarFechaEmpresa()
+        {
+            EmpresaDTO empresaDTO = pantallaEmpresaDTO();
+            Boolean result = businessEmpresaImpl.ifFechaRendicionIgual(empresaDTO);//FALTA
+            return result;
+        }
+
+        private EmpresaDTO pantallaEmpresaDTO()
+        {
+            EmpresaDTO empresaDTO = new EmpresaDTO();
+            empresaDTO.fechaRendicion = dateTimePicker1.Value;
+            empresaDTO.id = (int)this.comboBox1.SelectedValue;
+            return empresaDTO;
+        }
+
 
         private void addColumnInList(FacturaDTO factura, DataTable facturasID)
         {
@@ -76,10 +105,7 @@ namespace PagoAgilFrba.Rendicion
 
         private void mostrarTotales(float subTotal)
         {
-
             txtSubTotal.Text = subTotal.ToString();
-            //txtSubTotal.Text = "1000"; //ESTE VALOR TIENE QUE SER LA SUMA DE TODAS LAS FACTURAS
-
             if (validateEmptyFields())
             {
                 txtImpCom.Text = ((Convert.ToDecimal(subTotal)) * (Convert.ToDecimal(txtPorcCom.Text) / 100)).ToString();

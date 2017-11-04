@@ -39,6 +39,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.radioBtnHabilitado = new System.Windows.Forms.RadioButton();
             this.radioBtnDeshabilitado = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -138,11 +140,29 @@
             this.radioBtnDeshabilitado.Text = "Deshabilitado";
             this.radioBtnDeshabilitado.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(58, 273);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Fecha de Rendicion:";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(170, 267);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 13;
+            // 
             // AltaEmpresaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 407);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.radioBtnDeshabilitado);
             this.Controls.Add(this.radioBtnHabilitado);
             this.Controls.Add(this.comboBox1);
@@ -175,5 +195,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton radioBtnHabilitado;
         private System.Windows.Forms.RadioButton radioBtnDeshabilitado;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
