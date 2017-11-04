@@ -71,7 +71,7 @@ namespace PagoAgilFrba.ListadoEstadistico
             DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             row.Cells[0].Value = item.id;
             row.Cells[1].Value = item.nombre;
-            row.Cells[2].Value = item.cuit;
+            row.Cells[2].Value = item.dni;
             row.Cells[3].Value = item.total;
             return row;
         }
@@ -105,8 +105,8 @@ namespace PagoAgilFrba.ListadoEstadistico
 
             if (!String.IsNullOrEmpty(trimestre))
             {
-                listStadistico = businessFacturaImpl.getEmprMayorRendidas(trimestre);
-                populateDataGridView2(listStadistico);
+                listStadistico = businessFacturaImpl.getClieConMasPagos(trimestre);
+                populateDataGridView3(listStadistico);
 
             }
         }

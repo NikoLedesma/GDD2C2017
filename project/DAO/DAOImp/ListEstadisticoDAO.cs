@@ -51,6 +51,24 @@ namespace DAO.DAOImp
                 return GetRecords(command);
             }
         }
+        public IEnumerable<ListEstadistico> getAllClieConMasPagos(string trimestre)
+        {
+            using (var command = new SqlCommand("DECLARE @Quarter varchar(100);" +
+                                                "Set @Quarter = @TRIMESTRE; " +
+                                                "SELECT TOP 5 CLIENTE_ID, CLIENTE_APELLIDO + ' ' +CLIENTE_NOMBRE,'',0, SUM(pago_importe), CLIENTE_DNI "+
+		                                                       " FROM LOS_PUBERTOS.Pago "+
+		                                                       " JOIN LOS_PUBERTOS.PF ON pago_id = pf_pago "+
+		                                                       " JOIN LOS_PUBERTOS.Factura ON pf_factura = fact_id "+
+		                                                       " JOIN LOS_PUBERTOS.CLIENTE ON fact_cliente = CLIENTE_ID "+
+		                                                       " WHERE CONCAT(DATEPART ( YEAR , pago_fecha ),CONCAT('-T:',DATEPART ( QUARTER , pago_fecha ))) LIKE  @QUARTER "+
+                                                               " GROUP BY CLIENTE_ID,CLIENTE_APELLIDO + ' ' +CLIENTE_NOMBRE, CLIENTE_DNI  " +
+		                                                       " ORDER BY SUM(pago_importe) DESC"))
+            {
+                command.Parameters.Add("@TRIMESTRE", SqlDbType.VarChar).Value = trimestre;
+
+                return GetRecords(command);
+            }
+        }
         public override ListEstadistico PopulateRecord(SqlDataReader reader)
         {
             ListEstadistico objListEstadistico = new ListEstadistico();
@@ -68,8 +86,11 @@ namespace DAO.DAOImp
                     if (!reader.IsDBNull(4))
                         objListEstadistico.total = (float)reader.GetDouble(4);
                 }
+                else if (!reader.IsDBNull(4))
+                    objListEstadistico.dni = reader.GetInt32(4);
 
             }
+
             return objListEstadistico;
         }
 

@@ -60,11 +60,22 @@ namespace Business
             facturaList.ForEach(x => { listEstadisticoDTO.Add(converterListEstadisticoToDTO(x)); });
             return listEstadisticoDTO;
         }
+        public List<ListStadisticoDTO> getClieConMasPagos(string trimestre)
+        {
+            ListEstadisticoDAO listEstadisticoDAO = new ListEstadisticoDAO();
+
+            List<ListStadisticoDTO> listEstadisticoDTO = new List<ListStadisticoDTO>();
+            List<ListEstadistico> facturaList = new List<ListEstadistico>();
+            facturaList = listEstadisticoDAO.getAllClieConMasPagos(trimestre).ToList();
+            facturaList.ForEach(x => { listEstadisticoDTO.Add(converterListEstadisticoToDTO(x)); });
+            return listEstadisticoDTO;
+        }
         public ListStadisticoDTO converterListEstadisticoToDTO(ListEstadistico listEstadistico)
         {
             ListStadisticoDTO listEstadisticoDTO = new ListStadisticoDTO();
             listEstadisticoDTO.id = listEstadistico.id;
             listEstadisticoDTO.total = listEstadistico.total;
+            listEstadisticoDTO.dni = listEstadistico.dni;
             listEstadisticoDTO.cuit = listEstadistico.cuit;
             listEstadisticoDTO.nombre = listEstadistico.nombre;
             return listEstadisticoDTO;
