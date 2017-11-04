@@ -59,11 +59,11 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.sucursalMenuListBox);
             this.Controls.Add(this.btnAccept);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MenuSucursalForm";
-            this.Text = "MenuSucursalForm";
-            this.ResumeLayout(false);
-
+            this.Text = "Menu de sucursal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuSucursalForm_FormClosing);
+            this.ResumeLayout(false);
 
         }
 

@@ -156,8 +156,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.comboBoxFormaDePago);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "RegistroDePagoForm";
-            this.Text = "RegistroDePagoForm";
+            this.Text = "Registro de pago";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegistroDePagoForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFacturas)).EndInit();
             this.groupBox1.ResumeLayout(false);

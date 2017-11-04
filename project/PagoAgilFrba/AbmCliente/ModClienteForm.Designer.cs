@@ -39,9 +39,9 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dataGVClientes = new System.Windows.Forms.DataGridView();
-            this.btnAlta = new System.Windows.Forms.Button();
-            this.BajarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ModificarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.BajarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnAlta = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVClientes)).BeginInit();
             this.SuspendLayout();
@@ -143,6 +143,20 @@
             this.dataGVClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVClientes_CellContentClick);
             this.dataGVClientes.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGVClientes_ColumnAdded);
             // 
+            // ModificarColumn
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            this.ModificarColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ModificarColumn.HeaderText = "Modificar";
+            this.ModificarColumn.Name = "ModificarColumn";
+            this.ModificarColumn.ReadOnly = true;
+            // 
+            // BajarColumn
+            // 
+            this.BajarColumn.HeaderText = "Bajar";
+            this.BajarColumn.Name = "BajarColumn";
+            this.BajarColumn.ReadOnly = true;
+            // 
             // btnAlta
             // 
             this.btnAlta.Location = new System.Drawing.Point(12, 424);
@@ -152,20 +166,6 @@
             this.btnAlta.Text = "Alta";
             this.btnAlta.UseVisualStyleBackColor = true;
             this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
-            // 
-            // BajarColumn
-            // 
-            this.BajarColumn.HeaderText = "Bajar";
-            this.BajarColumn.Name = "BajarColumn";
-            this.BajarColumn.ReadOnly = true;
-            // 
-            // ModificarColumn
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            this.ModificarColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ModificarColumn.HeaderText = "Modificar";
-            this.ModificarColumn.Name = "ModificarColumn";
-            this.ModificarColumn.ReadOnly = true;
             // 
             // ModClienteForm
             // 
@@ -177,8 +177,9 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ModClienteForm";
-            this.Text = "ModClienteForm";
+            this.Text = "Modificacion de cliente + alta";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModClienteForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

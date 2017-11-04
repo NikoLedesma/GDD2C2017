@@ -53,8 +53,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePickerNacimiento = new System.Windows.Forms.DateTimePicker();
             this.groupBoxHabilitacion = new System.Windows.Forms.GroupBox();
-            this.radioBtnHabilitado = new System.Windows.Forms.RadioButton();
             this.radioBtnDeshabilitado = new System.Windows.Forms.RadioButton();
+            this.radioBtnHabilitado = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBoxHabilitacion.SuspendLayout();
             this.SuspendLayout();
@@ -273,17 +273,6 @@
             this.groupBoxHabilitacion.TabStop = false;
             this.groupBoxHabilitacion.Text = "Habilitacion de cliente";
             // 
-            // radioBtnHabilitado
-            // 
-            this.radioBtnHabilitado.AutoSize = true;
-            this.radioBtnHabilitado.Location = new System.Drawing.Point(134, 29);
-            this.radioBtnHabilitado.Name = "radioBtnHabilitado";
-            this.radioBtnHabilitado.Size = new System.Drawing.Size(72, 17);
-            this.radioBtnHabilitado.TabIndex = 0;
-            this.radioBtnHabilitado.TabStop = true;
-            this.radioBtnHabilitado.Text = "Habilitado";
-            this.radioBtnHabilitado.UseVisualStyleBackColor = true;
-            // 
             // radioBtnDeshabilitado
             // 
             this.radioBtnDeshabilitado.AutoSize = true;
@@ -294,6 +283,17 @@
             this.radioBtnDeshabilitado.TabStop = true;
             this.radioBtnDeshabilitado.Text = "Deshabilitado";
             this.radioBtnDeshabilitado.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnHabilitado
+            // 
+            this.radioBtnHabilitado.AutoSize = true;
+            this.radioBtnHabilitado.Location = new System.Drawing.Point(134, 29);
+            this.radioBtnHabilitado.Name = "radioBtnHabilitado";
+            this.radioBtnHabilitado.Size = new System.Drawing.Size(72, 17);
+            this.radioBtnHabilitado.TabIndex = 0;
+            this.radioBtnHabilitado.TabStop = true;
+            this.radioBtnHabilitado.Text = "Habilitado";
+            this.radioBtnHabilitado.UseVisualStyleBackColor = true;
             // 
             // AltaClienteForm
             // 
@@ -317,6 +317,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AltaClienteForm";
             this.Text = "AltaClienteForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaClienteForm_FormClosing);

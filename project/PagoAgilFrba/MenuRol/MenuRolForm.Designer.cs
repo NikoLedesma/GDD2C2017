@@ -57,11 +57,11 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.rolMenuListBox);
             this.Controls.Add(this.btnAccept);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MenuRolForm";
-            this.Text = "MenuRolForm";
-            this.ResumeLayout(false);
-
+            this.Text = "Menu de Rol";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuRolForm_FormClosing);
+            this.ResumeLayout(false);
 
         }
 

@@ -44,10 +44,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 469);
+            this.ClientSize = new System.Drawing.Size(334, 429);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MenuPrincipalForm";
-            this.Text = "MenuPrincipalForm";
+            this.Text = "Menu seleccion";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuPrincipalForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

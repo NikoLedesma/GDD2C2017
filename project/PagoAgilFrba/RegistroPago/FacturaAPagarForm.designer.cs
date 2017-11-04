@@ -244,8 +244,9 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBuscar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FacturaAPagarForm";
-            this.Text = "Registro de pago";
+            this.Text = "Agregar factura al pago";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegistroPagoForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

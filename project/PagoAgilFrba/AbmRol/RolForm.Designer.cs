@@ -143,8 +143,9 @@
             this.ClientSize = new System.Drawing.Size(810, 547);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAgreeRol);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "RolForm";
-            this.Text = "RolForm";
+            this.Text = "Modificacion de rol + alta";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RolForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

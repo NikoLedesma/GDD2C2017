@@ -113,6 +113,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCambiarNombreRol);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CambiarNombreForm";
             this.Text = "Cambio de nombre de rol";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CambiarNombreForm_FormClosing);

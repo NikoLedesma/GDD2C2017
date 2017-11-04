@@ -89,8 +89,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRolName);
             this.Controls.Add(this.btnAddRol);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AltaRolForm";
-            this.Text = "AltaRolForm";
+            this.Text = "Creacion de rol";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaRolForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
