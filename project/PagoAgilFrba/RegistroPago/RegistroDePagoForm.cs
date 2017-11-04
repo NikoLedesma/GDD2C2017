@@ -89,6 +89,7 @@ namespace PagoAgilFrba.RegistroPago
             registroDePagoDTO.facturasDTO.Add(facturaDTO);
             float importe = 0;
             registroDePagoDTO.facturasDTO.ForEach(x => { importe += x.total; });
+            registroDePagoDTO.importe = importe;
             txtImporte.Text = importe.ToString();
             populateDataGridView();
         }
@@ -99,7 +100,12 @@ namespace PagoAgilFrba.RegistroPago
             if (Validator.isSelectedEliminarColumn(dataGridViewFacturas, e.ColumnIndex))
             {
                 FacturaDTO facturaDTO = registroDePagoDTO.facturasDTO[e.RowIndex];
-                registroDePagoDTO.facturasDTO.Remove(facturaDTO);
+                dataGridView.Rows.RemoveAt(e.RowIndex);
+                //registroDePagoDTO.facturasDTO.RemoveAt(e.RowIndex);
+                float importe = 0;
+                registroDePagoDTO.facturasDTO.ForEach(x => { importe += x.total; });
+                registroDePagoDTO.importe = importe;
+                txtImporte.Text = importe.ToString();
             }
         }
 

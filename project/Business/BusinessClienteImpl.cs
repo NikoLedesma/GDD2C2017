@@ -59,7 +59,7 @@ namespace Business
         {
             ClienteDAO clienteDAO = new ClienteDAO();
             int res = clienteDAO.getMailCount(mail);
-            return  res==1? true : false;
+            return  res >= 1? true : false;
         }
 
 

@@ -45,7 +45,7 @@ namespace PagoAgilFrba
         {
             if (anyEmptyField())
             {
-                usuarioDTO = new UsuarioDTO(this.txtBoxUsername.Text, this.txtBoxPassword.Text);
+                usuarioDTO = new UsuarioDTO(this.txtBoxUsername.Text, GlobalUtils.GetSHA256(this.txtBoxPassword.Text));
                 loginFormDTO = businessLogin.checkLogin(usuarioDTO);
                 if (loginFormDTO.isLoginSuccessful())
                 {
