@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace PagoAgilFrba.UTILS
 {
@@ -13,6 +14,17 @@ namespace PagoAgilFrba.UTILS
             public static UsuarioDTO usuarioGlobalDTO { get; set; }
             public static RolDTO rolGlobalDTO { get; set; }
             public static SucursalDTO sucursalGlobalDTO{ get; set; }
+
+            public static DateTime getHoraDelSistemaDateTime()
+            {
+                string horaDelSistema = ConfigurationManager.AppSettings["fechaSistema"];
+                DateTime myDate = DateTime.ParseExact(horaDelSistema, "yyyy-MM-ddTHH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                return myDate;
+            }
+
+            public static String getHoraDelSistemaString() {
+                return getHoraDelSistemaDateTime().ToString();
+            }
 
             public static String GetSHA256(String input) {
                 SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();

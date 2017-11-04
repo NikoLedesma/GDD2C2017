@@ -1,6 +1,7 @@
 ﻿using Business;
 using DTO;
 using DTO.Enums;
+using PagoAgilFrba.UTILS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,9 +22,10 @@ namespace PagoAgilFrba.RegistroPago
         private BusinessRegistroDePagoImpl businessRegistroDePago;
         private FacturaDTO facturaDTO;
         private static String MSG_FACTURA_ALREADY_PAID = "LA FACTURA YA FUE PAGADA";
-        private static String MSG_FACTURA_NOT_EXIST = "NO EXISTE LA CONSULTA, VUELVA A CONSULTAR";
+        private static String MSG_FACTURA_NOT_EXIST = "NO EXISTE LA FACTURA, VUELVA A CONSULTAR";
         private static String MSG_FACTURA_ALREADY_ADDED = "LA FACTURA N°{0} YA FUE AGREGADA";
-
+        private static String MSG_FACTURA_EXIST_WITH_EMPRESA_DISABLED = "LA EMPRESA DE LA FACTURA ESTA DESHABILITADA";
+        private static String MSG_FACTURA_VENCIDA = "LA FECHA DE FACTURA ESTA VENCIDA";
         public FacturaAPagarForm(RegistroDePagoForm form)
         {
             this.prevForm = form;
@@ -44,8 +46,15 @@ namespace PagoAgilFrba.RegistroPago
 
             if (!prevForm.alreadyExistsFacturaDTO(facturaDTO))
             {
-                prevForm.addFacturaDTOToPay(facturaDTO);
-                this.Close();
+                if (Validator.dateIsLessThanSystemDate(facturaDTO.fechaDeVencimiento))
+                {
+                    prevForm.addFacturaDTOToPay(facturaDTO);
+                    this.Close();
+                }
+                else {
+
+                    MessageBox.Show(MSG_FACTURA_VENCIDA);
+                }
             }
             else {
                 MessageBox.Show(String.Format(MSG_FACTURA_ALREADY_ADDED, facturaDTO.nroFact));
@@ -61,6 +70,7 @@ namespace PagoAgilFrba.RegistroPago
                 txtNroFactura.Text = facturaDTO.nroFact.ToString();
                 txtEmpresa.Text = facturaDTO.empresa.ToString();
                 txtCliente.Text = facturaDTO.cliente.ToString();
+                txtFechaDeCobro.Text = GlobalUtils.getHoraDelSistemaString();
                 txtFechaVencimiento.Text = facturaDTO.fechaDeVencimiento.ToString();
                 txtImporte.Text = facturaDTO.total.ToString();
                 txtSucursal.Text = facturaDTO.total.ToString();
@@ -74,7 +84,10 @@ namespace PagoAgilFrba.RegistroPago
             {
                 MessageBox.Show(MSG_FACTURA_NOT_EXIST);
             }
-            //TODO: OTRO ELSE PARA VER SI LA EMPRESA ESTA HABILITADA      
+            else if (verifiedFactura == ResultCheckFactura.EXIST_FACTURA_WITH_EMPRESA_DISABLED)
+            {
+                MessageBox.Show(MSG_FACTURA_EXIST_WITH_EMPRESA_DISABLED);
+            }
         }
     
     }

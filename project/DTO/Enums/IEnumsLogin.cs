@@ -19,7 +19,8 @@ namespace DTO.Enums
     {
         NOT_EXIST_FACTURA = 1,
         EXIST_FACTURA_NO_PAGADA = 2,
-        EXIST_FACTURA_PAGADA = 3
+        EXIST_FACTURA_PAGADA = 3,
+        EXIST_FACTURA_WITH_EMPRESA_DISABLED = 4
     };
 
     public interface IEnumsLogin

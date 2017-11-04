@@ -249,14 +249,6 @@ namespace PagoAgilFrba.AbmRol
             {
                 CambiarNombreForm cambiarNombreDeRol = new CambiarNombreForm(this, rolTreeView.SelectedNode.Text);
                 cambiarNombreDeRol.Show();
-
-                /*TreeNode parent = getParent(rolTreeView.SelectedNode);
-                RolDTO rolDTO = new RolDTO(parent.Text, true);
-                List<RolDTO> listRolDTO = businessRolImpl.enableRol(rolDTO);
-                rolTreeView.Nodes.Clear();
-                funcionalidadTreeView.Nodes.Clear();
-                listRolDTO.ForEach(rolDTOSource => populateRolTreeView(rolDTOSource));
-                btnAddRol.Enabled = false;*/
             }
         }
 

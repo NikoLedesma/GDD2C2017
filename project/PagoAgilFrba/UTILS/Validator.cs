@@ -101,6 +101,11 @@ namespace PagoAgilFrba.UTILS
             return true;
         }
 
+
+        public static Boolean dateIsLessThanSystemDate(DateTime dateTime) {
+            return DateTime.Compare(dateTime, GlobalUtils.getHoraDelSistemaDateTime()) <= 0;
+        }
+
     
     }
 
