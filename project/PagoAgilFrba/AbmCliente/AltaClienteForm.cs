@@ -23,7 +23,7 @@ namespace PagoAgilFrba.AbmCliente
         private static String MSG_ERROR_SAVE="ERROR:NO SE PUDO DAR DE ALTA A UN CLIENTE" ; 
         private static String MSG_ERROR_UPDATE="ERROR:NO SE PUDO ACTUALIZAR AL CLIENTE";
         private static String ALTA_TITLE = "ALTA DE CLIENTE";
-        private static String MODIF_TITLE = "MODIFICACION DE CLIENTE(ID:{0})";
+        private static String MODIF_TITLE = "MODIFICACION DE CLIENTE"; //(ID:{0})";
         private static String MSG_SUCCESS_SAVE = "EL CLIENTE SE DIO DE ALTA";
         private static String MSG_SUCCESS_UPDATE = "EL CLIENTE SE MODIFICO";
         private static String MSG_EMAI_ALREADY_EXISTS= "EL EMAIL INGRESADO YA EXISTE, INTENTE INGRESANDO OTRO";
@@ -45,12 +45,12 @@ namespace PagoAgilFrba.AbmCliente
 
             if (formMode == EnumFormMode.MODE_MODIFICACION)
             {
-                this.Text = String.Format(MODIF_TITLE, cl.id);
+                //this.Text = String.Format(MODIF_TITLE, cl.id);
+                this.Text = MODIF_TITLE;
                 this.clienteDTOToUpdateOrSave = cl;
                 populateAllInputsToModify(cl);
             }
         }
-
 
         
         private void btnAceptar_Click(object sender, EventArgs e)

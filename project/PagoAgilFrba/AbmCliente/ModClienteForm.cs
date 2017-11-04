@@ -101,5 +101,13 @@ namespace PagoAgilFrba.AbmCliente
             form.Show();
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Clear();
+            txtDNI.Clear();
+            txtApellido.Clear();
+            dataGVClientes.Rows.Clear();
+        }
+
     }
 }

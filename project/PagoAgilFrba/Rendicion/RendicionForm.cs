@@ -73,7 +73,7 @@ namespace PagoAgilFrba.Rendicion
             }
             else
             {
-                MessageBox.Show("No hay empresas habilitadas que realicen rendiciones este dia");
+                MessageBox.Show("No hay empresas habilitadas que realicen rendiciones este dia - Por favor verifique la fecha de rendicion de la empresa seleccionada");
             }
             
  
