@@ -41,7 +41,7 @@ namespace PagoAgilFrba.Rendicion
             
             this.comboBox1.DataSource = listEmpresaDTO;
             this.comboBox1.ValueMember = "id";
-            this.comboBox1.DisplayMember = "empresa";
+            this.comboBox1.DisplayMember = "nombre";
 
         }
       
