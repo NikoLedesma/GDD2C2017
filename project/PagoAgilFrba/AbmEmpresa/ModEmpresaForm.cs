@@ -92,7 +92,7 @@ namespace PagoAgilFrba.AbmEmpresa
                 }
                 else
                 {
-                    MessageBox.Show("LA EMPRESA ESTA DESHABILITADA");
+                    MessageBox.Show("NO ESTA HABILITADO");
                 }
             }
 

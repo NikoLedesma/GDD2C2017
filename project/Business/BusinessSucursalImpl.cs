@@ -71,7 +71,7 @@ namespace Business
 
         public int deleteSucursal(SucursalDTO sucursalDTO)
         {
-            sucursalDTO.habilitado = true; //va true porq en base de datos esta como inactiva el campo
+            sucursalDTO.habilitado = false; //va true porq en base de datos esta como inactiva el campo
             SucursalDAO sucursalDAO = new SucursalDAO();
             Sucursal sucursal = converterSucursalDTOToSucursal(sucursalDTO);
             int a = sucursalDAO.deleteSucursal(sucursal);

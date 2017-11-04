@@ -75,7 +75,7 @@ namespace Business
 
         public int deleteEmpresa(EmpresaDTO empresaDTO)
         {
-            empresaDTO.habilitado = true; //va true porq en base de datos esta como inactiva el campo
+            empresaDTO.habilitado = false; //va true porq en base de datos esta como inactiva el campo
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = converterEmpresaDTOToEmpresa(empresaDTO);
             int a = empresaDAO.deleteEmpresa(empresa);

@@ -149,8 +149,8 @@ namespace PagoAgilFrba.AbmEmpresa
             txtDireccion.Text = cl.direccion;
             txtCuit.Text = cl.cuit;
       //      dateTimePicker1.Value = cl.fechaRendicion;
-            //faltaria ver si se puede modificar el rubro de una empresa
-            if (cl.habilitado==false) //lo pongo asi porq figura inactivo
+            
+            if (cl.habilitado) 
             {
                 disabledRadioButtons();
             }
@@ -163,8 +163,8 @@ namespace PagoAgilFrba.AbmEmpresa
         private void disabledRadioButtons()
         {
             radioBtnHabilitado.Select();
-            radioBtnHabilitado.Enabled = true;
-            radioBtnDeshabilitado.Enabled = true;
+            radioBtnHabilitado.Enabled = false;
+            radioBtnDeshabilitado.Enabled = false;
         }
 
         private void AltaEmpresaForm_FormClosing(Object sender, FormClosingEventArgs e)

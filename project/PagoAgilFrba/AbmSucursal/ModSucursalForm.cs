@@ -95,7 +95,7 @@ namespace PagoAgilFrba.AbmSucursal
                 }
                 else
                 {
-                    MessageBox.Show("La sucursal no existe (ya habia sido eliminada)");
+                    MessageBox.Show("NO ESTA HABILITADO");
                 }
                 
             }
