@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DTO.Enums;
+using PagoAgilFrba.UTILS;
+
 namespace PagoAgilFrba.AbmFactura
 {
     public partial class AltaFacturaForm : Form
@@ -117,7 +119,7 @@ namespace PagoAgilFrba.AbmFactura
 
 
             facturaDTOToUpdateOrSave.items = dtItems;
-           populateDataGridView(listItemDTOs);
+            populateDataGridView(listItemDTOs);
            /* DataTable dt = new DataTable();
             dt.Columns.Add("Monto", typeof(float));
             dt.Columns.Add("Cantidad", typeof(int));
@@ -169,77 +171,79 @@ namespace PagoAgilFrba.AbmFactura
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            FacturaDTO facturaDTO = new FacturaDTO();
-            facturaDTO.cliente = (int)this.comboBox1.SelectedValue; //txtCliente.Text;
-            facturaDTO.empresa = (int)this.comboBox2.SelectedValue;//txtEmpresa.Text; //falta ponerlo acotado
-            facturaDTO.nroFact = Int32.Parse(txtNroFact.Text);
-            facturaDTO.fechaDeAlta = dateTimePickerAlta.Value;
-            facturaDTO.fechaDeVencimiento = dateTimePickerVencimiento.Value;
-            facturaDTO.total = Convert.ToSingle(txtTotal.Text);
-            facturaDTO.habilitado = radioBtnHabilitado.Checked;
-
-            //FALTA AGREGAR LA GRILLA DE LOS TOTAL ITEMS MONTO Y CANTIDAD
-
-            
-            DataTable dt = new DataTable();
-            dt.Columns.Add("monto", typeof(float));
-            dt.Columns.Add("cantidad", typeof(int));
-            dt.Columns.Add("id", typeof(int));
-            
-
-
-            foreach (DataGridViewRow row in this.dataGridView1.Rows)
+            if (validateFields())
             {
-                
-                var cell = row.Cells[0].Value;
+                FacturaDTO facturaDTO = new FacturaDTO();
+                facturaDTO.cliente = (int)this.comboBox1.SelectedValue; //txtCliente.Text;
+                facturaDTO.empresa = (int)this.comboBox2.SelectedValue;//txtEmpresa.Text; //falta ponerlo acotado
+                facturaDTO.nroFact = Int32.Parse(txtNroFact.Text);
+                facturaDTO.fechaDeAlta = dateTimePickerAlta.Value;
+                facturaDTO.fechaDeVencimiento = dateTimePickerVencimiento.Value;
+                facturaDTO.total = Convert.ToSingle(txtTotal.Text);
+                facturaDTO.habilitado = radioBtnHabilitado.Checked;
 
-                if (cell != null)
+                //FALTA AGREGAR LA GRILLA DE LOS TOTAL ITEMS MONTO Y CANTIDAD
+                DataTable dt = new DataTable();
+                dt.Columns.Add("monto", typeof(float));
+                dt.Columns.Add("cantidad", typeof(int));
+                dt.Columns.Add("id", typeof(int));
+
+                foreach (DataGridViewRow row in this.dataGridView1.Rows)
                 {
 
-                    float monto = float.Parse(row.Cells[0].Value.ToString());
-                    int cantidad = int.Parse(row.Cells[1].Value.ToString());
-                    dt.Rows.Add(monto, cantidad);
-                }
+                    var cell = row.Cells[0].Value;
 
-            }
-            facturaDTO.items = dt;
-            
-
-            if (formMode == EnumFormMode.MODE_ALTA)
-            {
-                try
-                {
-                    int resu = businessFacturaImpl.saveFactura(facturaDTO);
-                    MessageBox.Show(MSG_SUCCESS_SAVE);
-                    this.Close();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show(MSG_ERROR_SAVE);
-                }
-            }
-
-            if (formMode == EnumFormMode.MODE_MODIFICACION)
-            {
-                try
-                {
-                    facturaDTO.id = facturaDTOToUpdateOrSave.id;
-                    DataRowCollection items = facturaDTO.items.Rows;
-                    foreach (DataRow row in items)
+                    if (cell != null)
                     {
-                        int currentIndex = items.IndexOf(row);
-                        row["id"] = facturaDTOToUpdateOrSave.items.Rows[currentIndex]["id"];
-                        //MessageBox.Show("Agrego al DTO el id:" + row["id"]);
+
+                        float monto = float.Parse(row.Cells[0].Value.ToString());
+                        int cantidad = int.Parse(row.Cells[1].Value.ToString());
+                        dt.Rows.Add(monto, cantidad);
                     }
-                    int resu = businessFacturaImpl.saveFactura(facturaDTO);
-                    MessageBox.Show(MSG_SUCCESS_UPDATE);
-                    this.Close();
+
                 }
-                catch (Exception)
+                facturaDTO.items = dt;
+
+
+                if (formMode == EnumFormMode.MODE_ALTA)
                 {
-                    MessageBox.Show(MSG_ERROR_UPDATE);
+                    try
+                    {
+                        int resu = businessFacturaImpl.saveFactura(facturaDTO);
+                        MessageBox.Show(MSG_SUCCESS_SAVE);
+                        this.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(MSG_ERROR_SAVE);
+                    }
                 }
+
+                if (formMode == EnumFormMode.MODE_MODIFICACION)
+                {
+                    try
+                    {
+                        facturaDTO.id = facturaDTOToUpdateOrSave.id;
+                        DataRowCollection items = facturaDTO.items.Rows;
+                        foreach (DataRow row in items)
+                        {
+                            int currentIndex = items.IndexOf(row);
+                            row["id"] = facturaDTOToUpdateOrSave.items.Rows[currentIndex]["id"];
+                            //MessageBox.Show("Agrego al DTO el id:" + row["id"]);
+                        }
+                        int resu = businessFacturaImpl.saveFactura(facturaDTO);
+                        MessageBox.Show(MSG_SUCCESS_UPDATE);
+                        this.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(MSG_ERROR_UPDATE);
+                    }
+                }
+
             }
+
+
         }
         /*private void disabledRadioButtons()
         {
@@ -247,6 +251,30 @@ namespace PagoAgilFrba.AbmFactura
             radioBtnHabilitado.Enabled = false;
             radioBtnDeshabilitado.Enabled = false;
         }*/
+
+        private Boolean validateFields()
+        {
+            Boolean resu = validateEmptyFields() && Validator.validatePositiveIntegerTextBoxBool(txtTotal, "EL TOTAL ES NEGATIVO");
+            return resu;
+        }
+
+        private Boolean validateEmptyFields() 
+        {
+            Boolean result = Validator.validateEmptyTextBox(txtNroFact, "NRO FACTURA")
+                                && Validator.validateEmptyTextBox(txtTotal, "TOTAL");
+            return result;
+        }
+
+
+
+        private void AltaFacturaForm_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            this.prevForm.Show();
+        }
+
+
+
+
 
     }
 

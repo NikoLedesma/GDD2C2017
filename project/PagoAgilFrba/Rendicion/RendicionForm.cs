@@ -25,7 +25,7 @@ namespace PagoAgilFrba.Rendicion
         private List<FacturaDTO> filtroRendicionesDTOs;
         private DataTable facturasID;
         
-        private static String MSG_EMAI_ALREADY_EXISTS = "LA FECHA DE RENDICION NO COINCIDE CON LA DE EMPRESA";
+        //private static String MSG_EMAI_ALREADY_EXISTS = "LA FECHA DE RENDICION NO COINCIDE CON LA DE EMPRESA";
 
         public RendicionForm(Form form)
         {

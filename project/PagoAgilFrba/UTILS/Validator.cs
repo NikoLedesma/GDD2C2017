@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -54,7 +55,7 @@ namespace PagoAgilFrba.UTILS
             return number;
         }
 
-        public static Boolean validatePositiveIntegerTextBox(TextBox textBox, String message,String sd)
+        public static Boolean validatePositiveIntegerTextBoxBool(TextBox textBox, String message)
         {
             Boolean result = true;
             Int32 number = -1;
@@ -62,7 +63,7 @@ namespace PagoAgilFrba.UTILS
             {
                 if (int.TryParse(textBox.Text, out number))
                 {
-                    if (number < 0)
+                    if (number <= 0)
                     {
                         MessageBox.Show(String.Format(MSG_INTEGERP_VALIDATION, message));
                         result = false;
@@ -91,7 +92,7 @@ namespace PagoAgilFrba.UTILS
             }
         }
 
-        public static Boolean validateEmptyTextBox(TextBox textBox,String message)
+        public static Boolean validateEmptyTextBox(TextBox textBox, String message)
         {
             if (string.IsNullOrWhiteSpace(textBox.Text))
             {
@@ -102,13 +103,16 @@ namespace PagoAgilFrba.UTILS
         }
 
 
-        public static Boolean dateIsLessThanSystemDate(DateTime dateTime) {
+        public static Boolean dateIsLessThanSystemDate(DateTime dateTime)
+        {
             DateTime systemTime = GlobalUtils.getHoraDelSistemaDateTime();
             int res = DateTime.Compare(dateTime, systemTime);
             return res <= 0;
         }
 
-    
+
     }
 
 }
+
+

@@ -235,6 +235,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaFacturaForm";
             this.Text = "Alta Factura";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaFacturaForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBoxHabilitacion.ResumeLayout(false);
             this.groupBoxHabilitacion.PerformLayout();
