@@ -26,7 +26,7 @@ namespace PagoAgilFrba.AbmEmpresa
         private static String MSG_ERROR_SAVE = "ERROR:NO SE PUDO DAR DE ALTA A LA EMPRESA";
         private static String MSG_ERROR_UPDATE = "ERROR:NO SE PUDO ACTUALIZAR A LA EMPRESA";
         private static String ALTA_TITLE = "ALTA DE EMPRESA";
-        private static String MODIF_TITLE = "MODIFICACION DE EMPRESA(ID:{0})";
+        private static String MODIF_TITLE = "MODIFICACION DE EMPRESA";//(ID:{0})";
         private static String MSG_SUCCESS_SAVE = "LA EMPRESA SE DIO DE ALTA";
         private static String MSG_SUCCESS_UPDATE = "LA EMPRESA SE MODIFICO";
 
@@ -58,7 +58,8 @@ namespace PagoAgilFrba.AbmEmpresa
 
             if (formMode == EnumFormMode.MODE_MODIFICACION)
             {
-                this.Text = String.Format(MODIF_TITLE, cl.id);
+                //this.Text = String.Format(MODIF_TITLE, cl.id);
+                this.Text = MODIF_TITLE;
                 this.empDTOModifOAlta = cl;
                 ponerAllInputsToModify(cl); //pongo a la empresa seleccionada para modif
             }
@@ -83,7 +84,7 @@ namespace PagoAgilFrba.AbmEmpresa
                     try
                     {
                         int resu = businessEmpresaImpl.saveEmpresa(empDTOModifOAlta);
-                        if (resu == 1)
+                        if (resu >= 1)
                         {
                             MessageBox.Show(MSG_SUCCESS_SAVE);
                         }
@@ -128,7 +129,6 @@ namespace PagoAgilFrba.AbmEmpresa
             && Validator.validateEmptyTextBox(txtCuit, "CUIT");
             return result;
         }
-
         
         private EmpresaDTO empresaDTOAltaOModif()
         {
@@ -138,10 +138,8 @@ namespace PagoAgilFrba.AbmEmpresa
             empDTOModifOAlta.rubro = (int)this.comboBox1.SelectedValue; //txtRubro.Text;
             empDTOModifOAlta.habilitado = radioBtnHabilitado.Checked;
             empDTOModifOAlta.fechaRendicion = dateTimePicker1.Value;
-
             return empDTOModifOAlta;
         }
-
 
         private void ponerAllInputsToModify(EmpresaDTO cl)
         {
@@ -149,7 +147,6 @@ namespace PagoAgilFrba.AbmEmpresa
             txtDireccion.Text = cl.direccion;
             txtCuit.Text = cl.cuit;
       //      dateTimePicker1.Value = cl.fechaRendicion;
-            
             if (cl.habilitado) 
             {
                 disabledRadioButtons();
