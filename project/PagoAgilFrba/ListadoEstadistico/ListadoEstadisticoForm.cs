@@ -51,6 +51,13 @@ namespace PagoAgilFrba.ListadoEstadistico
         {
             string trimestre =(string)this.comboBox1.SelectedItem;
             List<ListStadisticoDTO> listStadistico;
+            this.dataGridView1.Rows.Clear();
+            this.dataGridView1.Refresh();
+            //trimestre = "%" + trimestre + "%";
+            //MessageBox.Show("trimestre:" + trimestre + ".");
+            /*DataTable dt =  this.dataGridView1.Rows;
+            if (dt != null)
+                dt.Clear();*/
             if (!String.IsNullOrEmpty(trimestre))
             {
                 listStadistico = businessFacturaImpl.getPorcFactCobradas(trimestre);
@@ -66,8 +73,10 @@ namespace PagoAgilFrba.ListadoEstadistico
         private DataGridViewRow convertertoRow(ListStadisticoDTO item)
         {
             DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-            row.Cells[0].Value = item.nombre;
-            row.Cells[1].Value = item.total;
+            row.Cells[0].Value = item.id;
+            row.Cells[1].Value = item.nombre;
+            row.Cells[2].Value = item.cuit;
+            row.Cells[3].Value = item.total;
             return row;
         }
     }

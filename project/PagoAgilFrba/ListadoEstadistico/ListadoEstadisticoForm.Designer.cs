@@ -46,7 +46,9 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.empresaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PorcFacturasCobradas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
@@ -216,12 +218,16 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.empresaID,
             this.Empresa,
+            this.cuit,
             this.PorcFacturasCobradas});
             this.dataGridView1.Location = new System.Drawing.Point(21, 94);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(623, 320);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -237,15 +243,29 @@
             this.tabControl1.Size = new System.Drawing.Size(673, 456);
             this.tabControl1.TabIndex = 2;
             // 
+            // empresaID
+            // 
+            this.empresaID.HeaderText = "Empresa ID";
+            this.empresaID.Name = "empresaID";
+            this.empresaID.ReadOnly = true;
+            // 
             // Empresa
             // 
             this.Empresa.HeaderText = "Empresa";
             this.Empresa.Name = "Empresa";
+            this.Empresa.ReadOnly = true;
+            // 
+            // cuit
+            // 
+            this.cuit.HeaderText = "Cuit";
+            this.cuit.Name = "cuit";
+            this.cuit.ReadOnly = true;
             // 
             // PorcFacturasCobradas
             // 
-            this.PorcFacturasCobradas.HeaderText = "Porc. Facturas Pagadas";
+            this.PorcFacturasCobradas.HeaderText = "Porc. Facturas Pagadas %";
             this.PorcFacturasCobradas.Name = "PorcFacturasCobradas";
+            this.PorcFacturasCobradas.ReadOnly = true;
             // 
             // ListadoEstadisticoForm
             // 
@@ -294,7 +314,9 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empresaID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cuit;
         private System.Windows.Forms.DataGridViewTextBoxColumn PorcFacturasCobradas;
     }
 }
