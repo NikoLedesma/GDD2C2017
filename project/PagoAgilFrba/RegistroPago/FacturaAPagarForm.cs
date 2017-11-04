@@ -73,7 +73,7 @@ namespace PagoAgilFrba.RegistroPago
                 txtFechaDeCobro.Text = GlobalUtils.getHoraDelSistemaString();
                 txtFechaVencimiento.Text = facturaDTO.fechaDeVencimiento.ToString();
                 txtImporte.Text = facturaDTO.total.ToString();
-                txtSucursal.Text = facturaDTO.total.ToString();
+                txtSucursal.Text = GlobalUtils.sucursalGlobalDTO.nombre;
                 btnAgregar.Enabled = true;
             }
             else if(verifiedFactura == ResultCheckFactura.EXIST_FACTURA_PAGADA)
