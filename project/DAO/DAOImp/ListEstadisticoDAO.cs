@@ -16,10 +16,10 @@ namespace DAO.DAOImp
         {
             using (var command = new SqlCommand("DECLARE @Quarter varchar(100);"+
                                                 "Set @Quarter = @TRIMESTRE; " +
-                                                "select	FactPagadas.fact_empresa,"+ 
+                                                "select  TOP 5 	FactPagadas.fact_empresa," + 
 		                                                "empr_nombre, "+
 		                                                "empr_cuit, "+
-		                                                "count(*)*100/ (select count(*) from LOS_PUBERTOS.Factura as Fact where Fact.fact_empresa = FactPagadas.fact_empresa AND CONCAT(DATEPART ( YEAR , Fact.fact_fecha_vencimiento ),CONCAT('-T:',DATEPART ( QUARTER , Fact.fact_fecha_vencimiento ))) LIKE @QUARTER  group by Fact.fact_empresa) "+
+		                                                "count(*)*100/ (select count(*) from LOS_PUBERTOS.Factura as Fact where Fact.fact_empresa = FactPagadas.fact_empresa AND CONCAT(DATEPART ( YEAR , Fact.fact_fecha_vencimiento ),CONCAT('-T:',DATEPART ( QUARTER , Fact.fact_fecha_vencimiento ))) LIKE @QUARTER  group by Fact.fact_empresa),0 "+
 		                                                "from LOS_PUBERTOS.Pago "+
 			                                                 "JOIN LOS_PUBERTOS.PF ON Pago.pago_id = pf.pf_pago "+
 			                                                 "JOIN LOS_PUBERTOS.Factura as FactPagadas ON pf_factura = fact_id "+
@@ -29,6 +29,25 @@ namespace DAO.DAOImp
             {
                 command.Parameters.Add("@TRIMESTRE", SqlDbType.VarChar).Value = trimestre;
                
+                return GetRecords(command);
+            }
+        }
+
+        public IEnumerable<ListEstadistico> getAllEmprMayorRendidas(string trimestre)
+        {
+            using (var command = new SqlCommand("DECLARE @Quarter varchar(100);" +
+                                                "Set @Quarter = @TRIMESTRE; " +
+                                                "SELECT TOP 5	empr_id, empr_nombre, empr_cuit,0, SUM(rend_importe) " +
+		                                                        "from	LOS_PUBERTOS.Rendicion  " +
+				                                                        "JOIN LOS_PUBERTOS.Rf ON Rf.rf_rendicion = Rendicion.rend_id " +
+				                                                        "JOIN LOS_PUBERTOS.Factura ON Factura.fact_id = rf.rf_factura " +
+				                                                        "JOIN LOS_PUBERTOS.Empresa ON Empresa.empr_id = Factura.fact_empresa " +
+		                                                        "WHERE CONCAT(DATEPART ( YEAR , rend_fecha ),CONCAT('-T:',DATEPART ( QUARTER , rend_fecha ))) LIKE  @QUARTER " +
+                                                                "GROUP BY empr_id, empr_nombre, empr_cuit " +
+		                                                        "ORDER BY SUM(rend_importe) DESC"))
+            {
+                command.Parameters.Add("@TRIMESTRE", SqlDbType.VarChar).Value = trimestre;
+
                 return GetRecords(command);
             }
         }
@@ -42,7 +61,15 @@ namespace DAO.DAOImp
             if (!reader.IsDBNull(2))
                 objListEstadistico.cuit = reader.GetString(2);
             if (!reader.IsDBNull(3))
+            {
                 objListEstadistico.total = (float)reader.GetInt32(3);
+                if (objListEstadistico.total == 0)
+                {
+                    if (!reader.IsDBNull(4))
+                        objListEstadistico.total = (float)reader.GetDouble(4);
+                }
+
+            }
             return objListEstadistico;
         }
 

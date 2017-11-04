@@ -53,19 +53,15 @@ namespace PagoAgilFrba.ListadoEstadistico
             List<ListStadisticoDTO> listStadistico;
             this.dataGridView1.Rows.Clear();
             this.dataGridView1.Refresh();
-            //trimestre = "%" + trimestre + "%";
-            //MessageBox.Show("trimestre:" + trimestre + ".");
-            /*DataTable dt =  this.dataGridView1.Rows;
-            if (dt != null)
-                dt.Clear();*/
+
             if (!String.IsNullOrEmpty(trimestre))
             {
                 listStadistico = businessFacturaImpl.getPorcFactCobradas(trimestre);
-                populateDataGridView(listStadistico);
+                populateDataGridView1(listStadistico);
                 
             }
         }
-        private void populateDataGridView(List<ListStadisticoDTO> list)
+        private void populateDataGridView1(List<ListStadisticoDTO> list)
         {
 
             list.ForEach(x => { this.dataGridView1.Rows.Add(convertertoRow(x)); });
@@ -78,6 +74,46 @@ namespace PagoAgilFrba.ListadoEstadistico
             row.Cells[2].Value = item.cuit;
             row.Cells[3].Value = item.total;
             return row;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string trimestre = (string)this.comboBox2.SelectedItem;
+            List<ListStadisticoDTO> listStadistico;
+            this.dataGridView2.Rows.Clear();
+            this.dataGridView2.Refresh();
+
+            if (!String.IsNullOrEmpty(trimestre))
+            {
+                listStadistico = businessFacturaImpl.getEmprMayorRendidas(trimestre);
+                populateDataGridView2(listStadistico);
+
+            }
+        }
+        private void populateDataGridView2(List<ListStadisticoDTO> list)
+        {
+
+            list.ForEach(x => { this.dataGridView2.Rows.Add(convertertoRow(x)); });
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string trimestre = (string)this.comboBox3.SelectedItem;
+            List<ListStadisticoDTO> listStadistico;
+            this.dataGridView3.Rows.Clear();
+            this.dataGridView3.Refresh();
+
+            if (!String.IsNullOrEmpty(trimestre))
+            {
+                listStadistico = businessFacturaImpl.getEmprMayorRendidas(trimestre);
+                populateDataGridView2(listStadistico);
+
+            }
+        }
+        private void populateDataGridView3(List<ListStadisticoDTO> list)
+        {
+
+            list.ForEach(x => { this.dataGridView3.Rows.Add(convertertoRow(x)); });
         }
     }
 }
