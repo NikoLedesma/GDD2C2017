@@ -16,7 +16,8 @@ namespace Business
         {
             SucursalDAO sucursalDAO = new SucursalDAO();
             Sucursal sucursal = converterSucursalDTOToSucursal(sucursalDTO);
-            return sucursalDAO.saveSucursal(sucursal);
+            int resu = sucursalDAO.saveSucursal(sucursal);
+            return resu;
         }
 
         public Sucursal converterSucursalDTOToSucursal(SucursalDTO sucursalDTO)

@@ -82,9 +82,15 @@ namespace PagoAgilFrba.AbmEmpresa
                 {
                     try
                     {
-                        businessEmpresaImpl.saveEmpresa(empDTOModifOAlta);
-                      //  MessageBox.Show("Se dio de alta la EMPRESA, id:" + empDTOModifOAlta.id);
-                        MessageBox.Show(MSG_SUCCESS_SAVE);
+                        int resu = businessEmpresaImpl.saveEmpresa(empDTOModifOAlta);
+                        if (resu == 1)
+                        {
+                            MessageBox.Show(MSG_SUCCESS_SAVE);
+                        }
+                        else
+                        {
+                            MessageBox.Show(MSG_ERROR_SAVE);
+                        }
                         this.Close();
                     }
                     catch (Exception)
@@ -106,7 +112,7 @@ namespace PagoAgilFrba.AbmEmpresa
                     }
                 }
                 
-            }
+            }//ACA TENGO QUE MOSTRAR TODOS LOS CAMPOS QE ESTAN VACIO TODO
       
         }
 

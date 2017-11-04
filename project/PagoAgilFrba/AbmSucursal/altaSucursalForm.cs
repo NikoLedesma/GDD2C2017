@@ -96,8 +96,15 @@ namespace PagoAgilFrba.AbmSucursal
             {
                 try
                 {
-                    businessSucursalImpl.saveSucursal(sucursalDTO);
-                    MessageBox.Show(MSG_SUCCESS_SAVE);
+                    int resu = businessSucursalImpl.saveSucursal(sucursalDTO);
+                    if (resu >= 1)
+                    {
+                        MessageBox.Show(MSG_SUCCESS_SAVE);
+                    }
+                    else
+                    {
+                        MessageBox.Show(MSG_ERROR_SAVE);
+                    }
                     this.Close();
                 }
                 catch (Exception)

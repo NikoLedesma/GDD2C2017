@@ -65,7 +65,7 @@ namespace DAO.DAOImp
 
         public IEnumerable<Sucursal> getAll() //busco y traigo de la base de datos todas las sucursales
         {
-            using (var command = new SqlCommand("SELECT sucu_id,sucu_nom,sucu_dire,sucu_inactive from LOS_PUBERTOS.Sucursal"))
+            using (var command = new SqlCommand("SELECT sucu_id,sucu_nom,sucu_dire,sucu_cp,sucu_inactive from LOS_PUBERTOS.Sucursal"))
             {
                 return GetRecords(command);
             }
@@ -79,14 +79,17 @@ namespace DAO.DAOImp
             Sucursal sucursal = new Sucursal();
             if (!reader.IsDBNull(0))
                 sucursal.id = reader.GetInt32(0);
+            
             if (!reader.IsDBNull(1))
                 sucursal.nombre = reader.GetString(1);
             if (!reader.IsDBNull(2))
                 sucursal.direccion = reader.GetString(2);
-            /*if (!reader.IsDBNull(3))
-                sucursal.codPostal = reader.GetInt32(3);*/
             if (!reader.IsDBNull(3))
-                sucursal.habilitado = reader.GetBoolean(3);
+                sucursal.codPostal = reader.GetInt32(3);
+            if (!reader.IsDBNull(4))
+                sucursal.habilitado = reader.GetBoolean(4);
+
+
             return sucursal;
         }
 
@@ -107,7 +110,7 @@ namespace DAO.DAOImp
 
         public IEnumerable<Sucursal> getAllEnabledSucursalesByUsuario(String username)
         {
-            using (var command = new SqlCommand("SELECT SUCU_ID,SUCU_NOM,SUCU_DIRE,SUCU_INACTIVE FROM LOS_PUBERTOS.USUARIO U "+
+            using (var command = new SqlCommand("SELECT sucu_id,sucu_nom,sucu_dire,sucu_cp,sucu_inactive FROM LOS_PUBERTOS.USUARIO U " +
                 "INNER JOIN LOS_PUBERTOS.SU SU ON U.ID=SU.SU_USUARIO "+
                 "INNER JOIN LOS_PUBERTOS.SUCURSAL S ON SU.SU_SUCURSAL=S.SUCU_ID "+
                 "WHERE  U.USERNAME = @USERNAME AND (S.SUCU_INACTIVE = 1 OR S.SUCU_INACTIVE IS NULL)"))

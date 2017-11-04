@@ -86,7 +86,7 @@ namespace PagoAgilFrba.AbmEmpresa
                 EmpresaDTO cl = filtroEmpresaDTOs[e.RowIndex];
                 if (cl.habilitado == false) //tengo que poner false porque quedaron al reves los datos en la base. pusieron inactiva
                 {
-                    //cl.nombre = "Okuma"; //Esto nose que hace
+
                     businessEmpresaImpl.deleteEmpresa(cl);
                     MessageBox.Show("ELIMINADO");
                 }
