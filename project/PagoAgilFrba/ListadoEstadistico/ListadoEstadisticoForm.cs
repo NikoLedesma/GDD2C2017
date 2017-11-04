@@ -20,6 +20,12 @@ namespace PagoAgilFrba.ListadoEstadistico
         private BusinessFacturaImpl businessFacturaImpl;
         private BusinessRegistroDePagoImpl businessRegistroDePagoImpl;
         private BusinessRendicionImpl businessRendicionImpl;
+
+        DataTable porcFactCobradasPorEmpresa = new DataTable();
+        DataTable empresasMasRendidas = new DataTable();
+        DataTable clientesConMasPAgos = new DataTable();
+        DataTable clientesMasCumplidores = new DataTable();
+
         public ListadoEstadisticoForm(Form form)
         {
             InitializeComponent();
@@ -39,6 +45,30 @@ namespace PagoAgilFrba.ListadoEstadistico
             this.comboBox2.DataSource = listTrimestresRendicion;
 
            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string trimestre =(string)this.comboBox1.SelectedItem;
+            List<ListStadisticoDTO> listStadistico;
+            if (!String.IsNullOrEmpty(trimestre))
+            {
+                listStadistico = businessFacturaImpl.getPorcFactCobradas(trimestre);
+                populateDataGridView(listStadistico);
+                
+            }
+        }
+        private void populateDataGridView(List<ListStadisticoDTO> list)
+        {
+
+            list.ForEach(x => { this.dataGridView1.Rows.Add(convertertoRow(x)); });
+        }
+        private DataGridViewRow convertertoRow(ListStadisticoDTO item)
+        {
+            DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+            row.Cells[0].Value = item.nombre;
+            row.Cells[1].Value = item.total;
+            return row;
         }
     }
 }

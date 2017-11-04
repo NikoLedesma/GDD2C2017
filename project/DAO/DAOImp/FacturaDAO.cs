@@ -71,10 +71,8 @@ namespace DAO.DAOImp
             }
             throw new NotImplementedException();
         }
-
-
-
-
+        
+       
         public Factura getFacturaById(int nroFactura)
         {
             using (var command = new SqlCommand(" SELECT fact_id,fact_cliente,fact_empresa,fact_numero,fact_fecha_alta, " +

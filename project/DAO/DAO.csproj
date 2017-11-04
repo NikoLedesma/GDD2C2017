@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAOImp\ListEstadisticoDAO.cs" />
     <Compile Include="DAOImp\ItemFacturaDAO.cs" />
     <Compile Include="DAOImp\ClienteDAO.cs" />
     <Compile Include="DAOImp\EmpresaDAO.cs" />

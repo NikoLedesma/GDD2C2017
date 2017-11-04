@@ -40,6 +40,23 @@ namespace Business
             FacturaDAO facturaDAO = new FacturaDAO();
             return facturaDAO.getAllTrimestres();
         }
+        public List<ListStadisticoDTO> getPorcFactCobradas(string trimestre)
+        {
+            ListEstadisticoDAO listEstadisticoDAO = new ListEstadisticoDAO();
+
+            List<ListStadisticoDTO> listEstadisticoDTO = new List<ListStadisticoDTO>();
+            List<ListEstadistico> facturaList = new List<ListEstadistico>();
+            facturaList = listEstadisticoDAO.getAllPorcFactCobradas(trimestre).ToList();
+            facturaList.ForEach(x => { listEstadisticoDTO.Add(converterListEstadisticoToDTO(x)); });
+            return listEstadisticoDTO;
+        }
+        public ListStadisticoDTO converterListEstadisticoToDTO(ListEstadistico listEstadistico)
+        {
+            ListStadisticoDTO listEstadisticoDTO = new ListStadisticoDTO();
+            listEstadisticoDTO.total = listEstadistico.total;
+            listEstadisticoDTO.nombre = listEstadistico.nombre;
+            return listEstadisticoDTO;
+        }
         public List<FacturaDTO> getFacturaByFilter(FacturaDTO facturaDTO)
         {
             FacturaDAO facturaDAO = new FacturaDAO();
