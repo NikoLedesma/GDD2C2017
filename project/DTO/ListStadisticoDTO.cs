@@ -8,7 +8,10 @@ namespace DTO
 {
     public class ListStadisticoDTO
     {
-        public int nombre { get; set; }
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public string cuit { get; set; }
+        public int dni { get; set; }
         public float total { get; set; }
     }
 }

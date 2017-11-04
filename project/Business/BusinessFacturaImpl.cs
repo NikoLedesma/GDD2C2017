@@ -53,7 +53,9 @@ namespace Business
         public ListStadisticoDTO converterListEstadisticoToDTO(ListEstadistico listEstadistico)
         {
             ListStadisticoDTO listEstadisticoDTO = new ListStadisticoDTO();
+            listEstadisticoDTO.id = listEstadistico.id;
             listEstadisticoDTO.total = listEstadistico.total;
+            listEstadisticoDTO.cuit = listEstadistico.cuit;
             listEstadisticoDTO.nombre = listEstadistico.nombre;
             return listEstadisticoDTO;
         }

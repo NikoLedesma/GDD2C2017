@@ -23,8 +23,8 @@ namespace PagoAgilFrba.AbmSucursal
         private SucursalDTO sucursalDTOToUpdateOrSave;
         private static String MSG_ERROR_SAVE = "ERROR:NO SE PUDO DAR DE ALTA A UNA SUCURSA";
         private static String MSG_ERROR_UPDATE = "ERROR:NO SE PUDO ACTUALIZAR LA SUCURSAL";
-        private static String ALTA_TITLE = "SUCURSAL DADA DE ALTA ";
-        private static String MODIF_TITLE = "MODIFICACION DE SUCURSAL(ID:{0})";
+        private static String ALTA_TITLE = "ALTA DE SUCURSAL";
+        private static String MODIF_TITLE = "MODIFICACION DE SUCURSAL"; //(ID:{0})";
         private static String MSG_SUCCESS_SAVE = "LA SUCURSAL SE DIO DE ALTA";
         private static String MSG_SUCCESS_UPDATE = "LA SUCURSAL SE MODIFICO";
 
@@ -46,7 +46,8 @@ namespace PagoAgilFrba.AbmSucursal
             if (formMode == EnumFormMode.MODE_MODIFICACION)
             {
                 //MODIFICAR SUCURSAL
-                this.Text = String.Format(MODIF_TITLE, suc.id);
+                //this.Text = String.Format(MODIF_TITLE, suc.id);
+                this.Text = MODIF_TITLE;
                 this.sucursalDTOToUpdateOrSave = suc;
 
                 txtNombre.Text = suc.nombre;

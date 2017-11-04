@@ -109,6 +109,10 @@ namespace DAO.GenericDAO
                     list.Add(PopulateRecord(reader));
                 }
             }
+            catch (SqlException sql)
+            {
+                System.Diagnostics.Debug.Write(sql.Message);
+            }
             finally
             {
                 _connection.Close();
