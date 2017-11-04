@@ -82,7 +82,7 @@ namespace PagoAgilFrba.Rendicion
         private Boolean verificarFechaEmpresa()
         {
             EmpresaDTO empresaDTO = pantallaEmpresaDTO();
-            Boolean result = businessEmpresaImpl.ifFechaRendicionIgual(empresaDTO);//FALTA
+            Boolean result = businessEmpresaImpl.ifFechaRendicionIgual(empresaDTO);//verifica que sea la misma empresa y fecha
             return result;
         }
 

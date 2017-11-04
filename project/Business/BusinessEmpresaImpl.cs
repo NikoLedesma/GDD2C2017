@@ -69,7 +69,8 @@ namespace Business
         {
             EmpresaDAO empresaDAO = new EmpresaDAO();
             Empresa empresa = converterEmpresaDTOToEmpresa(empresaDTO);
-            return empresaDAO.updateEmpresa(empresa);
+            int a = empresaDAO.updateEmpresa(empresa);
+            return a;
         }
 
         public int deleteEmpresa(EmpresaDTO empresaDTO)

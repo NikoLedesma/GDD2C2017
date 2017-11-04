@@ -142,7 +142,7 @@ namespace PagoAgilFrba.AbmEmpresa
             txtNombre.Text = cl.nombre;
             txtDireccion.Text = cl.direccion;
             txtCuit.Text = cl.cuit;
-            dateTimePicker1.Value = cl.fechaRendicion;
+      //      dateTimePicker1.Value = cl.fechaRendicion;
             //faltaria ver si se puede modificar el rubro de una empresa
             if (cl.habilitado==false) //lo pongo asi porq figura inactivo
             {
