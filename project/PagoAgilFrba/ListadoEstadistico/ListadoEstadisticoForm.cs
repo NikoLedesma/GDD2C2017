@@ -64,14 +64,23 @@ namespace PagoAgilFrba.ListadoEstadistico
         private void populateDataGridView1(List<ListStadisticoDTO> list)
         {
 
-            list.ForEach(x => { this.dataGridView1.Rows.Add(convertertoRow(x)); });
+            list.ForEach(x => { this.dataGridView1.Rows.Add(convertertoRowEmpr(x)); });
         }
-        private DataGridViewRow convertertoRow(ListStadisticoDTO item)
+        private DataGridViewRow convertertoRowCLie(ListStadisticoDTO item)
         {
             DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             row.Cells[0].Value = item.id;
             row.Cells[1].Value = item.nombre;
             row.Cells[2].Value = item.dni;
+            row.Cells[3].Value = item.total;
+            return row;
+        }
+        private DataGridViewRow convertertoRowEmpr(ListStadisticoDTO item)
+        {
+            DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+            row.Cells[0].Value = item.id;
+            row.Cells[1].Value = item.nombre;
+            row.Cells[2].Value = item.cuit;
             row.Cells[3].Value = item.total;
             return row;
         }
@@ -93,7 +102,7 @@ namespace PagoAgilFrba.ListadoEstadistico
         private void populateDataGridView2(List<ListStadisticoDTO> list)
         {
 
-            list.ForEach(x => { this.dataGridView2.Rows.Add(convertertoRow(x)); });
+            list.ForEach(x => { this.dataGridView2.Rows.Add(convertertoRowEmpr(x)); });
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,7 +122,27 @@ namespace PagoAgilFrba.ListadoEstadistico
         private void populateDataGridView3(List<ListStadisticoDTO> list)
         {
 
-            list.ForEach(x => { this.dataGridView3.Rows.Add(convertertoRow(x)); });
+            list.ForEach(x => { this.dataGridView3.Rows.Add(convertertoRowCLie(x)); });
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string trimestre = (string)this.comboBox4.SelectedItem;
+            List<ListStadisticoDTO> listStadistico;
+            this.dataGridView4.Rows.Clear();
+            this.dataGridView4.Refresh();
+
+            if (!String.IsNullOrEmpty(trimestre))
+            {
+                listStadistico = businessFacturaImpl.getClieCumplidores(trimestre);
+                populateDataGridView4(listStadistico);
+
+            }
+        }
+        private void populateDataGridView4(List<ListStadisticoDTO> list)
+        {
+
+            list.ForEach(x => { this.dataGridView4.Rows.Add(convertertoRowCLie(x)); });
         }
     }
 }

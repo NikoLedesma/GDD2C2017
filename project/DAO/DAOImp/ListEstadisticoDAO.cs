@@ -37,7 +37,7 @@ namespace DAO.DAOImp
         {
             using (var command = new SqlCommand("DECLARE @Quarter varchar(100);" +
                                                 "Set @Quarter = @TRIMESTRE; " +
-                                                "SELECT TOP 5	empr_id, empr_nombre, empr_cuit,0, SUM(rend_importe) " +
+                                                "SELECT TOP 5	empr_id, empr_nombre, empr_cuit,0, SUM(rend_importe), 0 " +
 		                                                        "from	LOS_PUBERTOS.Rendicion  " +
 				                                                        "JOIN LOS_PUBERTOS.Rf ON Rf.rf_rendicion = Rendicion.rend_id " +
 				                                                        "JOIN LOS_PUBERTOS.Factura ON Factura.fact_id = rf.rf_factura " +
@@ -69,6 +69,27 @@ namespace DAO.DAOImp
                 return GetRecords(command);
             }
         }
+        public IEnumerable<ListEstadistico> getAllClientesCumplidores(string trimestre)
+        {
+            using (var command = new SqlCommand("DECLARE @Quarter varchar(100);" +
+                                                "Set @Quarter = @TRIMESTRE; " +
+                                                "select TOP 5 CLIENTE_ID, CLIENTE_APELLIDO + ' ' +CLIENTE_NOMBRE,'',  " +
+			                                            "count(*)*100/ (select count(*) from LOS_PUBERTOS.Factura as Fact where Fact.fact_cliente = CLIENTE_ID AND CONCAT(DATEPART ( YEAR , Fact.fact_fecha_vencimiento ),CONCAT('-T:',DATEPART ( QUARTER , Fact.fact_fecha_vencimiento ))) LIKE @QUARTER  group by Fact.fact_cliente), " +
+			                                           " 0, CLIENTE_DNI  " +
+		                                           " from LOS_PUBERTOS.Pago  " +
+			                                        "     JOIN LOS_PUBERTOS.PF ON Pago.pago_id = pf.pf_pago  " +
+			                                         "    JOIN LOS_PUBERTOS.Factura as FactPagadas ON pf_factura = fact_id  " +
+			                                          "   JOIN LOS_PUBERTOS.CLIENTE AS clt ON CLIENTE_ID = fact_cliente " +
+		                                            "where CONCAT(DATEPART ( YEAR , pago_fecha ),CONCAT('-T:',DATEPART ( QUARTER , pago_fecha ))) LIKE  @QUARTER  " +
+
+                                                    "GROUP BY CLIENTE_ID, CLIENTE_APELLIDO + ' ' +CLIENTE_NOMBRE, CLIENTE_DNI  " +
+		                                            "order by count(*)*100/ (select count(*) from LOS_PUBERTOS.Factura as Fact where Fact.fact_cliente = CLIENTE_ID AND CONCAT(DATEPART ( YEAR , Fact.fact_fecha_vencimiento ),CONCAT('-T:',DATEPART ( QUARTER , Fact.fact_fecha_vencimiento ))) LIKE @QUARTER  group by Fact.fact_cliente) DESC"))
+            {
+                command.Parameters.Add("@TRIMESTRE", SqlDbType.VarChar).Value = trimestre;
+
+                return GetRecords(command);
+            }
+        }
         public override ListEstadistico PopulateRecord(SqlDataReader reader)
         {
             ListEstadistico objListEstadistico = new ListEstadistico();
@@ -76,8 +97,12 @@ namespace DAO.DAOImp
                 objListEstadistico.id = reader.GetInt32(0);
             if (!reader.IsDBNull(1))
                 objListEstadistico.nombre = reader.GetString(1);
-            if (!reader.IsDBNull(2))
+            if (!reader.IsDBNull(2) && !String.IsNullOrEmpty(reader.GetString(2)))
+            {
                 objListEstadistico.cuit = reader.GetString(2);
+            }
+            else if (!reader.IsDBNull(5))
+                objListEstadistico.dni = reader.GetInt32(5);
             if (!reader.IsDBNull(3))
             {
                 objListEstadistico.total = (float)reader.GetInt32(3);
@@ -86,10 +111,9 @@ namespace DAO.DAOImp
                     if (!reader.IsDBNull(4))
                         objListEstadistico.total = (float)reader.GetDouble(4);
                 }
-                else if (!reader.IsDBNull(4))
-                    objListEstadistico.dni = reader.GetInt32(4);
-
+                
             }
+            
 
             return objListEstadistico;
         }
