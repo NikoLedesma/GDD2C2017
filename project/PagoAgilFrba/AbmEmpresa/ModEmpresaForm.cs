@@ -71,7 +71,7 @@ namespace PagoAgilFrba.AbmEmpresa
         private void dataGVEmpresa_CellContentClick(object sender, DataGridViewCellEventArgs e) //funcion para ver que hacer cuando eligen el borrar o modificar en la grilla
         {
             var dataGridView = (DataGridView)sender;
-            String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();
+            //String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();
             if (Validator.isSelectedModificarColumn(dataGridView, e.ColumnIndex))
             {
                 //MessageBox.Show("Mod id:" + id);

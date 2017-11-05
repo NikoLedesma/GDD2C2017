@@ -75,7 +75,7 @@ namespace PagoAgilFrba.AbmSucursal
         private void dataGVSucursal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var dataGridView = (DataGridView)sender;
-            String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();
+            //String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();
             if (Validator.isSelectedModificarColumn(dataGridView, e.ColumnIndex))
             {
                 //MessageBox.Show("Mod id:" + id);
