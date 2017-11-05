@@ -104,9 +104,9 @@ namespace PagoAgilFrba.AbmCliente
         {
             List <String> msgError = new List<string>();
             msgError = Validator.addMsgIfEmpty(msgError ,txtNombre.Text ,"NOMBRE");
-            msgError = Validator.addMsgIfNotLetters(msgError, txtNombre.Text, "NOMBRE"); 
+            //msgError = Validator.addMsgIfNotLetters(msgError, txtNombre.Text, "NOMBRE"); 
             msgError = Validator.addMsgIfEmpty(msgError, txtApellido.Text, "APELLIDO");
-            msgError = Validator.addMsgIfNotLetters(msgError, txtApellido.Text, "APELLIDO");
+            //msgError = Validator.addMsgIfNotLetters(msgError, txtApellido.Text, "APELLIDO");
             msgError = Validator.addMsgIfEmpty(msgError, txtDNI.Text, "DNI");
             msgError = Validator.addMsgIfNotInteger(msgError, txtDNI.Text, "DNI");
             msgError = Validator.addMsgIfEmpty(msgError, txtMail.Text, "MAIL");

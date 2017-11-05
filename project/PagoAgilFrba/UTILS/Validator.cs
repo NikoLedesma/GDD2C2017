@@ -125,7 +125,7 @@ namespace PagoAgilFrba.UTILS
         {
             DateTime systemTime = GlobalUtils.getHoraDelSistemaDateTime();
             int res = DateTime.Compare(dateTime, systemTime);
-            return res <= 0;
+            return res >= 0;
         }
 
         private static String MSG_EMPTY_FIELD = "*EL CAMPO {0} ESTA VACIO";
