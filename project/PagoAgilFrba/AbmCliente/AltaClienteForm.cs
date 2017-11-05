@@ -27,7 +27,7 @@ namespace PagoAgilFrba.AbmCliente
         private static String MSG_SUCCESS_SAVE = "EL CLIENTE SE DIO DE ALTA";
         private static String MSG_SUCCESS_UPDATE = "EL CLIENTE SE MODIFICO";
         private static String MSG_EMAI_ALREADY_EXISTS= "EL EMAIL INGRESADO YA EXISTE, INTENTE INGRESANDO OTRO";
-
+        private static String emailCliente;
         public AltaClienteForm(Form form,EnumFormMode enumFormMode,ClienteDTO cl)
         {
             InitializeComponent();
@@ -48,6 +48,7 @@ namespace PagoAgilFrba.AbmCliente
                 //this.Text = String.Format(MODIF_TITLE, cl.id);
                 this.Text = MODIF_TITLE;
                 this.clienteDTOToUpdateOrSave = cl;
+                emailCliente = cl.mail;
                 populateAllInputsToModify(cl);
             }
         }
@@ -125,11 +126,24 @@ namespace PagoAgilFrba.AbmCliente
 
         private Boolean isExistingMail(TextBox txtMail){
             Boolean isExistingMail = businessClienteImpl.isExistingMail(txtMail.Text);
-            if (isExistingMail && (formMode == EnumFormMode.MODE_ALTA))
+            Boolean res = false;
+            if (isExistingMail)
             {
-                MessageBox.Show(MSG_EMAI_ALREADY_EXISTS);
+                if (formMode == EnumFormMode.MODE_ALTA)
+                {
+                    MessageBox.Show(MSG_EMAI_ALREADY_EXISTS);
+                    res = true;
+                }
+                if (formMode == EnumFormMode.MODE_MODIFICACION)
+                {
+                    if (!txtMail.Text.Equals(emailCliente))
+                    {
+                        MessageBox.Show(MSG_EMAI_ALREADY_EXISTS);
+                        res = true;
+                    }
+                }
             }
-            return isExistingMail && (formMode == EnumFormMode.MODE_ALTA);
+            return res;
         }
 
         private void populateAllInputsToModify(ClienteDTO cl)
