@@ -31,6 +31,7 @@ namespace PagoAgilFrba.Devolucion
             businessFacturaImpl = new BusinessFacturaImpl();
             businessClienteImpl = new BusinessClienteImpl();
             businessEmpresaImpl = new BusinessEmpresaImpl();
+            businessDevolucionImpl = new BusinessDevolucionImpl();
 
             listClienteDTO = businessClienteImpl.getAllCliente();
             this.comboBox3.DataSource = listClienteDTO;
