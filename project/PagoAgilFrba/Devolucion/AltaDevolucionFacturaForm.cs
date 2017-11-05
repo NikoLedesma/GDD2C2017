@@ -45,6 +45,10 @@ namespace PagoAgilFrba.Devolucion
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.comboBox2.DataSource = null;
+            this.comboBox2.Items.Clear();
+            if (this.comboBox1.SelectedItem == null || this.comboBox3.SelectedItem == null)
+                return;
             EmpresaDTO empresaSelected = (EmpresaDTO)this.comboBox1.SelectedItem;
             ClienteDTO clienteSelected = (ClienteDTO)this.comboBox3.SelectedItem;
             int empresaId = 0;
@@ -70,6 +74,11 @@ namespace PagoAgilFrba.Devolucion
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //this.comboBox2.DataSource = null;
+            //this.comboBox2.Items.Clear();
+            //this.comboBox3.DataSource = null;
+            //this.comboBox3.Items.Clear();
+ 
             EmpresaDTO empresaSelected = (EmpresaDTO)this.comboBox1.SelectedItem;
             ClienteDTO clienteSelected = (ClienteDTO)this.comboBox3.SelectedItem;
             int empresaId = 0;
@@ -77,7 +86,7 @@ namespace PagoAgilFrba.Devolucion
 
             if (empresaSelected != null)
                 empresaId = empresaSelected.id;
-            if (empresaSelected != null)
+            if (clienteSelected != null)
                 clienteId = clienteSelected.id;
 
             if (empresaId > 0 && clienteId > 0)
@@ -86,10 +95,15 @@ namespace PagoAgilFrba.Devolucion
                 businessFacturaImpl = new BusinessFacturaImpl();
 
                 listFacturaDTO = businessFacturaImpl.getFacturaByClientAndEmpresa(clienteId, empresaId);
-
+                if (listFacturaDTO.Count == 0)
+                {
+                    this.comboBox2.DataSource = null;
+                    this.comboBox2.Items.Clear();
+                    return;
+                }
                 this.comboBox2.DataSource = listFacturaDTO;
-                this.comboBox2.ValueMember = "nroFact";
-                this.comboBox2.DisplayMember = "fecha";
+                this.comboBox2.ValueMember = "id";
+                this.comboBox2.DisplayMember = "nroFact";
             }
 
         }
@@ -97,9 +111,18 @@ namespace PagoAgilFrba.Devolucion
         private void button1_Click(object sender, EventArgs e)
         {
             DevolucionDTO devolucionDTO = new DevolucionDTO();
-
+            if (this.comboBox2.SelectedValue == null)
+            {
+                MessageBox.Show("La empresa y el cliente no poseen facturas para Devolver.");
+                return;
+            }
+                
             devolucionDTO.idFact = (int)this.comboBox2.SelectedValue;
-
+            if (string.IsNullOrEmpty(this.textBox1.Text))
+            {
+                MessageBox.Show("Es necesario agregar un motivo.");
+                return;
+            }
             devolucionDTO.razon = this.textBox1.Text;
 
             businessDevolucionImpl = new BusinessDevolucionImpl();
