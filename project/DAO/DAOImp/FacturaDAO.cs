@@ -90,7 +90,7 @@ namespace DAO.DAOImp
 	                                               " JOIN LOS_PUBERTOS.Rf ON rf_factura = fact_id " +
 	                                               " JOIN LOS_PUBERTOS.Rendicion ON rend_ID = rf_rendicion " +
 	                                               " JOIN LOS_PUBERTOS.rd ON rd_rendicion = rend_id " +
-                                                " WHERE fact_empresa = @EMPRESA AND fact_inactiva = 1  "))
+                                                " WHERE  NOT EXISTS (select * from LOS_PUBERTOS.Rf where rf_factura = fact_id AND NOT EXISTS (select * from LOS_PUBERTOS.Rd where rd_rendicion = rf_rendicion)) AND fact_empresa = @EMPRESA AND fact_inactiva = 1   "))
             {
                 if (empresa > 0) { command.Parameters.AddWithValue("@EMPRESA", empresa); }
 
