@@ -48,6 +48,8 @@ namespace PagoAgilFrba.Devolucion
             EmpresaDTO empresaSelected = (EmpresaDTO)this.comboBox1.SelectedItem;
 
             int empresaId = empresaSelected.id;
+            this.comboBox2.DataSource = null;
+            this.comboBox2.Items.Clear();
             if (empresaId > 0)
             {
 
@@ -64,12 +66,24 @@ namespace PagoAgilFrba.Devolucion
         private void button1_Click(object sender, EventArgs e)
         {
             DevolucionDTO devolucionDTO = new DevolucionDTO();
-            devolucionDTO.idRendicion = (int)this.comboBox2.SelectedValue;
-            devolucionDTO.razon = this.textBox1.Text;
-            businessDevolucionImpl = new BusinessDevolucionImpl();
+            if (this.comboBox2.SelectedValue != null)
+                devolucionDTO.idRendicion = (int)this.comboBox2.SelectedValue;
 
-            int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
-            MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
+            devolucionDTO.razon = this.textBox1.Text;
+            if (devolucionDTO.idRendicion <= 0)
+            {
+                MessageBox.Show("La empresa no tiene Devoluciones disponibles");
+                return;
+            }
+            if (string.IsNullOrEmpty(devolucionDTO.razon))
+                MessageBox.Show("Ingrese un motivo");
+            else
+            {
+                businessDevolucionImpl = new BusinessDevolucionImpl();
+
+                int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
+                MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
+            }
         }
     }
 }
