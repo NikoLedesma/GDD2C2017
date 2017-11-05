@@ -128,11 +128,11 @@ namespace PagoAgilFrba.UTILS
             return res <= 0;
         }
 
-        private static String MSG_EMPTY_FIELD = "EL CAMPO {0} ESTA VACIO";
-        private static String MSG_OBLIGATORY_VALIDATION = "EL CAMPO {0} ES OBLIGATORIO";
-        private static String MSG_ONLY_LETTERS = "EN EL CAMPO {0} SOLO SE PERMITEN INGRESAR LETRAS";
-        private static String MSG_ONLY_INTEGERS = "EN EL CAMPO {0} SOLO SE PERMITEN INGRESAR NUMEROS ENTEROS";
-        private readonly static String MSG_MAIL_FORMAT = "EL CAMPO {0} TIENE QUE TENER UN FORMATO DE MAIL CORRECTO";
+        private static String MSG_EMPTY_FIELD = "*EL CAMPO {0} ESTA VACIO";
+        private static String MSG_OBLIGATORY_VALIDATION = "*EL CAMPO {0} ES OBLIGATORIO";
+        private static String MSG_ONLY_LETTERS = "*EN EL CAMPO {0} SOLO SE PERMITEN INGRESAR LETRAS";
+        private static String MSG_ONLY_INTEGERS = "*EN EL CAMPO {0} SOLO SE PERMITEN INGRESAR NUMEROS ENTEROS";
+        private readonly static String MSG_MAIL_FORMAT = "*EL CAMPO {0} TIENE QUE TENER UN FORMATO DE MAIL CORRECTO";
       
         public static List<String> addMsgIfEmpty(List<String> message, String textValue, String textLabel)
         {
@@ -201,7 +201,7 @@ namespace PagoAgilFrba.UTILS
                 String message = msgErrors.Aggregate((i, j) => i + delimiter + j);
                 MessageBox.Show(message, titleText);
             }
-            return msgErrors.Count >= 0 ? true : false;
+            return msgErrors.Count > 0 ? true : false;
         }
 
 
