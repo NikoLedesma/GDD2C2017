@@ -56,7 +56,7 @@ namespace Business
                 else {
                     return -1;
                 }
-            }catch(Exception){
+            }catch(Exception e){
                 return -1;
             }
             return 1;
