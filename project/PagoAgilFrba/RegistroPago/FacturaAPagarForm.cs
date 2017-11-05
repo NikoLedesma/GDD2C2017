@@ -64,6 +64,13 @@ namespace PagoAgilFrba.RegistroPago
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+           
+            List <String> msgError=new List<string>();
+            msgError = Validator.addMsgIfEmpty(msgError,txtNroFacturaToSearch.Text,"NUMERO DE FACTURA");
+            msgError = Validator.addMsgIfNotInteger(msgError, txtNroFacturaToSearch.Text, "NUMERO DE FACTURA");
+            Boolean isAnyMsgToShow = Validator.verifiedIfIsOk(msgError,"VALIDACION DE CAMPOS");
+            if (!isAnyMsgToShow)
+            {
             ResultCheckFactura verifiedFactura = businessRegistroDePago.verifiedFacturaById(Int32.Parse(txtNroFacturaToSearch.Text));
             if(verifiedFactura == ResultCheckFactura.EXIST_FACTURA_NO_PAGADA){
                 facturaDTO = businessRegistroDePago.getFacturaByNroFactura(Int32.Parse(txtNroFacturaToSearch.Text));
@@ -88,6 +95,7 @@ namespace PagoAgilFrba.RegistroPago
             {
                 MessageBox.Show(MSG_FACTURA_EXIST_WITH_EMPRESA_DISABLED);
             }
+        }
         }
     
     }

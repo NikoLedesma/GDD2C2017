@@ -52,7 +52,13 @@ namespace PagoAgilFrba.RegistroPago
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
+            List <String> msgError = new List<string>();
+            Validator.addMsgIfEmpty(msgError,txtIdPago.Text,"NUMERO DE PAGO");
+            Validator.addMsgIfNotInteger(msgError,txtIdPago.Text,"NUMERO DE PAGO");
+            Boolean isAnyMsgToShow= Validator.verifiedIfIsOk(msgError,"Validacion de Pago");
 
+            if (!isAnyMsgToShow)
+            {
             if (registroDePagoDTO.facturasDTO.Count > 0)
             {
                 MedioDePagoDTO medioDePagoDTOSelected = (MedioDePagoDTO)comboBoxFormaDePago.SelectedItem;
@@ -79,7 +85,7 @@ namespace PagoAgilFrba.RegistroPago
             else {
                 MessageBox.Show(MSG_WITHOUT_ANY_FACTURA);
             }
-
+            }
 
         }
 

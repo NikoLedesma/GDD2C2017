@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DTO.Enums;
+using PagoAgilFrba.UTILS;
 
 namespace PagoAgilFrba.Devolucion
 {
@@ -110,6 +111,7 @@ namespace PagoAgilFrba.Devolucion
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             DevolucionDTO devolucionDTO = new DevolucionDTO();
             if (this.comboBox2.SelectedValue == null)
             {
@@ -125,10 +127,12 @@ namespace PagoAgilFrba.Devolucion
             }
             devolucionDTO.razon = this.textBox1.Text;
 
-            businessDevolucionImpl = new BusinessDevolucionImpl();
+                int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
+                MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
+            }
 
-            int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
-            MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
+            
         }
-    }
+
+    
 }

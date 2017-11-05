@@ -168,8 +168,8 @@ namespace PagoAgilFrba.UTILS
         private static Boolean isPositiveInteger(String text)
         {
             Boolean result = true;
-            Int32 number = -1;
-            if (int.TryParse(text, out number))
+            long number = -1;
+            if (Int64.TryParse(text, out number))
             {
                 if (number < 0)
                 {
