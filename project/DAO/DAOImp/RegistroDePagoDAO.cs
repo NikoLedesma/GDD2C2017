@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,13 @@ namespace DAO.DAOImp
         //TODO crear pago, FALTA LA SUCURSAL
         public int savePago(RegistroDePago registroDePago)
         {
-            using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.Pago (PAGO_IMPORTE,PAGO_NUMERO,PAGO_MEDIODEPAGO)  " +
-                        "VALUES (@IMPORTE,@NUMERO,@MEDIODEPAGO) "))
+            using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.Pago (PAGO_FECHA,PAGO_IMPORTE,PAGO_SUCURSAL,PAGO_NUMERO,PAGO_MEDIODEPAGO)  " +
+                        "VALUES (@FECHA,@IMPORTE,@SUCURSAL,@NUMERO,@MEDIODEPAGO) "))
             {
-             
-                //command.Parameters.AddWithValue("@FECHA", registroDePago.fecha);
+                DateTime a = registroDePago.fecha;
+                command.Parameters.AddWithValue("@FECHA", a);
                 command.Parameters.AddWithValue("@IMPORTE", registroDePago.importe);
-                //command.Parameters.AddWithValue("@SUCURSAL", registroDePago.sucursalId);
+                command.Parameters.AddWithValue("@SUCURSAL", registroDePago.sucursalId);
                 command.Parameters.AddWithValue("@NUMERO", registroDePago.numero);
                 command.Parameters.AddWithValue("@MEDIODEPAGO", registroDePago.medioDePago.id);
                 return save(command);
