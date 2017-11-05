@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DTO.Enums;
+using PagoAgilFrba.UTILS;
 
 namespace PagoAgilFrba.Devolucion
 {
@@ -96,16 +97,28 @@ namespace PagoAgilFrba.Devolucion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DevolucionDTO devolucionDTO = new DevolucionDTO();
+            if(validateEmptyFields())
+            {
+                DevolucionDTO devolucionDTO = new DevolucionDTO();
 
-            devolucionDTO.idFact = (int)this.comboBox2.SelectedValue;
+                devolucionDTO.idFact = (int)this.comboBox2.SelectedValue;
 
-            devolucionDTO.razon = this.textBox1.Text;
+                devolucionDTO.razon = this.textBox1.Text;
 
-            businessDevolucionImpl = new BusinessDevolucionImpl();
+                businessDevolucionImpl = new BusinessDevolucionImpl();
 
-            int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
-            MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
+                int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
+                MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
+            }
+
+            
         }
+
+        private Boolean validateEmptyFields()
+        {
+            Boolean result = Validator.validateEmptyTextBox(textBox1, "MOTIVO");
+            return result;
+        }
+
     }
 }
