@@ -87,7 +87,7 @@ namespace PagoAgilFrba.AbmSucursal
             if (Validator.isSelectedBajarColumn(dataGridView, e.ColumnIndex))
             {
                 SucursalDTO cl = filteredSucursalDTOs[e.RowIndex];
-                if (cl.habilitado == false) //tengo que poner false porque quedaron al reves los datos en la base. pusieron inactiva
+                if (cl.habilitado == true) //tengo que poner false porque quedaron al reves los datos en la base. pusieron inactiva
                 {
                     //cl.apellido = "Okuma";
                     businessSucursalImpl.deleteSucursal(cl);

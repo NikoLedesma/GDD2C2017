@@ -72,6 +72,7 @@ namespace PagoAgilFrba.AbmSucursal
             {
                 sucursalDTOToUpdateOrSave.nombre = txtNombre.Text;
                 sucursalDTOToUpdateOrSave.direccion = txtDireccion.Text;
+                sucursalDTOToUpdateOrSave.habilitado = radioBtnHabilitado.Checked;
                 sucursalDTOToUpdateOrSave.codPostal = Int32.Parse(txtCodPostal.Text); //Int32.Parse(txtNumPiso.Text);
                 saveOrUpdateSucursal(sucursalDTOToUpdateOrSave);
             }
