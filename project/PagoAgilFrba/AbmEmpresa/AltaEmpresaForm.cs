@@ -134,7 +134,8 @@ namespace PagoAgilFrba.AbmEmpresa
             msgErrors = Validator.addMsgIfEmpty(msgErrors, txtCuit.Text, "CUIT");
             msgErrors = Validator.addMsgIfNotInteger(msgErrors, txtCuit.Text, "CUIT");
             msgErrors = Validator.addMsgIfEmpty(msgErrors, txtDireccion.Text, "DIRECCION");
-            return Validator.verifiedIfIsOk(msgErrors, "ALERTA DE CAMPOS");
+            Boolean isAnyMessageToShow = Validator.verifiedIfIsOk(msgErrors, "ALERTA DE CAMPOS");
+            return !isAnyMessageToShow;
         }
 
 
