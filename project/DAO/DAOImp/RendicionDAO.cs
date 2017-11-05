@@ -45,14 +45,15 @@ namespace DAO.DAOImp
 
             if (empresaId > 0) { str += " AND fact_empresa = @EMPRESA "; }
             //en el comando sql capaz que puedo no traerme el id si no lo uso
-            using (var command = new SqlCommand("SELECT  [rend_id]" +
-                                                "  ,[rend_fecha]" +
-                                                "  ,[rend_importe]" +
-                                                "  ,[rend_numero]" +
+            using (var command = new SqlCommand("SELECT  [rend_id] " +
+                                                "  ,[rend_fecha] " +
+                                                "  ,[rend_importe] " +
+                                                "  ,[rend_numero] " +
                                                 "  ,ISNULL([rend_porcentaje],0.0) " +
                                                 "FROM [LOS_PUBERTOS].[Rendicion] " +
                                                 "JOIN [LOS_PUBERTOS].[Rf] ON rf_rendicion = rend_id " +
                                                 "JOIN [LOS_PUBERTOS].[Factura] ON rf_factura = fact_id " +
+                                                "JOIN [LOS_PUBERTOS].Rd ON rd_rendicion != rend_id " +
                                                 "WHERE 1=1 " + str))
             {
 
