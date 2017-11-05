@@ -86,6 +86,7 @@
             // 
             // comboBoxRubro
             // 
+            this.comboBoxRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRubro.FormattingEnabled = true;
             this.comboBoxRubro.Location = new System.Drawing.Point(181, 123);
             this.comboBoxRubro.Name = "comboBoxRubro";
