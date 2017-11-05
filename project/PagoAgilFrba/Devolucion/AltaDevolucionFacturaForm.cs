@@ -66,7 +66,7 @@ namespace PagoAgilFrba.Devolucion
 
                 businessFacturaImpl = new BusinessFacturaImpl();
 
-                listFacturaDTO = businessFacturaImpl.getFacturaByClientAndEmpresa(clienteId, empresaId);
+                listFacturaDTO = businessFacturaImpl.getFacturaByClientAndEmpresaPagas(clienteId, empresaId);
 
                 this.comboBox2.DataSource = listFacturaDTO;
                 this.comboBox2.ValueMember = "nroFact";
@@ -96,7 +96,7 @@ namespace PagoAgilFrba.Devolucion
 
                 businessFacturaImpl = new BusinessFacturaImpl();
 
-                listFacturaDTO = businessFacturaImpl.getFacturaByClientAndEmpresa(clienteId, empresaId);
+                listFacturaDTO = businessFacturaImpl.getFacturaByClientAndEmpresaPagas(clienteId, empresaId);
                 if (listFacturaDTO.Count == 0)
                 {
                     this.comboBox2.DataSource = null;
