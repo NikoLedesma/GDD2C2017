@@ -84,11 +84,14 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 //TODO : VERIFICAR SI AGARRA EL CORRECTO OBJECTO
                 EmpresaDTO cl = filtroEmpresaDTOs[e.RowIndex];
-                if (cl.habilitado == false) //tengo que poner false porque quedaron al reves los datos en la base. pusieron inactiva
+                if (cl.habilitado == true) //tengo que poner false porque quedaron al reves los datos en la base. pusieron inactiva
                 {
 
-                    businessEmpresaImpl.deleteEmpresa(cl);
-                    MessageBox.Show("ELIMINADO");
+                    int a = businessEmpresaImpl.deleteEmpresa(cl);
+                    if(a < 1)
+                        MessageBox.Show("La empresa tiene rendiciones pendientes");
+                    else
+                        MessageBox.Show("ELIMINADO");
                 }
                 else
                 {
