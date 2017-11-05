@@ -25,9 +25,9 @@ namespace PagoAgilFrba.AbmFactura
         private List<ItemFacturaDTO> listItemDTOs;
 
         private EnumFormMode formMode;
-        private static String ALTA_TITLE = "ALTA DE Factura";
+        private static String ALTA_TITLE = "ALTA DE FACTURA";
         private FacturaDTO facturaDTOToUpdateOrSave;
-        private static String MODIF_TITLE = "MODIFICACION DE FACTURA(ID:{0})";
+        private static String MODIF_TITLE = "MODIFICACION DE FACTURA" ; //(ID:{0})";
 
         private static String MSG_ERROR_SAVE = "ERROR:NO SE PUDO DAR DE ALTA A UNA FACTURA";
         private static String MSG_ERROR_UPDATE = "ERROR:NO SE PUDO ACTUALIZAR A LA FACTURA";
@@ -117,7 +117,6 @@ namespace PagoAgilFrba.AbmFactura
 
             listItemDTOs.ForEach(x => { converterItemListToRow(x, dtItems); });
 
-
             facturaDTOToUpdateOrSave.items = dtItems;
             populateDataGridView(listItemDTOs);
            /* DataTable dt = new DataTable();
@@ -141,9 +140,9 @@ namespace PagoAgilFrba.AbmFactura
                 this.dataGridView1.Rows.Add(dr.ItemArray);
 
             }*/
-            
 
         }
+
         public DataRow converterItemListToRow(ItemFacturaDTO item, DataTable tabla)
         {
 
@@ -154,6 +153,7 @@ namespace PagoAgilFrba.AbmFactura
             tabla.Rows.Add(row);
             return row;
         }
+
         private void populateDataGridView(List<ItemFacturaDTO> list)
         {
 
@@ -162,6 +162,7 @@ namespace PagoAgilFrba.AbmFactura
             var source = new BindingSource(bindingList, null);
             this.dataGridView1.DataSource = source;*/
         }
+
         private DataGridViewRow converterItemDTOToRow(ItemFacturaDTO item)
         {
             DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
@@ -169,6 +170,7 @@ namespace PagoAgilFrba.AbmFactura
             row.Cells[1].Value = item.cantidad;
             return row;
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (validateFields())
@@ -190,12 +192,10 @@ namespace PagoAgilFrba.AbmFactura
 
                 foreach (DataGridViewRow row in this.dataGridView1.Rows)
                 {
-
                     var cell = row.Cells[0].Value;
 
                     if (cell != null)
                     {
-
                         float monto = float.Parse(row.Cells[0].Value.ToString());
                         int cantidad = int.Parse(row.Cells[1].Value.ToString());
                         dt.Rows.Add(monto, cantidad);
@@ -203,7 +203,6 @@ namespace PagoAgilFrba.AbmFactura
 
                 }
                 facturaDTO.items = dt;
-
 
                 if (formMode == EnumFormMode.MODE_ALTA)
                 {

@@ -104,7 +104,7 @@ namespace PagoAgilFrba.AbmSucursal
                     }
                     else
                     {
-                        MessageBox.Show(MSG_ERROR_SAVE);
+                        MessageBox.Show("Ya existe una sucursal con ese CODIGO POSTAL");
                     }
                     this.Close();
                 }
@@ -117,8 +117,17 @@ namespace PagoAgilFrba.AbmSucursal
             {
                 try
                 {
-                    businessSucursalImpl.updateSucursal(sucursalDTO);
-                    MessageBox.Show(MSG_SUCCESS_UPDATE);
+                    int resUpdate = businessSucursalImpl.updateSucursal(sucursalDTO);
+
+                    if (resUpdate >= 1)
+                    {
+                        MessageBox.Show(MSG_SUCCESS_SAVE);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ya existe una sucursal con ese CODIGO POSTAL");
+                    }
+                    
                     this.Close();
                 }
                 catch (Exception)

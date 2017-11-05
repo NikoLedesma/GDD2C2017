@@ -90,7 +90,7 @@ namespace PagoAgilFrba.AbmEmpresa
                         }
                         else
                         {
-                            MessageBox.Show(MSG_ERROR_SAVE);
+                            MessageBox.Show("Ya existe una empresa con ese CUIT");
                         }
                         this.Close();
                     }
@@ -103,8 +103,17 @@ namespace PagoAgilFrba.AbmEmpresa
                 {
                     try
                     {
-                        businessEmpresaImpl.updateEmpresa(empDTOModifOAlta);
-                        MessageBox.Show(MSG_SUCCESS_UPDATE);
+                        int resUpdate = businessEmpresaImpl.updateEmpresa(empDTOModifOAlta);
+
+                        if (resUpdate >= 1)
+                        {
+                            MessageBox.Show(MSG_SUCCESS_SAVE);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ya existe una empresa con ese CUIT");
+                        }
+                        
                         this.Close();
                     }
                     catch (Exception)
