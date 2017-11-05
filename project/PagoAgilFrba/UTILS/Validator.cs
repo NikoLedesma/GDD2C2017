@@ -183,7 +183,7 @@ namespace PagoAgilFrba.UTILS
                 String message = msgErrors.Aggregate((i, j) => i + delimiter + j);
                 MessageBox.Show(message, titleText);
             }
-            return msgErrors.Count >= 0 ? false : true;
+            return msgErrors.Count >= 0 ? true : false;
         }
     }
 
