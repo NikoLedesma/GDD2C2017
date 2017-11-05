@@ -20,16 +20,28 @@ namespace PagoAgilFrba.UTILS
 
         public static Boolean isSelectedModificarColumn(DataGridView dataGridView, int columnIndex)
         {
+            if (columnIndex < 0)
+            {
+                return false;
+            }
             return dataGridView.Columns[columnIndex].Name.Equals(MODIFICAR_COLUMN);
         }
 
         public static Boolean isSelectedBajarColumn(DataGridView dataGridView, int columnIndex)
         {
+            if (columnIndex < 0)
+            {
+                return false;
+            }
             return dataGridView.Columns[columnIndex].Name.Equals(BAJAR_COLUMN);
         }
 
         public static Boolean isSelectedEliminarColumn(DataGridView dataGridView, int columnIndex)
         {
+            if (columnIndex < 0)
+            {
+                return false;
+            }
             return dataGridView.Columns[columnIndex].Name.Equals(ELIMINAR_COLUMN);
         }
 

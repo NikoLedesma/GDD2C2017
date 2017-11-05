@@ -11,6 +11,9 @@ namespace PagoAgilFrba.UTILS
     {
 
         public static object getValueIdentifier(DataGridView dataGridView,int rowIndex,String identifierColumnHeader) {
+            if(rowIndex<0){
+                return null;
+            }
             return dataGridView.Rows[rowIndex].Cells[identifierColumnHeader].Value;
         }
 
