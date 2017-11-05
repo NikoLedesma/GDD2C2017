@@ -65,6 +65,9 @@ namespace PagoAgilFrba.RegistroPago
                 registroDePagoDTO.medioDePagoDTO = medioDePagoDTOSelected;
                 registroDePagoDTO.numero =   Int32.Parse(txtIdPago.Text);
                 registroDePagoDTO.importe = (float) Double.Parse(txtImporte.Text);  
+                registroDePagoDTO.sucursalId = GlobalUtils.sucursalGlobalDTO.id;
+                registroDePagoDTO.fecha = GlobalUtils.getHoraDelSistemaDateTime();
+
                 int resPago = businessRegistroDePago.registrarPagos(registroDePagoDTO);
                 if (resPago == 1)
                 {
@@ -102,16 +105,19 @@ namespace PagoAgilFrba.RegistroPago
 
         private void dataGridViewFacturas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var dataGridView = (DataGridView)sender;
-            if (Validator.isSelectedEliminarColumn(dataGridViewFacturas, e.ColumnIndex))
+            if (e.RowIndex >= 0)
             {
-                FacturaDTO facturaDTO = registroDePagoDTO.facturasDTO[e.RowIndex];
-                dataGridView.Rows.RemoveAt(e.RowIndex);
-                //registroDePagoDTO.facturasDTO.RemoveAt(e.RowIndex);
-                float importe = 0;
-                registroDePagoDTO.facturasDTO.ForEach(x => { importe += x.total; });
-                registroDePagoDTO.importe = importe;
-                txtImporte.Text = importe.ToString();
+                var dataGridView = (DataGridView)sender;
+                if (Validator.isSelectedEliminarColumn(dataGridViewFacturas, e.ColumnIndex))
+                {
+                    FacturaDTO facturaDTO = registroDePagoDTO.facturasDTO[e.RowIndex];
+                    dataGridView.Rows.RemoveAt(e.RowIndex);
+                    //registroDePagoDTO.facturasDTO.RemoveAt(e.RowIndex);
+                    float importe = 0;
+                    registroDePagoDTO.facturasDTO.ForEach(x => { importe += x.total; });
+                    registroDePagoDTO.importe = importe;
+                    txtImporte.Text = importe.ToString();
+                }
             }
         }
 

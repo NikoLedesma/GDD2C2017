@@ -21,7 +21,7 @@ namespace DAO.DAOImp
              
                 //command.Parameters.AddWithValue("@FECHA", registroDePago.fecha);
                 command.Parameters.AddWithValue("@IMPORTE", registroDePago.importe);
-                //command.Parameters.AddWithValue("@SUCURSAL", registroDePago.);
+                //command.Parameters.AddWithValue("@SUCURSAL", registroDePago.sucursalId);
                 command.Parameters.AddWithValue("@NUMERO", registroDePago.numero);
                 command.Parameters.AddWithValue("@MEDIODEPAGO", registroDePago.medioDePago.id);
                 return save(command);
@@ -39,7 +39,7 @@ namespace DAO.DAOImp
         public int saveFacturaToPago(Factura factura,int nroPago)
         {
             using (var command = new SqlCommand("INSERT INTO LOS_PUBERTOS.PF (PF_PAGO,PF_FACTURA) " +
-                    "SELECT (SELECT P.PAGO_ID FROM LOS_PUBERTOS.PAGO P WHERE P.PAGO_NUMERO = @NROPAGO) ,F.FACT_ID FROM LOS_PUBERTOS.FACTURA F WHERE F.FACT_NUMERO = @NROFACTURA "))
+                    "SELECT (SELECT TOP 1 P.PAGO_ID FROM LOS_PUBERTOS.PAGO P WHERE P.PAGO_NUMERO = @NROPAGO ORDER BY P.PAGO_ID DESC) ,F.FACT_ID FROM LOS_PUBERTOS.FACTURA F WHERE F.FACT_NUMERO = @NROFACTURA "))
             {
                 command.Parameters.AddWithValue("@NROPAGO", nroPago );
                 command.Parameters.AddWithValue("@NROFACTURA", factura.nroFact);

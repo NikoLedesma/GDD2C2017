@@ -72,6 +72,8 @@ namespace Business
             registroDePago.medioDePago.nombre = registroDePagoDTO.medioDePagoDTO.nombre;
             registroDePago.importe = registroDePagoDTO.importe;
             registroDePago.numero = registroDePagoDTO.numero;
+            registroDePago.fecha = registroDePagoDTO.fecha;
+            registroDePago.sucursalId = registroDePagoDTO.sucursalId;
             List<Factura> facturasList = new List<Factura>();
             registroDePagoDTO.facturasDTO.ForEach(x => { facturasList.Add(converterFacturaDTOToFactura(x)); });
             registroDePago.facturas = facturasList;

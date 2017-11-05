@@ -79,16 +79,19 @@ namespace PagoAgilFrba.AbmFactura
         }
         private void dataGVClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var dataGridView = (DataGridView)sender;
-            String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();
-            //MessageBox.Show("Mod id:" + id);
-            if (Validator.isSelectedModificarColumn(dataGridView, e.ColumnIndex))
+            if (e.RowIndex >= 0)
             {
-                
-                //TODO : VERIFICAR SI AGARRA EL CORRECTO OBJECTO
-                FacturaDTO facturaDTO = filteredFacturaDTOs[e.RowIndex];
-                AltaFacturaForm form = new AltaFacturaForm(this, EnumFormMode.MODE_MODIFICACION, facturaDTO);
-                form.Show();
+                var dataGridView = (DataGridView)sender;
+                String id = Provider.getValueIdentifier(dataGridView, e.RowIndex, ID_COLUMN_HEADER_NAME).ToString();
+                //MessageBox.Show("Mod id:" + id);
+                if (Validator.isSelectedModificarColumn(dataGridView, e.ColumnIndex))
+                {
+
+                    //TODO : VERIFICAR SI AGARRA EL CORRECTO OBJECTO
+                    FacturaDTO facturaDTO = filteredFacturaDTOs[e.RowIndex];
+                    AltaFacturaForm form = new AltaFacturaForm(this, EnumFormMode.MODE_MODIFICACION, facturaDTO);
+                    form.Show();
+                }
             }
         }
 

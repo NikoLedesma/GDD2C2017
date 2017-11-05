@@ -16,6 +16,10 @@ namespace Entities
 
         public List<FacturaDTO> facturasDTO { get; set; }
         public MedioDePagoDTO  medioDePagoDTO { get; set; }
-    
+
+
+        public int sucursalId { get; set; }
+
+        public DateTime fecha { get; set; }
     }
 }

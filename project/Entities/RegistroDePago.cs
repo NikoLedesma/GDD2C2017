@@ -14,10 +14,14 @@ namespace Entities
         public MedioDePago  medioDePago { get; set; }
 
 
-        public float fecha { get; set; }
+
 
         public double importe { get; set; }
 
         public int numero { get; set; }
+
+        public int sucursalId { get; set; }
+
+        public DateTime fecha { get; set; }
     }
 }
