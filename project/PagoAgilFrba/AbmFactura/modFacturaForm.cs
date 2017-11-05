@@ -91,5 +91,10 @@ namespace PagoAgilFrba.AbmFactura
                 form.Show();
             }
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dataGVClientes.Rows.Clear();
+        }
     }
 }

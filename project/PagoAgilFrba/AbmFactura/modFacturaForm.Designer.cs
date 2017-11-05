@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAlta = new System.Windows.Forms.Button();
@@ -38,8 +40,6 @@
             this.BajarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVClientes)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +56,22 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(465, 32);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 3;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(145, 32);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 2;
             // 
             // label2
             // 
@@ -98,13 +114,11 @@
             this.dataGVClientes.Size = new System.Drawing.Size(693, 200);
             this.dataGVClientes.TabIndex = 7;
             this.dataGVClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVClientes_CellContentClick);
-            //this.dataGVClientes.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGVClientes_ColumnAdded);
-          
             // 
             // ModificarColumn
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            this.ModificarColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            this.ModificarColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.ModificarColumn.HeaderText = "Modificar";
             this.ModificarColumn.Name = "ModificarColumn";
             this.ModificarColumn.ReadOnly = true;
@@ -133,22 +147,7 @@
             this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(145, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(465, 32);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 3;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // modFacturaForm
             // 
@@ -161,7 +160,7 @@
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.groupBox1);
             this.Name = "modFacturaForm";
-            this.Text = "modFacturaForm";
+            this.Text = "Buscador de Facturas";
             this.Load += new System.EventHandler(this.modFacturaForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
