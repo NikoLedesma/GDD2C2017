@@ -92,7 +92,12 @@ namespace PagoAgilFrba.AbmCliente
 
         private Boolean validateFields()
         {
-            return validateEmptyFields() && (!isExistingMail(txtMail) || (formMode == EnumFormMode.MODE_MODIFICACION));
+            Boolean isAnyMessageToShow = validateEmptyFields();
+            Boolean isNotExistingMail = !isExistingMail(txtMail);
+            /* Boolean isModeModificacion = (formMode == EnumFormMode.MODE_MODIFICACION);
+             return !isAnyMessageToShow && (isNotExistingMail || isModeModificacion);*/
+
+            return !isAnyMessageToShow && isNotExistingMail;
         }
 
         private Boolean validateEmptyFields()
@@ -120,11 +125,11 @@ namespace PagoAgilFrba.AbmCliente
 
         private Boolean isExistingMail(TextBox txtMail){
             Boolean isExistingMail = businessClienteImpl.isExistingMail(txtMail.Text);
-            if (isExistingMail)
+            if (isExistingMail && (formMode == EnumFormMode.MODE_ALTA))
             {
                 MessageBox.Show(MSG_EMAI_ALREADY_EXISTS);
             }
-            return isExistingMail ;
+            return isExistingMail && (formMode == EnumFormMode.MODE_ALTA);
         }
 
         private void populateAllInputsToModify(ClienteDTO cl)
