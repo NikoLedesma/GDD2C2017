@@ -1,19 +1,5 @@
-# GDD2C2017 TP 
-
-### Data
-Contiene el Schema.
-
-### project
-Contiente el proyecto c# dividido por:
-  - Business
-  - DAO
-  - DTO
-  - Entities
-  - PagoAgilFrba
-# Importente!:No tenemos nombre de grupo
-Es un archivo de texto plano con los siguientes datos:
-
-Grupo  LOS_PUBERTOS 49
+Grupo nombre LOS_PUBERTOS 
+Grupo numero 49
 
 Nicolas Ledesma 1470620 K3673
 Matias Farran 1472379
