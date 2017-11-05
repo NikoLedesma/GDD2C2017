@@ -76,6 +76,25 @@ namespace PagoAgilFrba.UTILS
             }
             return result;
         }
+        public static Boolean validatePositiveFloatTextBoxBool(TextBox textBox, String message)
+        {
+            Boolean result = true;
+            Int32 number = -1;
+            if (!String.IsNullOrWhiteSpace(textBox.Text))
+            {   
+                float convField = Convert.ToSingle(textBox.Text);
+                if (convField <= 0)
+                {
+                    
+                    MessageBox.Show(String.Format(MSG_INTEGERP_VALIDATION, message));
+                    result = false;
+                    
+                }
+                
+            }
+            return result;
+        }
+
 
         public static Boolean validateMailTextBox(TextBox textBox)
         {

@@ -119,27 +119,7 @@ namespace PagoAgilFrba.AbmFactura
 
             facturaDTOToUpdateOrSave.items = dtItems;
             populateDataGridView(listItemDTOs);
-           /* DataTable dt = new DataTable();
-            dt.Columns.Add("Monto", typeof(float));
-            dt.Columns.Add("Cantidad", typeof(int));
-
-            DataRow row;
-            row = dt.NewRow();
-
-            row["Monto"] = 200;
-            row["Cantidad"] = 1;
-            dt.Rows.Add(row);
-            row = dt.NewRow();
-            row["Monto"] = 400;
-            row["Cantidad"] = 2;
-            dt.Rows.Add(row);
-
-            foreach (DataRow dr in dt.Rows)
-            {
-
-                this.dataGridView1.Rows.Add(dr.ItemArray);
-
-            }*/
+           
 
         }
 
@@ -156,11 +136,7 @@ namespace PagoAgilFrba.AbmFactura
 
         private void populateDataGridView(List<ItemFacturaDTO> list)
         {
-
-            list.ForEach(x => { this.dataGridView1.Rows.Add(converterItemDTOToRow(x)); });
-            /*var bindingList = new BindingList<ItemFacturaDTO>(List);
-            var source = new BindingSource(bindingList, null);
-            this.dataGridView1.DataSource = source;*/
+            list.ForEach(x => { this.dataGridView1.Rows.Add(converterItemDTOToRow(x)); });          
         }
 
         private DataGridViewRow converterItemDTOToRow(ItemFacturaDTO item)
@@ -253,7 +229,7 @@ namespace PagoAgilFrba.AbmFactura
 
         private Boolean validateFields()
         {
-            Boolean resu = validateEmptyFields() && Validator.validatePositiveIntegerTextBoxBool(txtTotal, "EL TOTAL ES NEGATIVO");
+            Boolean resu = validateEmptyFields() && Validator.validatePositiveFloatTextBoxBool(txtTotal, "EL TOTAL ES NEGATIVO");
             return resu;
         }
 
