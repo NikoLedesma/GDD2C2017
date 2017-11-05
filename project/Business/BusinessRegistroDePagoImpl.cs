@@ -49,7 +49,7 @@ namespace Business
             try
             {
                 int resSavePago = registroDePagoDAO.savePago(registroDePago);
-                if (resSavePago == 1)
+                if (resSavePago >= 1)
                 {
                     registroDePago.facturas.ForEach(factura => { registroDePagoDAO.saveFacturaToPago(factura, registroDePago.numero); });
                 }
