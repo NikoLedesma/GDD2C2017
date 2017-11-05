@@ -10,7 +10,7 @@ using System.Data;
 
 namespace DAO.DAOImp
 {
-    public class RendicionDAO: GenericDAO<Rendicion>
+    public class RendicionDAO : GenericDAO<Rendicion>
     {
 
         public int saveRendicion(Rendicion rendicion)
@@ -27,7 +27,7 @@ namespace DAO.DAOImp
                 command.Parameters.AddWithValue("@PORCENTAJE", rendicion.porcentaje);
                 command.Parameters.AddWithValue("@IDFACT", rendicion.idFact);
                 command.Parameters.AddWithValue("@RESULT", 0);
- 
+
                 return save(command);
             }
 
@@ -49,7 +49,7 @@ namespace DAO.DAOImp
                                                 "  ,[rend_fecha]" +
                                                 "  ,[rend_importe]" +
                                                 "  ,[rend_numero]" +
-                                                "  ,[rend_porcentaje] " +
+                                                "  ,ISNULL([rend_porcentaje],0.0) " +
                                                 "FROM [LOS_PUBERTOS].[Rendicion] " +
                                                 "JOIN [LOS_PUBERTOS].[Rf] ON rf_rendicion = rend_id " +
                                                 "JOIN [LOS_PUBERTOS].[Factura] ON rf_factura = fact_id " +
@@ -60,10 +60,10 @@ namespace DAO.DAOImp
                 return GetRecords(command);
             }
 
-           throw new NotImplementedException();
+            throw new NotImplementedException();
         }
-        
- 
+
+
 
 
         public override Rendicion PopulateRecord(SqlDataReader reader)
@@ -78,7 +78,7 @@ namespace DAO.DAOImp
             if (!reader.IsDBNull(3))
                 rendicion.numero = reader.GetInt32(3);
             if (!reader.IsDBNull(4))
-                rendicion.porcentaje = reader.GetFloat(4); 
+                rendicion.porcentaje = (float)reader.GetDouble(4);
             return rendicion;
         }
 
