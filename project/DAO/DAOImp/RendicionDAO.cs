@@ -53,8 +53,7 @@ namespace DAO.DAOImp
                                                 "FROM [LOS_PUBERTOS].[Rendicion] " +
                                                 "JOIN [LOS_PUBERTOS].[Rf] ON rf_rendicion = rend_id " +
                                                 "JOIN [LOS_PUBERTOS].[Factura] ON rf_factura = fact_id " +
-                                                "JOIN [LOS_PUBERTOS].Rd ON rd_rendicion != rend_id " +
-                                                "WHERE 1=1 " + str))
+                                                "WHERE NOT EXISTS(SELECT * FROM LOS_PUBERTOS.Rd WHERE Rd.rd_rendicion =[rend_id] ) " + str))
             {
 
                 if (empresaId > 0) { command.Parameters.AddWithValue("@EMPRESA", empresaId); }
