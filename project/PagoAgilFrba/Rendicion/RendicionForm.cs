@@ -75,8 +75,7 @@ namespace PagoAgilFrba.Rendicion
             {
                 MessageBox.Show("No hay empresas habilitadas que realicen rendiciones este dia - Por favor verifique la fecha de rendicion de la empresa seleccionada");
             }
-            
- 
+  
         }
 
         private Boolean verificarFechaEmpresa()
@@ -100,8 +99,7 @@ namespace PagoAgilFrba.Rendicion
             DataRow row = facturasID.NewRow();
             row["id"] = factura.id;
             facturasID.Rows.Add(row);
-            
-        }
+         }
 
         private void mostrarTotales(float subTotal)
         {
@@ -128,7 +126,6 @@ namespace PagoAgilFrba.Rendicion
             //wachaDTO.fecha = dateTimePicker1.Value;
             wachaDTO.empresa = (int)this.comboBox1.SelectedValue; //txtRubro.Text;    //agrego el combobox del rubro
             return wachaDTO;
-        
         }
 
         private void populateDataGridView(List<FacturaDTO> rendDTO)
@@ -141,12 +138,10 @@ namespace PagoAgilFrba.Rendicion
         
         private void btnRendir_Click(object sender, EventArgs e)
         {
-            
             RendicionDTO rendicionToSave = PantallaARendicionDTO();
             //todo mandar al business la rendicion
             businessRendicionImpl.saveRendicion(rendicionToSave);
             MessageBox.Show("Se rindieron las facturas");         
-
         }
 
         private RendicionDTO PantallaARendicionDTO()
@@ -160,9 +155,7 @@ namespace PagoAgilFrba.Rendicion
 
         }
 
-
-
-
+        
         private void RendicionForm_FormClosing(Object sender, FormClosingEventArgs e)
         {
             this.prevForm.Show();

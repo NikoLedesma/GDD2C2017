@@ -184,18 +184,16 @@
             this.txtImpCom.AutoSize = true;
             this.txtImpCom.Location = new System.Drawing.Point(222, 459);
             this.txtImpCom.Name = "txtImpCom";
-            this.txtImpCom.Size = new System.Drawing.Size(28, 13);
+            this.txtImpCom.Size = new System.Drawing.Size(0, 13);
             this.txtImpCom.TabIndex = 11;
-            this.txtImpCom.Text = "AAA";
             // 
             // txtTotal
             // 
             this.txtTotal.AutoSize = true;
             this.txtTotal.Location = new System.Drawing.Point(473, 441);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(35, 13);
+            this.txtTotal.Size = new System.Drawing.Size(0, 13);
             this.txtTotal.TabIndex = 12;
-            this.txtTotal.Text = "label6";
             // 
             // label4
             // 
@@ -211,9 +209,8 @@
             this.txtCantFact.AutoSize = true;
             this.txtCantFact.Location = new System.Drawing.Point(222, 386);
             this.txtCantFact.Name = "txtCantFact";
-            this.txtCantFact.Size = new System.Drawing.Size(35, 13);
+            this.txtCantFact.Size = new System.Drawing.Size(0, 13);
             this.txtCantFact.TabIndex = 14;
-            this.txtCantFact.Text = "label5";
             // 
             // RendicionForm
             // 
