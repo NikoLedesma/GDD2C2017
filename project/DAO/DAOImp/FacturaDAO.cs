@@ -58,12 +58,14 @@ namespace DAO.DAOImp
         {
             String str = "";
             String str2 = "";
-            str2 += " LEFT JOIN LOS_PUBERTOS.Rf ON fact_id = rf_factura LEFT JOIN LOS_PUBERTOS.fd ON fact_id = fd_factura WHERE (rf_factura is null and fd_factura is null) ";
+            str2 += " WHERE NOT EXISTS( SELECT * FROM LOS_PUBERTOS.Rf rf WHERE rf.rf_factura = f.fact_id ) AND " +
+	                " NOT EXISTS( SELECT * FROM LOS_PUBERTOS.fd fd WHERE fd.fd_factura = f.fact_id ) AND " +
+                    " EXISTS( SELECT * FROM LOS_PUBERTOS.PF pf WHERE pf.pf_factura = f.fact_id ) AND fact_inactiva = 1 ";
 
             if (empresa > 0) { str += " AND fact_empresa = @EMPRESA "; }
 
             using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total], [fact_inactiva] " +
-                          "FROM  LOS_PUBERTOS.Factura " + str2 + str))
+                          "FROM  LOS_PUBERTOS.Factura f " + str2 + str))
             {
                 if (empresa > 0) { command.Parameters.AddWithValue("@EMPRESA", empresa); }
 
