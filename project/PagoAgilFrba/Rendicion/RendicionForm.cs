@@ -140,15 +140,23 @@ namespace PagoAgilFrba.Rendicion
         {
             RendicionDTO rendicionToSave = PantallaARendicionDTO();
             //todo mandar al business la rendicion
-            businessRendicionImpl.saveRendicion(rendicionToSave);
-            MessageBox.Show("Se rindieron las facturas");         
+            if (rendicionToSave.idFact == null)
+            {
+                MessageBox.Show("Debe seleccionar las facturas a rendir.");
+            }
+            else
+            {
+                businessRendicionImpl.saveRendicion(rendicionToSave);
+                MessageBox.Show("Se rindieron las facturas");
+            }
         }
 
         private RendicionDTO PantallaARendicionDTO()
         {
             RendicionDTO rendicionDTO = new RendicionDTO();
             rendicionDTO.fecha = dateTimePicker1.Value;
-            rendicionDTO.importe = Convert.ToSingle(txtTotal.Text);
+            if (!String.IsNullOrEmpty(txtTotal.Text))
+                rendicionDTO.importe = Convert.ToSingle(txtTotal.Text);
             rendicionDTO.porcentaje = Convert.ToSingle(txtPorcCom.Text);
             rendicionDTO.idFact = facturasID;
             return rendicionDTO;
