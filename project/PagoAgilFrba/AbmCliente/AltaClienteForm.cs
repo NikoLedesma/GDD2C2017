@@ -92,18 +92,30 @@ namespace PagoAgilFrba.AbmCliente
 
         private Boolean validateFields()
         {
-            return validateEmptyFields() && Validator.validateMailTextBox(txtMail) && !isExistingMail(txtMail);
+            return validateEmptyFields() && (!isExistingMail(txtMail) || (formMode == EnumFormMode.MODE_MODIFICACION));
         }
 
         private Boolean validateEmptyFields()
         {
-            Boolean result = Validator.validateEmptyTextBox(txtNombre, "NOMBRE") && Validator.validateEmptyTextBox(txtApellido, "APELLIDO")
-            && Validator.validateEmptyTextBox(txtDNI, "DNI") && Validator.validateEmptyTextBox(txtMail, "MAIL")
-            && Validator.validateEmptyTextBox(txtTelefono, "TELEFONO") && Validator.validateEmptyTextBox(txtDirCalle, "DIRECCION")
-            && Validator.validateEmptyTextBox(txtNumPiso, "NRO PISO") && Validator.validateEmptyTextBox(txtDepartamento, "DEPARTAMENTO")
-            && Validator.validateEmptyTextBox(txtLocalidad, "LOCALIDAD") && Validator.validateEmptyTextBox(txtCodPostal, "CODIGO POSTAL");
-            return result;
-
+            List <String> msgError = new List<string>();
+            msgError = Validator.addMsgIfEmpty(msgError ,txtNombre.Text ,"NOMBRE");
+            msgError = Validator.addMsgIfNotLetters(msgError, txtNombre.Text, "NOMBRE"); 
+            msgError = Validator.addMsgIfEmpty(msgError, txtApellido.Text, "APELLIDO");
+            msgError = Validator.addMsgIfNotLetters(msgError, txtApellido.Text, "APELLIDO");
+            msgError = Validator.addMsgIfEmpty(msgError, txtDNI.Text, "DNI");
+            msgError = Validator.addMsgIfNotInteger(msgError, txtDNI.Text, "DNI");
+            msgError = Validator.addMsgIfEmpty(msgError, txtMail.Text, "MAIL");
+            msgError = Validator.addMsgIfNotEmail(msgError, txtMail.Text, "MAIL");
+            msgError = Validator.addMsgIfEmpty(msgError, txtTelefono.Text, "TELEFONO");            
+            msgError = Validator.addMsgIfNotInteger(msgError, txtTelefono.Text, "TELEFONO");
+            msgError = Validator.addMsgIfEmpty(msgError, txtDirCalle.Text, "DIRECCION");
+            msgError = Validator.addMsgIfEmpty(msgError, txtNumPiso.Text, "NRO PISO");
+            msgError = Validator.addMsgIfNotInteger(msgError, txtNumPiso.Text, "NRO PISO");
+            msgError = Validator.addMsgIfEmpty(msgError,txtDepartamento.Text, "DEPARTAMENTO");//TODO:validar que sea nada mas un char
+            msgError = Validator.addMsgIfEmpty(msgError,txtLocalidad.Text,"LOCALIDAD");
+            msgError = Validator.addMsgIfEmpty(msgError, txtCodPostal.Text, "CODIGO POSTAL");
+            msgError = Validator.addMsgIfNotInteger(msgError, txtCodPostal.Text, "CODIGO POSTAL");
+            return Validator.verifiedIfIsOk(msgError,"ERROR CAMPOS DE CLIENTE"); 
         }
 
         private Boolean isExistingMail(TextBox txtMail){
@@ -112,7 +124,7 @@ namespace PagoAgilFrba.AbmCliente
             {
                 MessageBox.Show(MSG_EMAI_ALREADY_EXISTS);
             }
-            return isExistingMail;
+            return isExistingMail ;
         }
 
         private void populateAllInputsToModify(ClienteDTO cl)
