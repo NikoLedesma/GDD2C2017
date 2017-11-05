@@ -126,11 +126,17 @@ namespace PagoAgilFrba.AbmEmpresa
       
         }
 
-
         private Boolean validateFields()
         {
-            return validateEmptyFields(); //ACA DEBERIA VALIDAR Q NO HAYA MAS DE UNA CON EL MISMO CUIT --> usamos trigger
+            List<string> msgErrors = new List<string>();
+            msgErrors = Validator.addMsgIfEmpty(msgErrors, txtNombre.Text, "NOMBRE");
+            msgErrors = Validator.addMsgIfNotLetters(msgErrors, txtNombre.Text, "NOMBRE");
+            msgErrors = Validator.addMsgIfEmpty(msgErrors, txtCuit.Text, "CUIT");
+            msgErrors = Validator.addMsgIfNotInteger(msgErrors, txtCuit.Text, "CUIT");
+            msgErrors = Validator.addMsgIfEmpty(msgErrors, txtDireccion.Text, "DIRECCION");
+            return Validator.verifiedIfIsOk(msgErrors, "ALERTA DE CAMPOS");
         }
+
 
         private Boolean validateEmptyFields()
         {

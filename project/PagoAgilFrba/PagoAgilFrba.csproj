@@ -190,6 +190,12 @@
     <Compile Include="Rendicion\RendicionForm.Designer.cs">
       <DependentUpon>RendicionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UTILS\AlertMsgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UTILS\AlertMsgForm.Designer.cs">
+      <DependentUpon>AlertMsgForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UTILS\FactoryFormMenu.cs" />
     <Compile Include="UTILS\GlobalUtils.cs" />
     <Compile Include="UTILS\Provider.cs" />
@@ -265,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rendicion\RendicionForm.resx">
       <DependentUpon>RendicionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UTILS\AlertMsgForm.resx">
+      <DependentUpon>AlertMsgForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

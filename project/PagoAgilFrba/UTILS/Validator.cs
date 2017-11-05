@@ -1,9 +1,9 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +17,6 @@ namespace PagoAgilFrba.UTILS
         private readonly static String ELIMINAR_COLUMN = "EliminarColumn";
         private readonly static String MSG_INTEGERP_VALIDATION = "EL CAMPO {0} TIENE QUE SER ENTERO POSITIVO";
         private readonly static String MSG_MAIL_VALIDATION = "EL MAIL {0} ES INVALIDO";
-        private readonly static String MSG_OBLIGATORY_VALIDATION = "EL CAMPO {0} ES OBLIGATORIO";
 
         public static Boolean isSelectedModificarColumn(DataGridView dataGridView, int columnIndex)
         {
@@ -111,8 +110,81 @@ namespace PagoAgilFrba.UTILS
         }
 
 
+
+        private static String MSG_EMPTY_FIELD = "EL CAMPO {0} ESTA VACIO";
+        private static String MSG_OBLIGATORY_VALIDATION = "EL CAMPO {0} ES OBLIGATORIO";
+        private static String MSG_ONLY_LETTERS = "EN EL CAMPO {0} SOLO SE PERMITEN INGRESAR LETRAS";
+        private static String MSG_ONLY_INTEGERS = "EN EL CAMPO {0} SOLO SE PERMITEN INGRESAR NUMEROS ENTEROS";
+
+        public static List<String> addMsgIfEmpty(List<String> message, String textValue, String textLabel)
+        {
+            if (String.IsNullOrEmpty(textValue))
+            {
+                string msg = String.Format(MSG_OBLIGATORY_VALIDATION, textLabel);
+                message.Add(msg);
+            }
+            return message;
+        }
+
+
+        public static List<String> addMsgIfNotInteger(List<String> message, String textValue, String textLabel)
+        {
+            if (!isPositiveInteger(textValue))
+            {
+                string msg = String.Format(MSG_ONLY_INTEGERS, textLabel);
+                message.Add(msg);
+            }
+            return message;
+        }
+
+        public static List<String> addMsgIfNotLetters(List<String> message, String textValue, String textLabel)
+        {
+            if (!onlyLetters(textValue))
+            {
+                string msg = String.Format(MSG_ONLY_LETTERS, textLabel);
+                message.Add(msg);
+            }
+            return message;
+        }
+
+        private static Boolean isPositiveInteger(String text)
+        {
+            Boolean result = true;
+            Int32 number = -1;
+            if (int.TryParse(text, out number))
+            {
+                if (number < 0)
+                {
+                    result = false;
+                }
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+
+        private static Boolean onlyLetters(String text)
+        {
+            Boolean res = Regex.IsMatch(text, @"^[a-zA-Z]+$");
+            return res;
+        }
+
+
+
+
+        public static Boolean verifiedIfIsOk(List<string> msgErrors, string titleText)
+        {    
+            if(msgErrors.Count>0){
+                string delimiter = "\n";
+                String message = msgErrors.Aggregate((i, j) => i + delimiter + j);
+                MessageBox.Show(message, titleText);
+            }
+            return msgErrors.Count >= 0 ? false : true;
+        }
     }
 
 }
-
-
