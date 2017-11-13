@@ -119,7 +119,7 @@ namespace PagoAgilFrba.Devolucion
                 MessageBox.Show("La empresa y el cliente no poseen facturas para Devolver.");
                 return;
             }
-                
+
             devolucionDTO.idFact = (int)this.comboBox2.SelectedValue;
             if (string.IsNullOrEmpty(this.textBox1.Text))
             {
@@ -128,12 +128,45 @@ namespace PagoAgilFrba.Devolucion
             }
             devolucionDTO.razon = this.textBox1.Text;
 
-                int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
-                MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
+            int resu = businessDevolucionImpl.saveDevolucion(devolucionDTO);
+            MessageBox.Show("La devolucion se dio con exito, resu:" + resu);
+
+            this.comboBox2.DataSource = null;
+            this.comboBox2.Items.Clear();
+
+            this.textBox1.Clear();
+
+            EmpresaDTO empresaSelected = (EmpresaDTO)this.comboBox1.SelectedItem;
+            ClienteDTO clienteSelected = (ClienteDTO)this.comboBox3.SelectedItem;
+            int empresaId = 0;
+            int clienteId = 0;
+
+            if (empresaSelected != null)
+                empresaId = empresaSelected.id;
+            if (clienteSelected != null)
+                clienteId = clienteSelected.id;
+
+            if (empresaId > 0 && clienteId > 0)
+            {
+
+                businessFacturaImpl = new BusinessFacturaImpl();
+
+                listFacturaDTO = businessFacturaImpl.getFacturaByClientAndEmpresaPagas(clienteId, empresaId);
+                if (listFacturaDTO.Count == 0)
+                {
+                    this.comboBox2.DataSource = null;
+                    this.comboBox2.Items.Clear();
+                    return;
+                }
+                this.comboBox2.DataSource = listFacturaDTO;
+                this.comboBox2.ValueMember = "id";
+                this.comboBox2.DisplayMember = "nroFact";
+
             }
 
-            
         }
+      
+     }
 
     
 }

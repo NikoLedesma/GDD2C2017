@@ -60,7 +60,7 @@ namespace DAO.DAOImp
 
 
             using (var command = new SqlCommand("SELECT [fact_id], [fact_cliente], [fact_empresa], [fact_numero], [fact_fecha_alta], [fact_fecha_vencimiento], [fact_total], [fact_inactiva] " +
-                          "FROM  LOS_PUBERTOS.Factura JOIN LOS_PUBERTOS.PF ON pf_factura = fact_id JOIN LOS_PUBERTOS.Pago ON pago_id = pf_pago	 WHERE 1=1 " + str))
+                          "FROM  LOS_PUBERTOS.Factura JOIN LOS_PUBERTOS.PF ON pf_factura = fact_id JOIN LOS_PUBERTOS.Pago ON pago_id = pf_pago	 WHERE NOT EXISTS(select * from LOS_PUBERTOS.Fd where fd_factura = fact_id) " + str))
             {
                 if (cliente > 0) { command.Parameters.AddWithValue("@CLIENTE", cliente); }
                 if (empresa > 0) { command.Parameters.AddWithValue("@EMPRESA", empresa); }
