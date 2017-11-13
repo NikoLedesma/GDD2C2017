@@ -87,6 +87,7 @@
             this.txtPorcCom.Name = "txtPorcCom";
             this.txtPorcCom.Size = new System.Drawing.Size(100, 20);
             this.txtPorcCom.TabIndex = 4;
+            this.txtPorcCom.TextChanged += new System.EventHandler(this.txtPorcCom_TextChanged);
             // 
             // txtComision
             // 

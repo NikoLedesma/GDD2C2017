@@ -140,7 +140,7 @@ namespace PagoAgilFrba.Rendicion
         {
             RendicionDTO rendicionToSave = PantallaARendicionDTO();
             //todo mandar al business la rendicion
-            if (rendicionToSave.idFact == null)
+            if (rendicionToSave.idFact == null || rendicionToSave.idFact.Rows.Count <= 0)
             {
                 MessageBox.Show("Debe seleccionar las facturas a rendir.");
             }
@@ -148,6 +148,10 @@ namespace PagoAgilFrba.Rendicion
             {
                 businessRendicionImpl.saveRendicion(rendicionToSave);
                 MessageBox.Show("Se rindieron las facturas");
+                this.dataGridView1.DataSource = null;
+                this.dataGridView1.Rows.Clear();
+                rendicionToSave.idFact = null;
+                facturasID = null;
             }
         }
 
@@ -155,9 +159,19 @@ namespace PagoAgilFrba.Rendicion
         {
             RendicionDTO rendicionDTO = new RendicionDTO();
             rendicionDTO.fecha = dateTimePicker1.Value;
-            if (!String.IsNullOrEmpty(txtTotal.Text))
-                rendicionDTO.importe = Convert.ToSingle(txtTotal.Text);
-            rendicionDTO.porcentaje = Convert.ToSingle(txtPorcCom.Text);
+            if (!String.IsNullOrEmpty(txtPorcCom.Text))
+            {
+                double number;
+                if (!Double.TryParse(txtPorcCom.Text, out number))
+                {
+
+                    MessageBox.Show("Ingrese solo numeros en el campo comision.");
+                    return rendicionDTO;
+                }
+                rendicionDTO.porcentaje = Convert.ToSingle(txtPorcCom.Text);
+            }
+            rendicionDTO.importe = Convert.ToSingle(txtTotal.Text);
+           
             rendicionDTO.idFact = facturasID;
             return rendicionDTO;
 
@@ -167,6 +181,21 @@ namespace PagoAgilFrba.Rendicion
         private void RendicionForm_FormClosing(Object sender, FormClosingEventArgs e)
         {
             this.prevForm.Show();
+        }
+
+        private void txtPorcCom_TextChanged(object sender, EventArgs e)
+        {
+            FacturaDTO rendiciones = pantallaFacturasDTO();
+            filtroRendicionesDTOs = businessFacturaImpl.getFacturaByFilterRendicion(rendiciones); //Busco en la base de datos la empresa por filtros
+            populateDataGridView(filtroRendicionesDTOs);
+
+            int cantFact;
+            cantFact = filtroRendicionesDTOs.Count;
+            txtCantFact.Text = cantFact.ToString();
+
+            float sumaFact = 0;
+            filtroRendicionesDTOs.ForEach(x => { sumaFact = sumaFact + x.total; });
+            mostrarTotales(sumaFact);
         }
 
     }
